@@ -4,6 +4,14 @@
 {% block body %}
 
 <head>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <style>
     @media only screen and (max-width:600px) {
       .col-sm-6 img {
@@ -23,6 +31,40 @@
       list-style: none;
       text-align: left;
     }
+  .job-card {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    transition: transform  0.3s ease , box-shadow 0.3s ease !important;
+    border-radius: 10px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    background: white !important;
+    position: relative !important;
+    z-index: 1 !important;
+    overflow: hidden!important;
+  }
+
+.job-card::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: radial-gradient(circle at center, rgba(0, 136, 255, 0.15), transparent 70%) !important;
+  opacity: 0 !important;
+  transition: opacity 0.4s ease !important;
+  border-radius: 16px !important;
+  z-index: -1 !important;
+}
+
+.job-card:hover {
+  transform: translateY(-10px) scale(1.02) !important;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2) !important;
+   z-index: 5 !important;
+}
+
+.job-card:hover::after {
+  opacity: 1 !important;
+}
+
   </style>
   <script>
     function login() {
@@ -67,7 +109,7 @@
   <img src="{%static 'images/img.png' %}" alt="" id="img2">
 </div>
 <section>
-  <div class="row-xxl pt-5 mb-5 mt-3 pb-5" style="background-color: #05488b;color: white;" data-aos="fade-up"
+  <div class="row-xxl pt-5 mb-5 mt-3 pb-5" style="background-color: #05488b;color: black" data-aos="fade-up"
     data-aos-duration="3000">
     <h1 class="text-center">Latest Jobs Post</h1>
     <p class="text-center">Explore the different types of available jobs to apply
@@ -75,7 +117,7 @@
     <br>
     <div class="row mx-auto" data-aos="fade-up">
       <div class="col-sm-3 pt-5">
-        <div class="card p-3 card-deck" data-aos="fade-up">
+        <div class="card job-card" data-aos="fade-up">
           <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">React Native Web Developer</h5>
@@ -97,7 +139,7 @@
         </div>
       </div>
       <div class="col-sm-3 pt-5 ">
-        <div class="card p-3 card-deck" data-aos="fade-up">
+        <div class="card job-card" data-aos="fade-up">
           <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Digital Marketing Manager</h5>
@@ -118,7 +160,7 @@
         </div>
       </div>
       <div class="col-sm-3 mt-5 ">
-        <div class="card p-3 card-deck" data-aos="fade-up">
+        <div class="card job-card" data-aos="fade-up">
           <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">IIB Developer</h5>
@@ -138,7 +180,7 @@
         </div>
       </div>
       <div class="col-sm-3 mt-5">
-        <div class="card p-3 card-deck" data-aos="fade-up">
+        <div class="card job-card" data-aos="fade-up">
           <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Full Stack Developer</h5>
@@ -159,7 +201,7 @@
         </div>
       </div>
       <div class="col-sm-3 pt-3">
-        <div class="card p-3 card-deck " data-aos="fade-up">
+        <div class="card job-card " data-aos="fade-up">
           <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">UX/UI Designer</h5>
@@ -178,7 +220,7 @@
         </div>
       </div>
       <div class="col-sm-3 pt-3">
-        <div class="card p-3 card-deck" data-aos="fade-up">
+        <div class="card  job-card" data-aos="fade-up">
           <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Data Scientist</h5>
@@ -197,7 +239,7 @@
         </div>
       </div>
       <div class="col-sm-3 pt-3">
-        <div class="card p-3 card-deck" data-aos="fade-up">
+        <div class="card job-card" data-aos="fade-up">
           <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Nestle Nutrition Officer</h5>
@@ -218,9 +260,9 @@
           </div>
         </div>
       </div>
-      {% for j in job %}
+         {% for j in job %}
       <div class="col-sm-3 pt-3">
-        <div class="card" data-aos="fade-up" style="height: 100%">
+        <div class="card job-card" data-aos="fade-up" style="height: 100%">
           <div class="card-body mx-2">
             <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
             <h5 class="card-title pt-3">{{j.post}}</h5>
@@ -242,7 +284,7 @@
         </div>
       </div>
       {% endfor %}
-</section>
+</section> 
 <div class="row bg-body-tertiary pt-5">
   <h2 class="text-center text-bold" style="font-size: 45px;"> Is Your Resume ATS Friendly?</h2>
   <p class="text-center" style="font-size: 20px;">Check It Out here...</p>
@@ -261,7 +303,7 @@
       correctly.</li>
     <li> <b>More Interviews:</b> An ATS-friendly resume boosts your chances of being shortlisted for interviews.</li>
   </ul>
-  <a class="btn btn-primary w-25 m-5 mx-auto">View Top Resume Samples</a>
+  <a class="btn btn-primary w-25 m-5 mx-auto" href="resume-sample.pdf">View Top Resume Samples</a>
 </div>
 <div class="row pt-5 mb-3 bg-body-tertiary" data-aos="fade-up">
   <section>

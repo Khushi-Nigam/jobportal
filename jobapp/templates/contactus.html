@@ -1,135 +1,265 @@
 {% extends "parent.html" %}
 {% block body %}
 <style>
-  @media only screen and (max-width:600px) {
-    .col-sm-6 {
-      padding-top: 15px;
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f8fb;
+  }
+
+  .contact-title {
+    text-align: center;
+    color: #313030;
+    font-weight: 700;
+    font-size: 2.8rem;
+    margin-bottom: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .contact-section {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+  }
+
+  .contact-section h2 {
+    color: #093f75;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+  }
+
+  .contact-section p, .contact-section label {
+    color: #333;
+    font-size: 1.05rem;
+  }
+
+  .form-control {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  .form-check-label {
+    margin-right: 15px;
+    margin-left: 5px;
+    font-size: 1rem;
+  }
+
+  .btn-submit {
+    background-color: #093f75;
+    color: white;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border: none;
+  }
+
+  .btn-submit:hover {
+    background-color: #0b4d90;
+    cursor: pointer;
+  }
+
+  iframe {
+    width: 100%;
+    height: 350px;
+    border-radius: 10px;
+    border: 0;
+    margin-top: 15px;
+  }
+
+.faq-accordion .accordion-button {
+  background-color: #eaf3ff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0a58ca;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.faq-accordion .accordion-button:hover {
+  background-color: #d8eaff;
+}
+
+.faq-accordion .accordion-button:focus {
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.faq-accordion .accordion-body {
+  background: #ffffff;
+  padding: 15px 20px;
+  font-size: 1rem;
+  color: #333;
+  border-radius: 0 0 8px 8px;
+  box-shadow: inset 0 1px 0 rgba(0,0,0,0.05);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.faq-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
+
+  .accordion-button {
+    font-size: 1rem;
+  }
+
+  .accordion-body {
+    font-size: 0.95rem;
+    color: #444;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .contact-section {
+      padding: 20px;
     }
 
-    iframe {
-      max-width: 100%;
+    .contact-title {
+      font-size: 2rem;
+    }
+
+    .faq-title {
+      font-size: 1.5rem;
     }
   }
 </style>
-<div class="container pt-5 pb-2">
-  <h1 style="text-align: center; color: #313030; font-weight:700; font-size: 45px;"> Contact Us</h1>
-  <div class="row pt-5">
-    <div class="col-sm-6">
-      <h2 class="head pb-2" style="color: #093f75; font-weight: 700;">DreamJobs Office</h2>
-      <p><i class="fas fa-home me-3"></i> 501, Cyber Heights, Lucknow</p>
-      <p><i class="fas fa-phone me-3"></i> 9878648647</p>
-      <p>
-        <i class="fas fa-envelope me-3"></i>
-        info@dreamjobs.com
-      </p>
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3559.0700769905407!2d81.00675540936595!3d26.869514561851368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDUyJzEwLjQiTiA4McKwMDAnMzMuNSJF!5e0!3m2!1sen!2sin!4v1718951750100!5m2!1sen!2sin"
-        width="500" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+<div class="container  pb-2">
+  <h1 class="contact-title">Contact Us</h1>
+  <div class="row pt-5 contact-section">
+    <div class="col-sm-6 mb-4">
+      <h2>DreamJobs Office</h2>
+      <p><i class="fas fa-home me-2"></i> 501, Cyber Heights, Lucknow</p>
+      <p><i class="fas fa-phone me-2"></i> 9878648647</p>
+      <p><i class="fas fa-envelope me-2"></i> info@dreamjobs.com</p>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3559.0700769905407!2d81.00675540936595!3d26.869514561851368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDUyJzEwLjQiTiA4McKwMDAnMzMuNSJF!5e0!3m2!1sen!2sin!4v1718951750100!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
+
     <div class="col-sm-6">
-      <h2 style="color: #093f75;font-weight: 700;">Fill the form below </h2>
+      <h2>Fill the form below</h2>
       {% if msg %}
-      <p style="text-align: center; color: blue;">{{msg}}</p>
-{% endif %}
-      <p>Kindly fill the form below. Please Fill the accurate information. Our agents will try to reach you within 24
-        Hours of application.</p>
+        <p style="text-align: center; color: green;">{{ msg }}</p>
+      {% endif %}
+      <p>Please fill the form accurately. Our agents will reach out within 24 hours.</p>
+
       <form class="form-group" method="post">
         {% csrf_token %}
-        <div class="mb-3 pt-5">
-          <label for="Name" class="form-label" required>Name</label>
-          <input type="text" class="form-control" name="name" placeholder="Enter Your Full Name">
-        </div>
-        <div class="col-md-6 mb-3">
-          <h6 class="mb-2 pb-1">Gender: </h6>
-            <input class="form-check-input" type="radio" name="gender" id="femaleGender" value="female"
-              checked />
-            <label class="form-check-label">Female</label>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="gender" id="maleGender" value="male" />
-            <label class="form-check-label" >Male</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="gender" id="otherGender" value="other" />
-            <label class="form-check-label">Other</label>
-          </div>
-        </div>
         <div class="mb-3">
-          <label for="address" class="form-label" required>Address</label>
-          <div class="col-md-9 pe-5">
-            <textarea class="form-control" rows="3" placeholder="address" name="address"></textarea>
-          </div>
+          <label>Name</label>
+          <input type="text" class="form-control" name="name" placeholder="Enter your full name">
         </div>
+
         <div class="mb-3">
-          <label for="contact" class="form-label" required>Contact No.</label>
-          <input type="number" class="form-control" name="contactno" placeholder="Enter contact no">
+          <label>Gender:</label><br>
+          <input class="form-check-input" type="radio" name="gender" value="female" checked>
+          <label class="form-check-label">Female</label>
+          <input class="form-check-input" type="radio" name="gender" value="male">
+          <label class="form-check-label">Male</label>
+          <input class="form-check-input" type="radio" name="gender" value="other">
+          <label class="form-check-label">Other</label>
         </div>
+
         <div class="mb-3">
-          <label for="email" class="form-label" required>Email address</label>
-          <input type="email" class="form-control" name="emailaddress" placeholder="Enter Email">
+          <label>Address</label>
+          <textarea class="form-control" name="address" rows="3" placeholder="Enter your address"></textarea>
         </div>
+
         <div class="mb-3">
-          <label for="enquiry" class="form-label" required>Enquiry Text</label>
-          <div class="col-md-9 pe-5">
-            <textarea class="form-control" rows="3" name="enquirytext" placeholder=" Write Enquiry"></textarea>
-          </div>
+          <label>Contact No.</label>
+          <input type="number" class="form-control" name="contactno" placeholder="Enter your contact number">
         </div>
-        <button type="submit" class="btn btn-primary w-100 "
-          style="background-color: #093f75; color:white;">Submit</button>
+
+        <div class="mb-3">
+          <label>Email address</label>
+          <input type="email" class="form-control" name="emailaddress" placeholder="Enter your email">
+        </div>
+
+        <div class="mb-3">
+          <label>Enquiry Text</label>
+          <textarea class="form-control" name="enquirytext" rows="3" placeholder="Write your enquiry"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-submit w-100">Submit</button>
+      </form>
     </div>
   </div>
-  <div class="row pb-5">
-    <h1 class="faq pt-5 pb-5 text-center">Frequently Asked Questions</h1>
-    <div class="accordion accordion-flush" id="accordionFlushExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-            How do I upload resume?
-          </button>
-        </h2>
-        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body">To Upload Resume,click on apply now button under job you are applying for,there
-            you a form will appear,From there you can fill the form and upload your resume. </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-            What if I forgot my password?
-          </button>
-        </h2>
-        <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body">When you forget your password, open login page and click on forgotten password
-            link, A verification email will be sent to you.Then you can log in to your account from that link.</div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-            How long it takes for the recruiter to respond?
-          </button>
-        </h2>
-        <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body">It usually takes 2-3 working days. Altough a confirmation email will be sent to
-            you after submittting the application.</div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-            How do I preview my all applications?
-          </button>
-        </h2>
-        <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body">You can preview all your old application by just logging into you account. Under
-            Profile section you can view applications.</div>
+
+ <div class="row pb-5">
+  <h1 class="faq-title">Frequently Asked Questions</h1>
+  <div class="accordion accordion-flush faq-accordion" id="accordionFlushExample">
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+          <i class="fas fa-question-circle me-2"></i> How do I upload resume?
+        </button>
+      </h2>
+      <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          To upload a resume, click on "Apply Now" under the job you're applying for. A form will appear where you can fill in details and upload your resume.
         </div>
       </div>
     </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+          <i class="fas fa-lock me-2"></i> What if I forgot my password?
+        </button>
+      </h2>
+      <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          Click on "Forgot Password" on the login page. A verification link will be sent to your email to reset the password.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+          <i class="fas fa-clock me-2"></i> How long does it take for recruiters to respond?
+        </button>
+      </h2>
+      <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          It usually takes 2–3 working days. A confirmation email will be sent once your application is submitted.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+          <i class="fas fa-user me-2"></i> How do I preview my past applications?
+        </button>
+      </h2>
+      <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          Log into your account and go to the "Profile" section to view all past applications.
+        </div>
+      </div>
+    </div>
   </div>
+</div>
+
 </div>
 {% endblock body %}
