@@ -42,12 +42,12 @@ def jobs(request):
                 emailaddress=request.POST['emailaddress']
                 pjobs=Jobs(firmname=firmname,jobtitle=jobtitle,post=post,jobdesc=jobdesc,qualification=qualification,experience=experience,location=location,salarypa=salarypa,posteddate=posteddate,emailaddress=emailaddress)
                 pjobs.save()
-<<<<<<< HEAD
+
                 for t in  clean_tags:
                       t=t.lower()
                       t_obj,created= Tags.objects.get_or_create(tag_name=t)
                       pjobs.job_tags.add(t_obj)
-=======
+
                 # Email notification to job seekers (simple match on qualification or skills)
                 matching_seekers = JobSeeker.objects.filter(qualification__icontains=qualification)
                 emails = [seeker.emailaddress for seeker in matching_seekers if seeker.emailaddress]
@@ -55,7 +55,7 @@ def jobs(request):
                 message = f"Dear Job Seeker,\n\nA new job '{jobtitle}' matching your profile has been posted. Log in to apply!"
                 if emails:
                     send_notification_email(subject, message, emails)
->>>>>>> upstream/master
+
                 msg="Job Post is added"
                 return render(request,"jobs.html",locals())
             return render(request,"jobs.html",locals())
