@@ -2,80 +2,124 @@
 {% load static %}
 
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/brands.min.css"
-        integrity="sha512-EJp8vMVhYl7tBFE2rgNGb//drnr1+6XKMvTyamMS34YwOEFohhWkGq13tPWnK0FbjSS6D8YoA3n3bZmb3KiUYA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 {% block body %}
 <div class="row pt-4">
-    <div class="col-sm-6 mt-4">
-        <h4 class="pt-5  mx-5" style="font-size: 35px;">Welcome <span style="color: navy;"> {{jobseek.name}} ! </span></h4>
-        <h4 class="pt-5  mx-5" style="font-size: 35px;">Great Jobs Here</h4>
-        <h1 class="pt-3 mx-5" style="font-size: 55px; color: navy;">Discover & Find Your
-            Dream Companies</h1>
-        <form class="d-flex mt-3" role="search">
-            <input class="form-control me-2 w-50 bg-light text-dark mx-5" type="search" placeholder="Search"
-                aria-label="Search" style="border: 1px solid rgba(128, 128, 128, 0.357);">
-            <button class="btn" style="background-color: navy;" type="submit">Search</button>
+    <div class="col-md-6 mt-4">
+        <h4 class="pt-5 mx-5 text-muted" style="font-size: 32px;">Welcome <span class="text-primary">{{ jobseek.name }}</span>!</h4>
+        <h4 class="pt-3 mx-5 text-muted">Find Amazing Opportunities</h4>
+        <h1 class="pt-3 mx-5 fw-bold" style="font-size: 48px; color: navy;">Discover & Join Your Dream Company</h1>
+
+        <!-- Search Bar -->
+        <form class="container my-5" role="search" action="{% url 'jsapp:job_search' %}" method="GET">
+            <div class="row justify-content-center mb-4">
+                <div class="col-md-10 d-flex">
+                    <input class="form-control me-2 px-4 py-2 shadow-sm"
+                        type="search" name="q" placeholder="Search by job title, company, or skills"
+                        aria-label="Search" style="border-radius: 10px; background-color: #ffffff;">
+                    <button class="btn btn-primary px-4" type="submit" style="border-radius: 10px;">Search</button>
+                </div>
+            </div>
+
+            {% if suggestions %}
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-10">
+                    <h4 class="text-center mb-4 text-dark">Search Results</h4>
+
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        {% for job in suggestions %}
+                        <div class="col">
+                            <div class="card h-100 shadow-sm border-0 rounded-3">
+                                <div class="card-body bg-light rounded-3">
+                                    <h5 class="card-title fw-semibold text-primary">{{ job.jobtitle }}</h5>
+                                    <p class="card-text"><strong>Company:</strong> {{ job.firmname }}</p>
+                                    <p class="card-text"><strong>Post:</strong> {{ job.post }}</p>
+                                    <p class="card-text"><strong>Description:</strong> {{ job.jobdesc }}</p>
+                                    <p class="card-text"><strong>Qualification:</strong> {{ job.qualification }}</p>
+                                    <p class="card-text"><strong>Experience:</strong> {{ job.experience }}</p>
+                                    <p class="card-text"><strong>Location:</strong> {{ job.location }}</p>
+                                    <p class="card-text"><strong>Contact:</strong> {{ job.emailaddress }}</p>
+                                    <a href="{% url 'jsapp:jsapply' id=job.id %}" class="btn btn-outline-primary mt-2">Apply Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
         </form>
-        <p class="m-5" style="font-size: 15px;"><span style="font-weight: bold;">Popular Searches: </span> &nbsp;
-            Designer, Web, IOS, Developer, PHP, Senior, Engineer</p>
+
+        <p class="mx-5 text-muted" style="font-size: 15px;">
+            <strong>Popular Searches:</strong> Designer, Web, iOS, Developer, PHP, Senior, Engineer
+        </p>
     </div>
-    <div class="col-sm-6">
-        <img src="{%static 'rimage.webp' %}" alt="" width="90%">
+
+    <div class="col-md-6 text-center">
+        <img src="{% static 'rimage.webp' %}" alt="Job Search Image" width="90%" class="rounded-4 shadow">
     </div>
 </div>
-<div class="row">
-    <h1 class="text-center p-5">Explore More Jobs</h1>
+
+<!-- Explore More Jobs -->
+<div class="row mt-5">
+    <h2 class="text-center fw-bold mb-4">Explore More Jobs</h2>
     {% for j in job %}
-    <div class="col-sm-3 pt-3 bg-light text-dark">
-        <div class="card bg-light text-dark" data-aos="fade-up">
-            <div class="card-body mx-2 bg-light text-dark">
-                <h5 class="card-title pt-3 bg-light text-dark">{{j.post}}</h5>
-                <p style="font-size: 13px;color: grey; "><i class="fa-solid fa-location-dot"
-                        style="color: grey;"></i>&nbsp;&nbsp;{{j.location}} &nbsp;
-                    <i class="fa-regular fa-clock" style="color: grey;"></i>&nbsp; {{j.posteddate}}<br>
-                    <i class="fa-solid fa-briefcase" style="color: grey;"></i>&nbsp;&nbsp;{{j.jobtitle}}
+    <div class="col-md-3 mb-4">
+        <div class="card bg-light border-0 shadow-sm rounded-4 h-100">
+            <div class="card-body">
+                <h5 class="card-title fw-bold text-dark">{{ j.post }}</h5>
+                <p class="text-muted" style="font-size: 14px;">
+                    <i class="fa-solid fa-location-dot me-1"></i>{{ j.location }} |
+                    <i class="fa-regular fa-clock ms-2 me-1"></i>{{ j.posteddate }}<br>
+                    <i class="fa-solid fa-briefcase me-1"></i>{{ j.jobtitle }}
                 </p>
-                <ul style="list-style: none;">
-                    <h6 style="color: rgba(9, 4, 95, 0.632);">{{j.firmname}}</h6>
-                    <li><span style="color:black; font-weight: 600;">Qualifications:</span> {{j.qualification}}</li>
-                    <li>{{j.jobdesc}}</li>
-                    <li><span style="color:black; font-weight: 600;">Salary:&nbsp;</span>{{j.salarypa}} LPA</li>
-                    <li><a href="https://mail.google.com/mail/u/0/#inbox">{{j.emailaddress}}</a></li>
+                <h6 class="text-primary">{{ j.firmname }}</h6>
+                <ul class="ps-3" style="font-size: 14px;">
+                    <li><strong>Qualification:</strong> {{ j.qualification }}</li>
+                    <li>{{ j.jobdesc }}</li>
+                    <li><strong>Salary:</strong> {{ j.salarypa }} LPA</li>
+                    <li><a href="mailto:{{ j.emailaddress }}">{{ j.emailaddress }}</a></li>
                 </ul>
-                <a href="{% url 'jsapp:jsapply' id=j.id %}" class="btn" style="background-color: navy;">Apply Now</a>
+                <a href="{% url 'jsapp:jsapply' id=j.id %}" class="btn btn-primary w-100 mt-2">Apply Now</a>
             </div>
         </div>
     </div>
     {% endfor %}
 </div>
-<div class="row pt-5">
-    <div class="col-sm-6">
-        <img src="{%static 'left.png' %}" alt="" style="border-radius: 40px;">
+
+<!-- Motivation Section -->
+<div class="row mt-5 pt-5">
+    <div class="col-md-6">
+        <img src="{% static 'left.png' %}" alt="Motivation Image" class="img-fluid rounded-4 shadow">
     </div>
-    <div class="col-sm-6  mx-auto text-bold">
-        <h2 style="font-size: 35px; color: grey;" class="pt-5 mt-5 ">Millions Of Jobs.</h2>
-        <h1 style="font-size: 60px; color: black;">Find The One That’s <span style="color: blue;">Right </span> For You
-        </h1>
-        <p style="font-size: 20px;">Search all the open positions on the web. Get your own personalized salary estimate.
-            Read reviews on over 600,000 companies worldwide. The right job is out there.</p>
-        <button class="btn p-3 w-50" style="font-size: 20px; background-color: navy;">Learn More</button>
+    <div class="col-md-6">
+        <h2 class="text-muted mt-5">Millions Of Jobs</h2>
+        <h1 class="fw-bold mb-3" style="font-size: 50px;">Find the One That’s <span class="text-primary">Right</span> for You</h1>
+        <p class="lead text-muted">Search all open positions. Get your own personalized salary estimate. Read reviews on over 600,000 companies.</p>
+        <button class="btn btn-outline-primary px-4 py-2 mt-2">Learn More</button>
     </div>
 </div>
-<div class="row p-5 mb-3">
-    <h1 class="text-center mb-5">View Posts By Top Companies</h1>
+
+<!-- Posts by Top Companies -->
+<div class="row p-5 mt-5 mb-3">
+    <h2 class="text-center mb-5 fw-bold">Posts by Top Companies</h2>
     {% for a in apost %}
-    <div class="card bg-light mb-3">
-        <div class="card-body bg-light text-dark">
-            <img class="img-xs rounded-circle " src="{{empreg.profilepic.url}}" alt=""><h5 class="card-title text-dark">{{a.cpname}}</h5>
-            <p class="card-text">{{a.caption}}</p>
-            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+    <div class="card bg-light mb-4 border-0 shadow-sm rounded-4">
+        <div class="card-body d-flex flex-column">
+            <div class="d-flex align-items-center mb-3">
+                <img class="img-xs rounded-circle me-3" src="{{ empreg.profilepic.url }}" alt="" width="50" height="50">
+                <div>
+                    <h5 class="card-title mb-0">{{ a.cpname }}</h5>
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+            </div>
+            <p class="card-text">{{ a.caption }}</p>
         </div>
-        <img src="{{a.media.url}}" class="card-img-bottom" alt="..." height="400px">
+        <img src="{{ a.media.url }}" class="card-img-bottom rounded-bottom" alt="Company Post Image" style="height: 400px; object-fit: cover;">
     </div>
     {% endfor %}
 </div>
