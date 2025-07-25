@@ -1,9 +1,15 @@
-from django.shortcuts import render,redirect
-from jobapp.models import JobSeeker,Employer
+from django.shortcuts import render,redirect,get_object_or_404
+from jobapp.models import JobSeeker,Employer,Job,Application
 from django.views.decorators.cache import cache_control
 from employer.models import Jobs,Post
 import datetime
+from jobapp.utils import send_notification
 from . models import AppliedJobs,Response
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.conf import settings
+from django.core.mail import send_mail
+
 # Create your views here.
 @cache_control(no_cache=True, must_revalidate=True,no_store=True)
 def jshome(request):
@@ -63,30 +69,61 @@ def changepassword(request):
     except KeyError:
         return redirect("jobapp:login")
 @cache_control(no_cache=True, must_revalidate=True,no_store=True)
-def jsapply(request,id):
+def jsapply(request, id):
     try:
-        if request.session["username"]!=None:
-            username=request.session["username"]
-            job=Jobs.objects.get(id=id)
-            jobseek=JobSeeker.objects.get(emailaddress=username)
-            if request.method=="POST": 
-                empemailaddress=request.POST["empemailaddress"] 
-                jobtitle=request.POST["jobtitle"]
-                post=request.POST['post'] 
-                name=request.POST['name']
-                gender=request.POST['gender']
-                address=request.POST["address"]
-                contactno=request.POST["contactno"]
-                emailaddress=request.POST["emailaddress"]
-                dob=request.POST["dob"]
-                qualification=request.POST["qualification"]
-                experience=request.POST["experience"]
-                keyskills=request.POST["keyskills"]
-                applieddate=datetime.datetime.today()
-                app=AppliedJobs(empemailaddress=empemailaddress,jobtitle=jobtitle,post=post,name=name,gender=gender,address=address,contactno=contactno,emailaddress=emailaddress,dob=dob,qualification=qualification,experience=experience,keyskills=keyskills,applieddate=applieddate)
+        if request.session["username"] is not None:
+            username = request.session["username"]
+            job = Jobs.objects.get(id=id)
+            jobseek = JobSeeker.objects.get(emailaddress=username)
+
+            if request.method == "POST":
+                empemailaddress = request.POST["empemailaddress"]
+                jobtitle = request.POST["jobtitle"]
+                post = request.POST["post"]
+                name = request.POST["name"]
+                gender = request.POST["gender"]
+                address = request.POST["address"]
+                contactno = request.POST["contactno"]
+                emailaddress = request.POST["emailaddress"]
+                dob = request.POST["dob"]
+                qualification = request.POST["qualification"]
+                experience = request.POST["experience"]
+                keyskills = request.POST["keyskills"]
+                applieddate = datetime.datetime.today()
+
+                app = AppliedJobs(
+                    empemailaddress=empemailaddress,
+                    jobtitle=jobtitle,
+                    post=post,
+                    name=name,
+                    gender=gender,
+                    address=address,
+                    contactno=contactno,
+                    emailaddress=emailaddress,
+                    dob=dob,
+                    qualification=qualification,
+                    experience=experience,
+                    keyskills=keyskills,
+                    applieddate=applieddate
+                )
                 app.save()
-                return render(request,"jsapply.html",{"msg":"Application is Submitted" , 'app':'app'})
-            return render(request,"jsapply.html",{'job':job})
+
+                # ✅ Send confirmation email
+                send_mail(
+                    subject=f"Application Received for {jobtitle}",
+                    message=f"Hi {name}, you applied for '{jobtitle}'.",
+                    from_email=settings.EMAIL_HOST_USER,
+                    recipient_list=[emailaddress],
+                    fail_silently=False,
+                )
+
+                # ✅ Optional: Django message framework
+                messages.success(request, "Application submitted. Confirmation email sent.")
+
+                return render(request, "jsapply.html", {"msg": "Application is Submitted", 'app': 'app'})
+
+            return render(request, "jsapply.html", {'job': job})
+
     except KeyError:
         return redirect("jobapp:login")
 @cache_control(no_cache=True, must_revalidate=True,no_store=True)
@@ -118,3 +155,17 @@ def response(request):
         return render(request,"response.html")
     except KeyError:
         return redirect("jobapp:login")
+
+@login_required
+def apply_for_job(request, job_id):
+    job = get_object_or_404(Job, id=job_id)
+    Application.objects.create(job=job, applicant=request.user)
+
+    send_notification(
+        "Job Application Submitted",
+        f"Hi {request.user.first_name}, you applied for '{job.title}'.",
+        request.user.email
+    )
+
+    return redirect('job_list')    
+

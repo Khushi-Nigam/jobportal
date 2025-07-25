@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Login(models.Model):
@@ -37,3 +38,12 @@ class Employer(models.Model):
     panno=models.CharField(max_length=10)
     gstno=models.CharField(max_length=15)
     regdate=models.CharField(max_length=30)
+
+class Job(models.Model):
+    title = models.CharField(max_length=100)
+    category = models.CharField(max_length=100)
+
+class Application(models.Model):
+    job = models.ForeignKey(Job, on_delete=models.CASCADE)
+    applicant = models.ForeignKey(User, on_delete=models.CASCADE)
+    status = models.CharField(max_length=30, default="Applied")    

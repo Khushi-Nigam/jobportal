@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 # Create your models here.
 class AppliedJobs(models.Model):
     id=models.AutoField(primary_key=True)
@@ -23,3 +24,7 @@ class Response(models.Model):
     subject=models.CharField(max_length=500)
     responsetext=models.CharField(max_length=5000)
     posteddate=models.CharField(max_length=30)
+
+class JobSeekerDetails(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    preferred_category = models.CharField(max_length=100)
