@@ -1,3 +1,26 @@
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+env/
+
+# Environment files
+.env
+
+# Django migrations (optional)
+*.sqlite3
+*.log
+
+# VSCode & IDE stuff
+.vscode/
+*.swp
+.idea/
+
+# Node modules (if any frontend code)
+node_modules/
+
 # Python cache files
 __pycache__/
 *.py[cod]
