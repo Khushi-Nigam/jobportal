@@ -20,6 +20,9 @@
     width: $sidebar-width-lg;
     height: $navbar-height;
     @media (max-width: 991px) {
+      width: $sidebar-width-icon;
+    }
+    @media (max-width: 991px) {
       width: 55px;
     }
     .navbar-brand {
@@ -88,7 +91,7 @@
       &:not(.navbar-toggler-right) {
         font-size: 0.875rem;
         @media (max-width: 991px) {
-          display: none;
+          display: block;
         }
       }
       &.navbar-toggler-right{
@@ -378,3 +381,18 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .navbar-nav {
+    flex-direction: column !important;
+    align-items: flex-start;
+    padding-left: 0;
+    gap: 10px;
+  }
+}
+
+.navbar-nav .nav-item .nav-link {
+  padding: 10px 0;
+  font-size: 14px;
+}
+

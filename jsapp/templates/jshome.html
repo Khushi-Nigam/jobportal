@@ -29,6 +29,34 @@
     </div>
 </div>
 <div class="row">
+<<<<<<< HEAD
+    <h1 class="text-center p-5"> Recommended Jobs based on your skills</h1>
+    {% for j in recommended_posts %}
+    <div class="col-sm-3 pt-3 bg-light text-dark">
+        <div class="card bg-light text-dark" data-aos="fade-up">
+            <div class="card-body mx-2 bg-light text-dark">
+                <h5 class="card-title pt-3 bg-light text-dark">{{j.post}}</h5>
+                <p style="font-size: 13px;color: grey; "><i class="fa-solid fa-location-dot"
+                        style="color: grey;"></i>&nbsp;&nbsp;{{j.location}} &nbsp;
+                    <i class="fa-regular fa-clock" style="color: grey;"></i>&nbsp; {{j.posteddate}}<br>
+                    <i class="fa-solid fa-briefcase" style="color: grey;"></i>&nbsp;&nbsp;{{j.jobtitle}}
+                </p>
+                <ul style="list-style: none;">
+                    <h6 style="color: rgba(9, 4, 95, 0.632);">{{j.firmname}}</h6>
+                    <li><span style="color:black; font-weight: 600;">Qualifications:</span> {{j.qualification}}</li>
+                    <li>{{j.jobdesc}}</li>
+                    <li><span style="color:black; font-weight: 600;">Salary:&nbsp;</span>{{j.salarypa}} LPA</li>
+                    <li><a href="https://mail.google.com/mail/u/0/#inbox">{{j.emailaddress}}</a></li>
+                </ul>
+                <a href="{% url 'jsapp:jsapply' id=j.id %}" class="btn" style="background-color: navy;">Apply Now</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="row">
+=======
+>>>>>>> d0a70a6 (responsive-issue#27)
     <h1 class="text-center p-5">Explore More Jobs</h1>
     {% for j in job %}
     <div class="col-sm-3 pt-3 bg-light text-dark">

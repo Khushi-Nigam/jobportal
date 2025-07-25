@@ -1,5 +1,4 @@
 from django.db import models
-
 # Create your models here.
 class Jobs(models.Model):
     firmname=models.CharField(max_length=100)
