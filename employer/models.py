@@ -11,6 +11,10 @@ class Jobs(models.Model):
     salarypa=models.IntegerField()
     posteddate=models.CharField(max_length=30)
     emailaddress=models.EmailField(max_length=50)
+
+    def __str__(self):
+        return self.post
+
 class Post(models.Model):
     cpname=models.TextField(max_length=300,default="")
     caption=models.TextField(max_length=500)

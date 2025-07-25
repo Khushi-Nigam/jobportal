@@ -1,11 +1,21 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from employer.models import Jobs, Post
 from jsapp.models import Response, SavedJob
 from django.contrib import messages
-from jobapp.models import JobSeeker,Employer
-from .models import AppliedJobs
+from jobapp.models import JobSeeker
+from .models import *
 from datetime import datetime
-from django.shortcuts import get_object_or_404
+from jobapp.utils import send_notification_email
+from django.shortcuts import render
+import os
+from groq import Groq  
+import requests
+from dotenv import load_dotenv
+load_dotenv()
+# Initialize Groq client
+
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
 
 def index(request):
     return render(request, "index.html")
@@ -52,7 +62,19 @@ def viewprofile(request):
     try:
         jobseeker = JobSeeker.objects.get(emailaddress=seeker_email)
     except JobSeeker.DoesNotExist:
-        jobseeker = None
+        return redirect("login") 
+
+    if request.method == "POST":
+        jobseeker.name = request.POST.get("name")
+        jobseeker.address = request.POST.get("address")
+        jobseeker.contactno = request.POST.get("contactno")
+        jobseeker.emailaddress = request.POST.get("emailaddress")
+        jobseeker.qualification = request.POST.get("qualification")
+        jobseeker.dob = request.POST.get("dob")
+        jobseeker.experience = request.POST.get("experience")
+        jobseeker.keyskills = request.POST.get("keyskills")
+        jobseeker.save()
+        return render(request, 'viewprofile.html', {"jobseeker": jobseeker})
 
     return render(request, "viewprofile.html", {"jobseeker": jobseeker})
 
@@ -104,6 +126,7 @@ def applyjob(request, jobid):
     if "username" not in request.session:
         return redirect("login")
     
+    job = Jobs.objects.get(id=jobid)
     job = Jobs.objects.get(id=jobid)
     return render(request, "apply.html", {"job": job})
 
@@ -158,6 +181,7 @@ def savejob(request, jobid):
         return redirect("login")
     
     job = Jobs.objects.get(id=jobid)
+    job = Jobs.objects.get(id=jobid)
     user_email = request.session["username"]
 
     # Check if already saved
@@ -177,6 +201,10 @@ def jsapply(request, id):
     seeker = get_object_or_404(JobSeeker, emailaddress=request.session['username'])
 
     if request.method == "POST":
+        already_applied = AppliedJobs.objects.filter(emailaddress=seeker.emailaddress, jobtitle=job.jobtitle).exists()
+        if already_applied:
+            return HttpResponse("You have already applied for this job.")
+        
         AppliedJobs.objects.create(
             empemailaddress=job.emailaddress,
             jobtitle=job.jobtitle,
@@ -192,12 +220,91 @@ def jsapply(request, id):
             keyskills=seeker.keyskills,
             applieddate=datetime.now().strftime("%Y-%m-%d"),
         )
-        return render(request, "applied_success.html", {"job": job})
+        # Send email notification to job seeker
+        # subject = "Application Received"
+        # message = f"Dear {seeker.name},\n\nYour application for {job.jobtitle} has been received."
+        # send_notification_email(subject, message, [seeker.emailaddress])
+        all_applied_jobs = AppliedJobs.objects.filter(emailaddress=seeker.emailaddress)
+        return render(request, "appliedjobs.html", {"jobs": all_applied_jobs})
 
-    return render(request, "applyjob.html", {"job": job, "seeker": seeker})
+    return render(request, "jsapply.html", {"job": job, "seeker": seeker})
 
 def jshome(request):
-    return render(request, 'jsapp/home.html')  # create jsapp/templates/jsapp/home.html if needed
+    return render(request, 'jshome.html')  # create jsapp/templates/jsapp/home.html if needed
 def viewjobs(request):
+    all_jobs = Jobs.objects.all()
     # Just rendering a template for now
-    return render(request, 'jsapp/viewjobs.html')
+    return render(request, 'viewjobs.html', context={'pjobs' : all_jobs})
+
+def extract_ids_from_response(text):
+    # Tries to extract job IDs from LLM response
+    import re
+    return list(map(int, re.findall(r'\d+', text)))  # crude but effective
+
+def job_search(request):
+    user_query = request.GET.get("q", "")
+    if not user_query:
+        return render(request, "jshome.html", {"suggestions": []})
+
+    # Fetch all jobs (limit to 50 for performance)
+    all_jobs = Jobs.objects.all()[:50]
+    job_data = [
+        {
+            "id": job.id,
+            "title": job.jobtitle,
+            "desc": job.jobdesc,
+            "firm": job.firmname,
+            "post": job.post,
+            "location": job.location,
+            "qual": job.qualification,
+            "experience": job.experience,
+        }
+        for job in all_jobs
+    ]
+
+    # Construct prompt for LLM
+    prompt = f"""
+You are an intelligent job search assistant. A user is looking for jobs based on this query:
+
+"{user_query}"
+
+Here are the available jobs (each with id, title, description, etc.):
+
+{job_data}
+
+From this list, return the IDs of the jobs that best match the query — even if the wording is not exactly the same. Use your understanding of context and synonyms.
+
+Respond with a Python-style list of IDs, like: [2, 8, 19]
+"""
+
+    try:
+        # Call Groq LLM API
+        response = requests.post(
+            "https://api.groq.com/openai/v1/chat/completions",
+            headers={"Authorization": f"Bearer {GROQ_API_KEY}"},
+            json={
+                "model": "llama3-70b-8192",  # or "llama3-70b-8192"
+                "messages": [
+                    {"role": "system", "content": "You are a helpful AI job recommender."},
+                    {"role": "user", "content": prompt},
+                ],
+                "temperature": 0.2,
+            },
+            timeout=10
+        )
+
+        # Extract job IDs from LLM response
+        llm_response = response.json()
+        raw_text = llm_response["choices"][0]["message"]["content"]
+        matched_ids = extract_ids_from_response(raw_text)
+
+        matched_jobs = Jobs.objects.filter(id__in=matched_ids)
+
+    except Exception as e:
+        print("LLM Search Error:", e)
+        matched_jobs = []
+
+    return render(request, "jshome.html", {
+        "query": user_query,
+        "suggestions": matched_jobs,
+    })

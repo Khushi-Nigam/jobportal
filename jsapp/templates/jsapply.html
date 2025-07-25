@@ -2,7 +2,7 @@
 {% block body %}
 
 <div class="row mt-5 w-75 mx-auto pb-5 fs-6">
-    <form method="post">
+    <form method="post" action = {% url 'jsapp:jsapply' job.id %}>
       {% csrf_token %}
         <h1 class="text-center">{{job.firmname}}</h1>
         <div class="mb-3 pt-5">
