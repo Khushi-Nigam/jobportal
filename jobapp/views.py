@@ -1,9 +1,5 @@
 from django.shortcuts import render,redirect
-<<<<<<< HEAD
-from . models import Login,Employer,JobSeeker,Enquiry,Tags
-=======
 from . models import Login,Employer,JobSeeker,Enquiry
->>>>>>> d0a70a6 (responsive-issue#27)
 from adminapp.models import News
 from employer.models import Jobs
 from django.core.exceptions import ObjectDoesNotExist
@@ -11,9 +7,9 @@ import datetime
 # Create your views here.
 def index(request):
     job=Jobs.objects.all()
-    return render(request,"index.html",locals())
+    return render(request,"issue/index.html",locals())
 def aboutus(request):
-    return render(request,"aboutus.html")
+    return render(request,"issue/aboutus.html")
 def jobseekerreg(request):
     if request.method=="POST":
         profilepic=request.POST["profilepic"]
@@ -25,19 +21,8 @@ def jobseekerreg(request):
         password=request.POST["password"]
         dob=request.POST["dob"]
         regdate=datetime.datetime.today()
-<<<<<<< HEAD
-        tags = request.POST["tags"]
-        clean_tags = tags.split(",")
         jobseek=JobSeeker(profilepic=profilepic,name=name,gender=gender,address=address,contactno=contactno,emailaddress=emailaddress,dob=dob,regdate=regdate)
         jobseek.save()
-        for t in  clean_tags:
-            t=t.lower()
-            t_obj,created= Tags.objects.get_or_create(tag_name=t)
-            jobseek.seeker_tags.add(t_obj)
-=======
-        jobseek=JobSeeker(profilepic=profilepic,name=name,gender=gender,address=address,contactno=contactno,emailaddress=emailaddress,dob=dob,regdate=regdate)
-        jobseek.save()
->>>>>>> d0a70a6 (responsive-issue#27)
         log=Login(username=emailaddress,password=password,usertype="jobseeker")
         log.save()
         return render(request,"jobseeker.html",{"msg":"Registration is done"})
@@ -98,7 +83,7 @@ def contactus(request):
 def apply(request):
     return render(request,"apply.html")
 def services(request):
-    return render(request,"services.html")
+    return render(request,"templates/jobapp/services.html")
 def blog(request):
         new=News.objects.all()
         return render(request,"blog.html",locals())

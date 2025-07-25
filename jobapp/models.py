@@ -1,11 +1,6 @@
 from django.db import models
 
 # Create your models here.
-<<<<<<< HEAD
-class Tags(models.Model):
-    tag_name = models.CharField(max_length=50,blank=True)
-=======
->>>>>>> d0a70a6 (responsive-issue#27)
 class Login(models.Model):
     username=models.CharField(max_length=50,primary_key=True)
     password=models.CharField(max_length=20)
@@ -30,10 +25,6 @@ class JobSeeker(models.Model):
     experience=models.CharField(max_length=20)
     keyskills=models.TextField()
     regdate=models.CharField(max_length=30)
-<<<<<<< HEAD
-    seeker_tags=models.ManyToManyField(Tags,blank=True)
-=======
->>>>>>> d0a70a6 (responsive-issue#27)
 class Employer(models.Model):
     empprofilepic=models.FileField(upload_to='',default="pic")
     firmname=models.CharField(max_length=100)

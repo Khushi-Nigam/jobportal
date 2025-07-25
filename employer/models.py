@@ -1,9 +1,4 @@
 from django.db import models
-<<<<<<< HEAD
-from jobapp.models import Tags
-=======
-
->>>>>>> d0a70a6 (responsive-issue#27)
 # Create your models here.
 class Jobs(models.Model):
     firmname=models.CharField(max_length=100)
@@ -15,10 +10,6 @@ class Jobs(models.Model):
     location=models.CharField(max_length=50)
     salarypa=models.IntegerField()
     posteddate=models.CharField(max_length=30)
-<<<<<<< HEAD
-    job_tags=models.ManyToManyField(Tags,blank=True)
-=======
->>>>>>> d0a70a6 (responsive-issue#27)
     emailaddress=models.EmailField(max_length=50)
 class Post(models.Model):
     cpname=models.TextField(max_length=300,default="")
