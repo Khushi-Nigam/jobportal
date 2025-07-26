@@ -1,40 +1,323 @@
 {% extends "index.html" %}
-<<<<<<< HEAD
 {% load static %}
 
-<head>
-<title>Job Portal</title>
-=======
 {% block body %}
-<html>
-<head>
-  {% load static %}
-  <title>Job Portal</title>
->>>>>>> d0a70a6 (responsive-issue#27)
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<div class="container pt-5">
+  <!-- About Section -->
+  <section id="about-section" class="mb-5">
+    <h1 class="about-heading">About Us</h1>
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <div class="marquee-container">
+      <div class="marquee-content">
+        The #1 Job Board for Hiring or Find Your Next Job. Each month, more than 3 million job seekers turn to website in
+        their search for work, making over 140,000 applications every single day.
+      </div>
+    </div>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <style>
-    .container {
-      max-width: 100%;
-    }
-    .testimonial-card {
+    <div class="row pt-5">
+      <div class="col-md-6 fade-in-left">
+        <img src="{% static 'images/img5.png' %}" alt="Team working together" class="img-fluid teacher-image">
+      </div>
+      <div class="col-md-6 px-md-4 fade-in-right" id="textabout">
+        <h1 class="section-title">
+          We Help To Get The Best Job<br> And Find A Talent
+        </h1>
+        <div class="row text-center pt-4">
+          <div class="col-md-4 feature-item">
+            <i class="fa fa-briefcase fa-3x feature-icon"></i>
+            <h5 class="pt-2">Verified Jobs</h5>
+          </div>
+          <div class="col-md-4 feature-item">
+            <i class="fa fa-users fa-3x feature-icon"></i>
+            <h5 class="pt-2">Employer Connect</h5>
+          </div>
+          <div class="col-md-4 feature-item">
+            <i class="fa fa-graduation-cap fa-3x feature-icon"></i>
+            <h5 class="pt-2">Internships & Trainings</h5>
+          </div>
+        </div>
+
+        <p class="pt-2 about-description">
+          At DreamJobs, we believe in empowering job seekers with the tools and opportunities they need to succeed in today's competitive job
+          market. Our platform offers a comprehensive suite of services designed to cater to every stage of your career
+          journey, from internships and training programs to full-time job placements. <br>We offer a wide range of
+          services to support you at every stage of your professional journey.
+        </p>
+        <a href="{% url 'jobapp:aboutus' %}" class="btn btn-primary read-more-btn">Read More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <div class="row stats-section pt-5">
+    <div class="col-sm-6 col-md-3 text-center stat-item">
+      <h1 class="counter" data-target="25000">0</h1>
+      <h4>Completed Cases</h4>
+      <p>We always provide people a complete solution upon focused of any business</p>
+    </div>
+    <div class="col-sm-6 col-md-3 text-center stat-item">
+      <h1 class="counter" data-target="17">0</h1>
+      <h4>Our Office</h4>
+      <p>We always provide people a complete solution upon focused of any business</p>
+    </div>
+    <div class="col-sm-6 col-md-3 text-center stat-item">
+      <h1 class="counter" data-target="286">0</h1>
+      <h4>Skilled People</h4>
+      <p>We always provide people a complete solution upon focused of any business</p>
+    </div>
+    <div class="col-sm-6 col-md-3 text-center stat-item">
+      <h1 class="counter" data-target="1000">0</h1>
+      <h4>Job Opportunities</h4>
+      <p>We always provide people a complete solution upon focused of any business</p>
+    </div>
+  </div>
+  
+  <!-- Companies Section -->
+  <section class="companies-section py-5">
+    <h2 class="section-heading text-center mb-5">Top Companies where Our Clients were Placed</h2>
+    <div class="company-logos">
+      {% with 'goo.png tech.webp ibm.jpg micro.jpg cp.png lk.png fb.jpg' as logos %}
+        {% for logo in logos.split %}
+          <div class="company-logo">
+            <img src="{% static 'images/'|add:logo %}" alt="{{ logo|slice:':-4'|title }} logo" loading="lazy">
+          </div>
+        {% endfor %}
+      {% endwith %}
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials-section py-5">
+    <div class="text-center mb-5">
+      <h3 class="testimonials-heading">Our Clients Say !!</h3>
+      <p class="testimonials-subheading">
+        The experiences of our clients with us are truly commendable. DreamJobs helped them to get their<br>
+        <span class="highlight-text">Dream job.</span>
+      </p>
+    </div>
+
+    <div class="row">
+      <!-- Testimonial 1 -->
+      <div class="col-md-4 mb-4">
+        <div class="testimonial-card">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp" alt="Maria Smantha" class="testimonial-img">
+          <h4>Maria Smantha</h4>
+          <h5 class="text-primary">Web Developer</h5>
+          <p class="testimonial-text"><i class="fa fa-quote-left"></i> I've used several job portals in the past, but this one stands out
+              for its simplicity and ease of use. The interface is intuitive, and I was able to set up my profile and
+              start applying for jobs within minutes. Highly recommended!</p>
+          <div class="rating">
+            {% for i in "12345" %}
+              <i class="fas fa-star{% if forloop.last %}-half-alt{% endif %} text-warning"></i>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="col-md-4 mb-4">
+        <div class="testimonial-card">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp" alt="Lisa Cudrow" class="testimonial-img">
+          <h4>Lisa Cudrow</h4>
+          <h5 class="text-primary">Graphic Designer</h5>
+          <p class="testimonial-text"><i class="fa fa-quote-left"></i>What really impressed me about this job portal is the exceptional
+              customer support. Whenever I had a question or ran into an issue, the support team was quick to respond
+              and incredibly helpful. It's clear they care about their users' success.</p>
+          <div class="rating">
+            {% for i in "12345" %}
+              <i class="fas fa-star text-warning"></i>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="col-md-4 mb-4">
+        <div class="testimonial-card">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp" alt="John Smith" class="testimonial-img">
+          <h4>John Smith</h4>
+          <h5 class="text-primary">Marketing Specialist</h5>
+          <p class="testimonial-text"><i class="fa fa-quote-left"></i> This platform offers a wide range of job listings across various
+              industries. I was able to find opportunities that matched my skills and interests perfectly. It's the best
+              resource for job seekers I've come across.</p>
+          <div class="rating">
+            {% for i in "1234" %}
+              <i class="fas fa-star text-warning"></i>
+            {% endfor %}
+            <i class="far fa-star text-warning"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  /* Base Styles */
+  .container {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Typography */
+  .about-heading {
+    text-align: center; 
+    color: #313030; 
+    font-weight: 700; 
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; 
+    color: #093f75;  
+    font-weight: 800; 
+    font-size: 2.8rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Marquee Styles */
+  .marquee-container {
+    background-color: #093f75; 
+    color: white; 
+    font-style: italic; 
+    height: 40px;
+    padding: 10px 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .marquee-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    line-height: 20px;
+    text-align: center;
+    transform: translateX(100%);
+    animation: scroll-left 15s linear infinite;
+  }
+
+  @keyframes scroll-left {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* Feature Items */
+  .feature-item {
+    margin-bottom: 1.5rem;
+  }
+
+  .feature-icon {
+    color: #093f75;
+    margin-bottom: 0.5rem;
+  }
+
+  /* About Description */
+  .about-description {
+    color: #333;
+    margin: 1rem 0;
+    line-height: 1.6;
+  }
+
+  /* Buttons */
+  .read-more-btn {
+    background-color: #093f75; 
+    color: white;
+    padding: 10px 25px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .read-more-btn:hover {
+    background-color: rgb(5, 5, 90);
+    transform: scale(1.05);
+  }
+
+  /* Stats Section */
+  .stats-section {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 2rem 0;
+    margin: 3rem 0;
+  }
+
+  .stat-item {
+    padding: 1rem;
+  }
+
+  .counter {
+    font-weight: 800; 
+    color: #093f75;
+    font-size: 2.5rem;
+  }
+
+  /* Companies Section */
+  .companies-section {
+    background-color: white;
+    margin: 3rem 0;
+  }
+
+  .section-heading {
+    font-size: 2.2rem;
+    color: #093f75;
+    font-weight: 700;
+  }
+
+  .company-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+  }
+
+  .company-logo {
+    flex: 0 0 calc(14% - 2rem);
+    text-align: center;
+  }
+
+  .company-logo img {
+    max-height: 80px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+
+  .company-logo img:hover {
+    filter: grayscale(0);
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  /* Testimonials */
+  .testimonials-section {
+    background-color: rgba(142, 200, 248, 0.3);
+  }
+
+  .testimonials-heading {
+    font-size: 2rem;
+    color: #093f75;
+  }
+
+  .highlight-text {
+    color: #093f75; 
+    font-style: italic; 
+    font-weight: 800;
+  }
+
+  .testimonial-card {
     background-color: white;
     padding: 25px 20px;
     margin: 15px 10px;
     border-radius: 10px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    min-height: 350px;
+    height: 100%;
   }
 
   .testimonial-card:hover {
@@ -42,22 +325,28 @@
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   }
 
-  .testimonial-card h4 {
-    margin-top: 15px;
-    font-weight: bold;
+  .testimonial-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1rem;
+    display: block;
   }
 
-  .testimonial-card p {
+  .testimonial-text {
     font-style: italic;
     color: #333;
     padding: 10px 5px;
+    line-height: 1.6;
   }
 
-  .testimonial-card ul {
-    padding-left: 0;
-    margin-top: 15px;
+  .rating {
+    margin-top: 1rem;
   }
-    .fade-in-left {
+
+  /* Animations */
+  .fade-in-left {
     opacity: 0;
     transform: translateX(-50px);
     transition: all 1s ease;
@@ -74,209 +363,68 @@
     transform: translateX(0);
   }
 
-  /* Button hover animation */
-  .btn:hover {
-    background-color: rgb(5, 5, 90);
-    transform: scale(1.05);
-    transition: all 0.3s ease;
-  }
-
-  .teacher-image{
+  /* Image Effects */
+  .teacher-image {
     border-radius: 7%;
-  }
-  .teacher-image:hover{
-    transform: scale(1.05);
     transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
 
-    @media only screen and (max-width:600px) {
-      #textabout {
-        padding-top: 20px;
-      }
-      .col img{
-        height: 80px;
-      }
+  .teacher-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 992px) {
+    .section-title, .about-heading {
+      font-size: 2.2rem;
     }
-    section {
-  background: linear-gradient(120deg, #f5faff, #ffffff);
-}
-
-
-  </style>
-</head>
-<<<<<<< HEAD
-{% block body %}
-=======
->>>>>>> d0a70a6 (responsive-issue#27)
-<body>
-  <div class="container pt-5 ">
-    <section id="about-section">
-  <h1 style="text-align: center; color: #313030; font-weight:700; font-size: 45px;" class="about pb-3"> About Us</h1>
-
-  <marquee behaviour="alternate" direction="left" scrollamount="10"
-    style="background-color: #093f75; color: white; font-style: italic; height: 40px; padding: 5px;">
-    The #1 Job Board for Hiring or Find Your Next Job. Each month, more than 3 million job seekers turn to website in
-    their search for work, making over 140,000 applications every single day.
-  </marquee>
-
-  <div class="row pt-5">
-    <div class="col-sm-6 fade-in-left">
-      <img src="{% static 'images/img5.png' %}" class="w-100 teacher-image">
-    </div>
-    <div class="col-sm-6 px-4 fade-in-right" id="textabout">
-      <h1 
-        style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: #093f75;  font-weight: 800; font-size: 45px;">
-        We Help To Get The Best Job<br> And Find A Talent
-      </h1>
-      <div class="row text-center pt-4">
-  <div class="col-md-4">
-    <i class="fa fa-briefcase fa-3x" style="color:#093f75;"></i>
-    <h5 class="pt-2">Verified Jobs</h5>
-  </div>
-  <div class="col-md-4">
-    <i class="fa fa-users fa-3x" style="color:#093f75;"></i>
-    <h5 class="pt-2">Employer Connect</h5>
-  </div>
-  <div class="col-md-4">
-    <i class="fa fa-graduation-cap fa-3x" style="color:#093f75;"></i>
-    <h5 class="pt-2">Internships & Trainings</h5>
-  </div>
-</div>
-
-      <p class="pt-2" style="color: black; margin-left: 10px; cursor: pointer;">At DreamJobs, we believe in
-        empowering job seekers with the tools and opportunities they need to succeed in today's competitive job
-        market. Our platform offers a comprehensive suite of services designed to cater to every stage of your career
-        journey, from internships and training programs to full-time job placements. <br>We offer a wide range of
-        services to support you at every stage of your professional journey.</p>
-      <a href="{% url 'jobapp:aboutus' %}">
-        <button class="btn mx-auto" style="background-color: #093f75; color: white;">Read More</button>
-      </a>
-    </div>
-  </div>
-</section>
-
-    <div class="row pt-5">
-  <div class="col-sm-3 text-center">
-    <h1 class="counter" data-target="25000" style="font-weight: 800; color: #093f75;">0</h1>
-    <h4>Completed Cases</h4>
-    <p>We always provide people a complete solution upon focused of any business</p>
-  </div>
-  <div class="col-sm-3 text-center">
-    <h1 class="counter" data-target="17" style="font-weight: 800; color: #093f75;">0</h1>
-    <h4>Our Office</h4>
-    <p>We always provide people a complete solution upon focused of any business</p>
-  </div>
-  <div class="col-sm-3 text-center">
-    <h1 class="counter" data-target="286" style="font-weight: 800; color: #093f75;">0</h1>
-    <h4>Skilled People</h4>
-    <p>We always provide people a complete solution upon focused of any business</p>
-  </div>
-  <div class="col-sm-3 text-center">
-    <h1 class="counter" data-target="1000" style="font-weight: 800; color: #093f75;">0</h1>
-    <h4>Job Opportunities</h4>
-    <p>We always provide people a complete solution upon focused of any business</p>
-  </div>
-</div>
-   
-        <section><br><br>
-  <div class="row pt-5 pb-5 text-center" style="background-color: white;">
-    <h2 class="pb-5">Top Companies where Our Clients were Placed</h2>
     
-      <div class="col"><marquee direction="left" scrollamount="20">
-              <img src="{% static 'images/goo.png' %}" alt="" height="150px" style="display: inline-block;">
-           
-              <img src="{% static 'images/tech.webp' %}" alt="" height="150px" style="display: inline;">
-           
-         
-              <img src="{% static 'images/ibm.jpg' %}" alt="" height="150px" style="display: inline;">
-              <img src="{% static 'images/micro.jpg' %}" alt="" height="100px" style="display: inline;">
-              <img src="{% static 'images/cp.png' %}" alt="" height="150px" style="display: inline;">
-              <img src="{% static 'images/lk.png' %}" alt="" height="150px" style="display: inline;">
-              <img src="{% static 'images/fb.jpg' %}" alt="" height="120px" style="display: inline;">
-              <img src="{% static 'images/ibm.jpg' %}" alt="" height="150px" style="display: inline;">
-            </marquee></div>
-        
-    </div>
-  </div>
+    .company-logo {
+      flex: 0 0 calc(25% - 2rem);
+    }
+  }
 
-  <div class="row pt-5 pb-5" style="background-color: rgba(142, 200, 248, 0.3);">
-    <div class="text-center">
-      <h3 class="mb-4" style="font-size: 35px;">Our Clients Say !!</h3>
-      <p class="mb-4">
-        The experiences of our clients with us are truly commendable. DreamJobs helped them to get their<br>
-        <span style="color: #093f75; font-style: italic; font-weight: 800;">Dream job.</span>
-      </p>
-    </div>
+  @media (max-width: 768px) {
+    .section-title, .about-heading {
+      font-size: 1.8rem;
+    }
+    
+    #textabout {
+      padding-top: 20px;
+    }
+    
+    .company-logo {
+      flex: 0 0 calc(33% - 2rem);
+    }
+    
+    .testimonial-card {
+      margin-bottom: 2rem;
+    }
+  }
 
-    <!-- Testimonials as Cards -->
-    <div class="row">
-      <!-- Card 1 -->
-      <div class="col-sm-4">
-        <div class="testimonial-card">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp" class="img-circle img-responsive center-block" width="100" height="100">
-          <h4>Maria Smantha</h4>
-          <h5 class="text-primary">Web Developer</h5>
-          <p><i class="fa fa-quote-left"></i> I've used several job portals in the past, but this one stands out
-              for its simplicity and ease of use. The interface is intuitive, and I was able to set up my profile and
-              start applying for jobs within minutes. Highly recommended!</p>
-          <ul class="list-inline">
-            <li><i class="fas fa-star text-warning"></i></li>
-            <li><i class="fas fa-star text-warning"></i></li>
-            <li><i class="fas fa-star text-warning"></i></li>
-            <li><i class="fas fa-star text-warning"></i></li>
-            <li><i class="fas fa-star-half-alt text-warning"></i></li>
-          </ul>
-        </div>
-      </div>
+  @media (max-width: 576px) {
+    .section-title, .about-heading {
+      font-size: 1.5rem;
+    }
+    
+    .company-logo {
+      flex: 0 0 calc(50% - 2rem);
+    }
+    
+    .company-logo img {
+      max-height: 60px;
+    }
+    
+    .feature-item {
+      margin-bottom: 1.5rem;
+    }
+  }
+</style>
 
-      <!-- Card 2 -->
-      <div class="col-sm-4">
-        <div class="testimonial-card">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp" class="img-circle img-responsive center-block" width="100" height="100">
-          <h4>Lisa Cudrow</h4>
-          <h5 class="text-primary">Graphic Designer</h5>
-          <p><i class="fa fa-quote-left"></i>What really impressed me about this job portal is the exceptional
-              customer support. Whenever I had a question or ran into an issue, the support team was quick to respond
-              and incredibly helpful. It's clear they care about their users' success.</p>
-          <ul class="list-inline">
-            <li><i class="fas fa-star text-warning"></i></li>
-            <li><i class="fas fa-star text-warning"></i></li>
-            <li><i class="fas fa-star text-warning"></i></li>
-            <li><i class="fas fa-star text-warning"></i></li>
-            <li><i class="fas fa-star text-warning"></i></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="col-sm-4">
-        <div class="testimonial-card">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp" class="img-circle img-responsive center-block" width="100" height="100">
-          <h4>John Smith</h4>
-          <h5 class="text-primary">Marketing Specialist</h5>
-          <p><i class="fa fa-quote-left"></i> This platform offers a wide range of job listings across various
-              industries. I was able to find opportunities that matched my skills and interests perfectly. It's the best
-              resource for job seekers I've come across.</p>
-          <ul class="list-inline">
-            <li><i class="fas fa-star text-warning"></i></li>
-            <li><i class="fas fa-star text-warning"></i></li>
-            <li><i class="fas fa-star text-warning"></i></li>
-            <li><i class="fas fa-star text-warning"></i></li>
-            <li><i class="far fa-star text-warning"></i></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-      </div>
-      <br><br>
-    </div>
-  </div>
-
-
-  <script>
+<script>
+  // Intersection Observer for scroll animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -284,52 +432,54 @@
       }
     });
   }, {
-    threshold: 0.3
+    threshold: 0.2
   });
 
   document.querySelectorAll('.fade-in-left, .fade-in-right').forEach(el => {
     observer.observe(el);
   });
 
-  const counters = document.querySelectorAll('.counter');
-  const speed = 100; // lower is faster
-
+  // Counter Animation
   const animateCounters = () => {
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200; // lower is faster
+
     counters.forEach(counter => {
-      const updateCount = () => {
-        const target = +counter.getAttribute('data-target');
-        const count = +counter.innerText;
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText;
+      const increment = target / speed;
 
-        const increment = target / speed;
-
-        if (count < target) {
-          counter.innerText = Math.ceil(count + increment);
-          setTimeout(updateCount, 20);
-        } else {
-          counter.innerText = target >= 1000 ? target.toLocaleString() + "+" : target + "+";
-        }
-      };
-
-      updateCount();
+      if (count < target) {
+        counter.innerText = Math.ceil(count + increment);
+        setTimeout(animateCounters, 20);
+      } else {
+        counter.innerText = target >= 1000 ? 
+          target.toLocaleString() + "+" : 
+          target + "+";
+      }
     });
   };
 
-  const observer1 = new IntersectionObserver(entries => {
+  // Only animate counters when they come into view
+  const counterObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         animateCounters();
-        observer1.disconnect(); // Run only once
+        counterObserver.unobserve(entry.target);
       }
     });
   }, { threshold: 0.5 });
 
-  observer1.observe(document.querySelector('.row.pt-5'));
+  document.querySelectorAll('.counter').forEach(counter => {
+    counterObserver.observe(counter);
+  });
+
+  // Initialize tooltips
+  document.addEventListener('DOMContentLoaded', function() {
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+  });
 </script>
-<<<<<<< HEAD
-=======
-
-</body>
-
-</html>
->>>>>>> d0a70a6 (responsive-issue#27)
-{% endblock body %}
+{% endblock %}

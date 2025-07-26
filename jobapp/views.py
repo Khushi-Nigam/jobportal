@@ -7,9 +7,9 @@ import datetime
 # Create your views here.
 def index(request):
     job=Jobs.objects.all()
-    return render(request,"issue/index.html",locals())
+    return render(request, "index.html", locals())
 def aboutus(request):
-    return render(request,"issue/aboutus.html")
+    return render(request,"aboutus.html")
 def jobseekerreg(request):
     if request.method=="POST":
         profilepic=request.POST["profilepic"]
@@ -83,7 +83,7 @@ def contactus(request):
 def apply(request):
     return render(request,"apply.html")
 def services(request):
-    return render(request,"templates/jobapp/services.html")
+    return render(request,"services.html")
 def blog(request):
         new=News.objects.all()
         return render(request,"blog.html",locals())
