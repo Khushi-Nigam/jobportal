@@ -1,158 +1,12 @@
 {% extends "index.html" %}
 {% load static %}
 
+<head>
+<title>Job Portal</title>
 {% block body %}
-<div class="container pt-5">
-  <!-- About Section -->
-  <section id="about-section" class="mb-5">
-    <h1 class="about-heading">About Us</h1>
-
-    <div class="marquee-container">
-      <div class="marquee-content">
-        The #1 Job Board for Hiring or Find Your Next Job. Each month, more than 3 million job seekers turn to website in
-        their search for work, making over 140,000 applications every single day.
-      </div>
-    </div>
-
-    <div class="row pt-5">
-      <div class="col-md-6 fade-in-left">
-        <img src="{% static 'images/img5.png' %}" alt="Team working together" class="img-fluid teacher-image">
-      </div>
-      <div class="col-md-6 px-md-4 fade-in-right" id="textabout">
-        <h1 class="section-title">
-          We Help To Get The Best Job<br> And Find A Talent
-        </h1>
-        <div class="row text-center pt-4">
-          <div class="col-md-4 feature-item">
-            <i class="fa fa-briefcase fa-3x feature-icon"></i>
-            <h5 class="pt-2">Verified Jobs</h5>
-          </div>
-          <div class="col-md-4 feature-item">
-            <i class="fa fa-users fa-3x feature-icon"></i>
-            <h5 class="pt-2">Employer Connect</h5>
-          </div>
-          <div class="col-md-4 feature-item">
-            <i class="fa fa-graduation-cap fa-3x feature-icon"></i>
-            <h5 class="pt-2">Internships & Trainings</h5>
-          </div>
-        </div>
-
-        <p class="pt-2 about-description">
-          At DreamJobs, we believe in empowering job seekers with the tools and opportunities they need to succeed in today's competitive job
-          market. Our platform offers a comprehensive suite of services designed to cater to every stage of your career
-          journey, from internships and training programs to full-time job placements. <br>We offer a wide range of
-          services to support you at every stage of your professional journey.
-        </p>
-        <a href="{% url 'jobapp:aboutus' %}" class="btn btn-primary read-more-btn">Read More</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Stats Section -->
-  <div class="row stats-section pt-5">
-    <div class="col-sm-6 col-md-3 text-center stat-item">
-      <h1 class="counter" data-target="25000">0</h1>
-      <h4>Completed Cases</h4>
-      <p>We always provide people a complete solution upon focused of any business</p>
-    </div>
-    <div class="col-sm-6 col-md-3 text-center stat-item">
-      <h1 class="counter" data-target="17">0</h1>
-      <h4>Our Office</h4>
-      <p>We always provide people a complete solution upon focused of any business</p>
-    </div>
-    <div class="col-sm-6 col-md-3 text-center stat-item">
-      <h1 class="counter" data-target="286">0</h1>
-      <h4>Skilled People</h4>
-      <p>We always provide people a complete solution upon focused of any business</p>
-    </div>
-    <div class="col-sm-6 col-md-3 text-center stat-item">
-      <h1 class="counter" data-target="1000">0</h1>
-      <h4>Job Opportunities</h4>
-      <p>We always provide people a complete solution upon focused of any business</p>
-    </div>
-  </div>
-  
-  <!-- Companies Section -->
-  <section class="companies-section py-5">
-    <h2 class="section-heading text-center mb-5">Top Companies where Our Clients were Placed</h2>
-    <div class="company-logos">
-      {% with 'goo.png tech.webp ibm.jpg micro.jpg cp.png lk.png fb.jpg' as logos %}
-        {% for logo in logos.split %}
-          <div class="company-logo">
-            <img src="{% static 'images/'|add:logo %}" alt="{{ logo|slice:':-4'|title }} logo" loading="lazy">
-          </div>
-        {% endfor %}
-      {% endwith %}
-    </div>
-  </section>
-
-  <!-- Testimonials Section -->
-  <section class="testimonials-section py-5">
-    <div class="text-center mb-5">
-      <h3 class="testimonials-heading">Our Clients Say !!</h3>
-      <p class="testimonials-subheading">
-        The experiences of our clients with us are truly commendable. DreamJobs helped them to get their<br>
-        <span class="highlight-text">Dream job.</span>
-      </p>
-    </div>
-
-    <div class="row">
-      <!-- Testimonial 1 -->
-      <div class="col-md-4 mb-4">
-        <div class="testimonial-card">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp" alt="Maria Smantha" class="testimonial-img">
-          <h4>Maria Smantha</h4>
-          <h5 class="text-primary">Web Developer</h5>
-          <p class="testimonial-text"><i class="fa fa-quote-left"></i> I've used several job portals in the past, but this one stands out
-              for its simplicity and ease of use. The interface is intuitive, and I was able to set up my profile and
-              start applying for jobs within minutes. Highly recommended!</p>
-          <div class="rating">
-            {% for i in "12345" %}
-              <i class="fas fa-star{% if forloop.last %}-half-alt{% endif %} text-warning"></i>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-
-      <!-- Testimonial 2 -->
-      <div class="col-md-4 mb-4">
-        <div class="testimonial-card">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp" alt="Lisa Cudrow" class="testimonial-img">
-          <h4>Lisa Cudrow</h4>
-          <h5 class="text-primary">Graphic Designer</h5>
-          <p class="testimonial-text"><i class="fa fa-quote-left"></i>What really impressed me about this job portal is the exceptional
-              customer support. Whenever I had a question or ran into an issue, the support team was quick to respond
-              and incredibly helpful. It's clear they care about their users' success.</p>
-          <div class="rating">
-            {% for i in "12345" %}
-              <i class="fas fa-star text-warning"></i>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-
-      <!-- Testimonial 3 -->
-      <div class="col-md-4 mb-4">
-        <div class="testimonial-card">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp" alt="John Smith" class="testimonial-img">
-          <h4>John Smith</h4>
-          <h5 class="text-primary">Marketing Specialist</h5>
-          <p class="testimonial-text"><i class="fa fa-quote-left"></i> This platform offers a wide range of job listings across various
-              industries. I was able to find opportunities that matched my skills and interests perfectly. It's the best
-              resource for job seekers I've come across.</p>
-          <div class="rating">
-            {% for i in "1234" %}
-              <i class="fas fa-star text-warning"></i>
-            {% endfor %}
-            <i class="far fa-star text-warning"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<style>
+<html>
+<head>
+  <style>
   /* Base Styles */
   .container {
     max-width: 100%;
@@ -379,8 +233,10 @@
   @media (max-width: 992px) {
     .section-title, .about-heading {
       font-size: 2.2rem;
-    }
-    
+    }}
+    section {
+  background: linear-gradient(120deg, #f5faff, #ffffff);
+}
     .company-logo {
       flex: 0 0 calc(25% - 2rem);
     }
@@ -403,7 +259,6 @@
       margin-bottom: 2rem;
     }
   }
-
   @media (max-width: 576px) {
     .section-title, .about-heading {
       font-size: 1.5rem;
@@ -421,8 +276,163 @@
       margin-bottom: 1.5rem;
     }
   }
-</style>
 
+  </style>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+  {% load static %}
+
+<div class="container pt-5">
+  <!-- About Section -->
+  <section id="about-section" class="mb-5">
+    <h1 class="about-heading">About Us</h1>
+
+    <div class="marquee-container">
+      <div class="marquee-content">
+        The #1 Job Board for Hiring or Find Your Next Job. Each month, more than 3 million job seekers turn to website in
+        their search for work, making over 140,000 applications every single day.
+      </div>
+    </div>
+
+    <div class="row pt-5">
+      <div class="col-md-6 fade-in-left">
+        <img src="{% static 'images/img5.png' %}" alt="Team working together" class="img-fluid teacher-image">
+      </div>
+      <div class="col-md-6 px-md-4 fade-in-right" id="textabout">
+        <h1 class="section-title">
+          We Help To Get The Best Job<br> And Find A Talent
+        </h1>
+        <div class="row text-center pt-4">
+          <div class="col-md-4 feature-item">
+            <i class="fa fa-briefcase fa-3x feature-icon"></i>
+            <h5 class="pt-2">Verified Jobs</h5>
+          </div>
+          <div class="col-md-4 feature-item">
+            <i class="fa fa-users fa-3x feature-icon"></i>
+            <h5 class="pt-2">Employer Connect</h5>
+          </div>
+          <div class="col-md-4 feature-item">
+            <i class="fa fa-graduation-cap fa-3x feature-icon"></i>
+            <h5 class="pt-2">Internships & Trainings</h5>
+          </div>
+        </div>
+
+        <p class="pt-2 about-description">
+          At DreamJobs, we believe in empowering job seekers with the tools and opportunities they need to succeed in today's competitive job
+          market. Our platform offers a comprehensive suite of services designed to cater to every stage of your career
+          journey, from internships and training programs to full-time job placements. <br>We offer a wide range of
+          services to support you at every stage of your professional journey.
+        </p>
+        <a href="{% url 'jobapp:aboutus' %}" class="btn btn-primary read-more-btn">Read More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <div class="row stats-section pt-5">
+    <div class="col-sm-6 col-md-3 text-center stat-item">
+      <h1 class="counter" data-target="25000">0</h1>
+      <h4>Completed Cases</h4>
+      <p>We always provide people a complete solution upon focused of any business</p>
+    </div>
+    <div class="col-sm-6 col-md-3 text-center stat-item">
+      <h1 class="counter" data-target="17">0</h1>
+      <h4>Our Office</h4>
+      <p>We always provide people a complete solution upon focused of any business</p>
+    </div>
+    <div class="col-sm-6 col-md-3 text-center stat-item">
+      <h1 class="counter" data-target="286">0</h1>
+      <h4>Skilled People</h4>
+      <p>We always provide people a complete solution upon focused of any business</p>
+    </div>
+    <div class="col-sm-6 col-md-3 text-center stat-item">
+      <h1 class="counter" data-target="1000">0</h1>
+      <h4>Job Opportunities</h4>
+      <p>We always provide people a complete solution upon focused of any business</p>
+    </div>
+  </div>
+  
+  <!-- Companies Section -->
+  <section class="companies-section py-5">
+    <h2 class="section-heading text-center mb-5">Top Companies where Our Clients were Placed</h2>
+    <div class="company-logos">
+      {% with 'goo.png tech.webp ibm.jpg micro.jpg cp.png lk.png fb.jpg' as logos %}
+        {% for logo in logos.split %}
+          <div class="company-logo">
+            <img src="{% static 'images/'|add:logo %}" alt="{{ logo|slice:':-4'|title }} logo" loading="lazy">
+          </div>
+        {% endfor %}
+      {% endwith %}
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials-section py-5">
+    <div class="text-center mb-5">
+      <h3 class="testimonials-heading">Our Clients Say !!</h3>
+      <p class="testimonials-subheading">
+        The experiences of our clients with us are truly commendable. DreamJobs helped them to get their<br>
+        <span class="highlight-text">Dream job.</span>
+      </p>
+    </div>
+
+    <div class="row">
+      <!-- Testimonial 1 -->
+      <div class="col-md-4 mb-4">
+        <div class="testimonial-card">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp" alt="Maria Smantha" class="testimonial-img">
+          <h4>Maria Smantha</h4>
+          <h5 class="text-primary">Web Developer</h5>
+          <p class="testimonial-text"><i class="fa fa-quote-left"></i> I've used several job portals in the past, but this one stands out
+              for its simplicity and ease of use. The interface is intuitive, and I was able to set up my profile and
+              start applying for jobs within minutes. Highly recommended!</p>
+          <div class="rating">
+            {% for i in "12345" %}
+              <i class="fas fa-star{% if forloop.last %}-half-alt{% endif %} text-warning"></i>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="col-md-4 mb-4">
+        <div class="testimonial-card">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp" alt="Lisa Cudrow" class="testimonial-img">
+          <h4>Lisa Cudrow</h4>
+          <h5 class="text-primary">Graphic Designer</h5>
+          <p class="testimonial-text"><i class="fa fa-quote-left"></i>What really impressed me about this job portal is the exceptional
+              customer support. Whenever I had a question or ran into an issue, the support team was quick to respond
+              and incredibly helpful. It's clear they care about their users' success.</p>
+          <div class="rating">
+            {% for i in "12345" %}
+              <i class="fas fa-star text-warning"></i>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="col-md-4 mb-4">
+        <div class="testimonial-card">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp" alt="John Smith" class="testimonial-img">
+          <h4>John Smith</h4>
+          <h5 class="text-primary">Marketing Specialist</h5>
+          <p class="testimonial-text"><i class="fa fa-quote-left"></i> This platform offers a wide range of job listings across various
+              industries. I was able to find opportunities that matched my skills and interests perfectly. It's the best
+              resource for job seekers I've come across.</p>
+          <div class="rating">
+            {% for i in "1234" %}
+              <i class="fas fa-star text-warning"></i>
+            {% endfor %}
+            <i class="far fa-star text-warning"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+   
 <script>
   // Intersection Observer for scroll animations
   const observer = new IntersectionObserver((entries) => {
