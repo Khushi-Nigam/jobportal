@@ -15,56 +15,110 @@
     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
   <style>
-    @media only screen and (max-width:600px) {
-      .col-sm-6 img {
-        display: none;
-      }
+    .col {
+  display: flex;
+  flex-direction: row; /* Change from column to row */
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  width: 100%;
+  min-height: 150px;
+  margin: 8px;
+}
 
-      #search-input {
-        width: 100%;
-      }
+/* Image left */
+.col img {
+  border-radius: 12px;
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin: 0;
+}
 
-      #img2 {
-        display: none;
-      }
-     }
-    .card li {
-      list-style: none;
-      text-align: left;
-    }
-    .job-card {
-      height: 100% !important;
-      display: flex !important;
-      flex-direction: column !important;
-      transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-      border-radius: 10px !important;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-      background: white !important;
-      position: relative !important;
-      z-index: 1 !important;
-      overflow: hidden !important;
-    }
+/* Right-side content container */
+.col .card-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-grow: 1;
+}
 
-    .job-card::after {
-      content: "" !important;
-      position: absolute !important;
-      inset: 0 !important;
-      background: radial-gradient(circle at center, rgba(0, 136, 255, 0.15), transparent 70%) !important;
-      opacity: 0 !important;
-      transition: opacity 0.4s ease !important;
-      border-radius: 16px !important;
-      z-index: -1 !important;
-    }
+/* Title */
+.col h5 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #093f75;
+  margin-bottom: 8px;
+}
 
-    .job-card:hover {
-      transform: translateY(-10px) scale(1.02) !important;
-      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2) !important;
-      z-index: 5 !important;
-    }
+/* Paragraph and list */
+.col p,
+.col li {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
 
-    .job-card:hover::after {
-      opacity: 1 !important;
-    }
+/* No bullets */
+.col li {
+  list-style: none;
+  margin-bottom: 6px;
+}
+
+/* Button at bottom of content */
+.col .btn {
+  background: linear-gradient(to right, white, #2e82d5);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  align-self: flex-start;
+  transition: background 0.3s ease-in;
+  margin-top: 12px;
+}
+
+.col .btn:hover {
+  background: white;
+  color: #2e82d5;
+  border: 1px solid #2e82d5;
+}
+  .col:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+
+.col::after {
+  content: "";
+  position: relative;
+  background: radial-gradient(circle at center, rgba(0, 136, 255, 0.08), transparent 70%);
+  background:
+    radial-gradient(circle at top left, rgba(16, 242, 136, 0.08), transparent 70%),
+    radial-gradient(circle at top right, rgba(16, 242, 136, 0.08), transparent 70%),
+    radial-gradient(circle at bottom left, rgba(16, 242, 136, 0.08), transparent 70%),
+    radial-gradient(circle at bottom right, rgba(16, 242, 136, 0.08), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  z-index: -1;
+  border-radius: 16px;
+}
+
+.col:hover::after {
+  opacity: 1;
+}
+
   </style>
   <script>
     function login() {
@@ -90,21 +144,21 @@
         <div class="order-1 order-md-2 col-md-6 d-flex align-items-center justify-content-center mb-4 mb-md-0"
           data-aos="fade-left" data-aos-anchor="#example-anchor" data-aos-offset="500" data-aos-duration="500">
           <img src="{% static 'images/right3.jpg' %}" class="img-fluid"
-            style="border-radius: 20px 20px 20px 0px; max-width: 100%; border: 5px solid #093f75;">
+            style="border-radius: 20px 20px 20px 0px; max-width: 100%; border: 5px solid #0080ff;">
         </div>
 
         <!-- TEXT -->
         <div id="index-main-text" class="order-2 order-md-1 col-md-6 px-4 px-md-5 pt-2 pt-md-5" data-aos="fade-right"
           data-aos-offset="300" data-aos-easing="ease-in-sine">
           <h1
-            style="color: #093f75; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; cursor: pointer;">
+            style="color: #0080ff; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; cursor: pointer;">
             Get The
-            <span style="color: #56a8fa; text-shadow: 4px 4px #093f75;">
+            <span style="color: #56a8fa; text-shadow: 4px 4px #0080ff;">
               Right Job
             </span>
           </h1>
           <h1
-            style="color: #093f75; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; cursor: pointer;">
+            style="color: #0080ff; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; cursor: pointer;">
             You Deserve
           </h1>
           <p style="cursor: pointer;">
@@ -122,15 +176,15 @@
     </section>
     <!--job card -->
     <section>
-      <div class="row-xxl pt-5 mb-5 mt-3 pb-5" style="background-color: #05488b;color: black" data-aos="fade-up"
+      <div class="row-xxl pt-5 mb-5 mt-3 pb-5" style="background-color: #0080ff;color: black" data-aos="fade-up"
         data-aos-duration="3000">
         <h1 class="text-center" style="color: white;">Latest Jobs Post</h1>
         <p class="text-center" style="color: white;">Explore the different types of available jobs to apply
           discover which is right for you.</p>
         <br>
         <div class="row mx-auto" data-aos="fade-up">
-          <div class="col-sm-3 pt-5">
-            <div class="card job-card" data-aos="fade-up">
+          <div class="col">
+            <div class="job-card" data-aos="fade-up">
               <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">React Native Web Developer</h5>
@@ -151,8 +205,8 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-3 pt-5 ">
-            <div class="card job-card" data-aos="fade-up">
+          <div class="col">
+            <div class="job-card" data-aos="fade-up">
               <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Digital Marketing Manager</h5>
@@ -172,8 +226,8 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-3 mt-5 ">
-            <div class="card job-card" data-aos="fade-up">
+          <div class="col">
+            <div class="job-card" data-aos="fade-up">
               <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">IIB Developer</h5>
@@ -192,8 +246,8 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-3 mt-5">
-            <div class="card job-card" data-aos="fade-up">
+          <div class="col">
+            <div class="job-card" data-aos="fade-up">
               <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Full Stack Developer</h5>
@@ -213,8 +267,8 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-3 pt-3">
-            <div class="card job-card " data-aos="fade-up">
+          <div class="col">
+            <div class="job-card " data-aos="fade-up">
               <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">UX/UI Designer</h5>
@@ -232,8 +286,8 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-3 pt-3">
-            <div class="card  job-card" data-aos="fade-up">
+          <div class="col">
+            <div class="job-card" data-aos="fade-up">
               <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Data Scientist</h5>
@@ -251,8 +305,8 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-3 pt-3">
-            <div class="card job-card" data-aos="fade-up">
+          <div class="col">
+            <div class="job-card" data-aos="fade-up">
               <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Nestle Nutrition Officer</h5>
@@ -275,8 +329,8 @@
             </div>
           </div>
           {% for j in job %}
-          <div class="col-sm-3 pt-3">
-            <div class="card job-card" data-aos="fade-up" style="height: 100%">
+          <div class="col">
+            <div class="job-card" data-aos="fade-up" style="height: 100%">
               <div class="card-body mx-2">
                 <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
                 <h5 class="card-title pt-3">{{j.post}}</h5>
@@ -428,6 +482,4 @@
   <br><br>
 
 
-
   {% endblock body %}
->>>>>>> d0a70a6 (responsive-issue#27)
