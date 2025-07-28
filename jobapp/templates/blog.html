@@ -10,95 +10,109 @@
         }
       }
 </style>
-<div class="row pt-5 px-5">
+<div class="row pt-5 px-5  px-5 text-center">
     <h1 style="color: #313030; font-size: 50px;"> News & Blog</h1>
     <p class="blog pt-2" style="color: #313030;">Get the latest news, updates and tips. Don't miss the trending news</p>
 </div>
-<div class="row ">
-    <div class="col-sm-2 mx-auto mb-5" style="background-color:#033261; color: white; border: 1px solid rgb(210, 204, 204);">
+<div class="row justify-content-center">
+     <div class="col-md-4 col-sm-6 col-10 mb-5" style="background-color:#033261; color: white; border: 1px solid rgb(210, 204, 204); border-radius: 10px;">
         <marquee behaviour="alternate" ><h5 class="trend pt-4 pb-3 text-center">Trending Now</h5></marquee>
         {% for n in new %}
-           <ul>
+           <ul class="px-3">
                <li class="news pb-2"><a href="#" style="color: white;">{{n.newstext}}</a></li>
            </ul>
        {% endfor %}
        </div>   
-    <div class="col-sm-3">
-        <div class="card ">
-            <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img1.png" class="card-img-top"
-                alt="...">
-            <div class="card-body">
-                <h5 class="card-title">21 Job Interview Tips: How To Make a Great Impression</h5>
-                <p class="card-text">Making a great impression and demonstrating your best qualities during an interview
-                    increases your chances of getting a job offer.By preparing for the interview and following certain steps afterward.</p>
-                <div class="col-sm-6">
-                    <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png"
-                        class="profile w-10 rounded-circle">
-                </div>
-                <div class="col-sm-6 pb-4">
-                    <span style="color: #093f75; font-weight: 500; ">Aman Gupta </span> <br>
-                    (HR, Infosys)
-                </div>
-                <a href="#" class="btn" style="background-color: #093f75; color: white;">View Full Article</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="card">
-            <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img2.png" class="card-img-top"
-                alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Email Examples: How To Respond to Employer Interview Requests</h5>
-                <p class="card-text">When an employer responds to your job application with an interview request, it is
-                    good practice to get back to them quickly and with enthusiasm.</p>
-                <div class="col-sm-6">
-                    <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png"
-                        class="profile w-10 rounded-circle">
-                </div>
-                <div class="col-sm-6 pb-4">
-                    <span style="color: #093f75; font-weight: 500; ">Aman Gupta </span> <br>
-                    (HR, Infosys)
-                </div>
-                <a href="#" class="btn" style="background-color: #093f75; color: white;">View Full Article</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="card" >
-            <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img3.png" class="card-img-top"
-                alt="...">
-            <div class="card-body">
-                <h5 class="card-title">17 jobs hired at 15 (and even 14) you should know</h5>
-                <p class="card-text">Everyone keeps talking about how amazing it is to be a teenager, but only a few
-                    people remember the struggles of living in a world where jobs for teens aren’t a given.
+       
+ <div class="container mt-5">
+  <div class="row justify-content-center gap-4">
 
-                    Yes, you have plenty of time and energy to do anything you want</p>
-                <div class="col-sm-6">
-                    <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png"
-                        class="profile w-10 rounded-circle">
-                </div>
-                <div class="col-sm-6 pb-4">
-                    <span style="color: #093f75; font-weight: 500; ">Aman Gupta </span> <br>
-                    (HR, Infosys)
-                </div>
-                <a href="#" class="btn" style="background-color: #093f75; color: white;">View Full Article</a>
+    <!-- Card 1 -->
+    <div class="col-md-4 col-sm-6 mb-4">
+      <div class="card h-100">
+        <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img1.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">21 Job Interview Tips: How To Make a Great Impression</h5>
+          <p class="card-text">
+            Making a great impression and demonstrating your best qualities during an interview
+            increases your chances of getting a job offer. By preparing for the interview and following certain steps afterward.
+          </p>
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png" class="rounded-circle" width="40">
+            <div>
+              <span style="color: #093f75; font-weight: 500;">Aman Gupta</span><br>
+              <small>(HR, Infosys)</small>
             </div>
-        </div>
-    </div>
-    </div>
-<div class="row pt-5">
-    <form class="comment px-5 fs-5 ">
-        <div class="mb-3">
-            <label for="comment" class="form-label" required>Leave a comment</label>
-            <div class="col-md-9 pe-5">
-                <textarea class="form-control" rows="3" placeholder="Write a comment"></textarea>  <br>
-                <button class="btn btn-primary">
-                    Submit
-                </button>
-              </div>
           </div>
-    </form>
+          <a href="#" class="btn" style="background-color: #093f75; color: white;">View Full Article</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-md-4 col-sm-6 mb-4">
+      <div class="card h-100">
+        <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img2.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Email Examples: How To Respond to Employer Interview Requests</h5>
+          <p class="card-text">
+            When an employer responds to your job application with an interview request, it is
+            good practice to get back to them quickly and with enthusiasm.
+          </p>
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png" class="rounded-circle" width="40">
+            <div>
+              <span style="color: #093f75; font-weight: 500;">Aman Gupta</span><br>
+              <small>(HR, Infosys)</small>
+            </div>
+          </div>
+          <a href="#" class="btn" style="background-color: #093f75; color: white;">View Full Article</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-md-4 col-sm-6 mb-4">
+      <div class="card h-100">
+        <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img3.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">17 jobs hired at 15 (and even 14) you should know</h5>
+          <p class="card-text">
+            Everyone keeps talking about how amazing it is to be a teenager, but only a few
+            people remember the struggles of living in a world where jobs for teens aren’t a given.
+            Yes, you have plenty of time and energy to do anything you want
+          </p>
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png" class="rounded-circle" width="40">
+            <div>
+              <span style="color: #093f75; font-weight: 500;">Aman Gupta</span><br>
+              <small>(HR, Infosys)</small>
+            </div>
+          </div>
+          <a href="#" class="btn" style="background-color: #093f75; color: white;">View Full Article</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
+ </div>
+
+
+<div class="row pt-5 justify-content-center">
+  <div class="col-md-8">
+    <form class="comment fs-5">
+      <div class="mb-3">
+        <label for="comment" class="form-label" style="font-weight: 500;">Leave a comment</label>
+        <textarea id="comment" class="form-control" rows="4" placeholder="Write a comment..." required></textarea>
+      </div>
+      <div class="text-end">
+        <button type="submit" class="btn btn-primary px-4">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 </div>
 </div>
 {% endblock body %}

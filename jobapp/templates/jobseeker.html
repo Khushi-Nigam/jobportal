@@ -11,76 +11,79 @@
         display: block;
     }
 </style>
-<div class="contaiiner" style="background-color: #093f75;">
+<div class="container-fluid" style="background-color:rgba(255, 255, 255, 0.95);; min-height: 100vh;">
     <div class="row mt-5 w-75 mx-auto pb-5 fs-6">
-        <h1 style="text-align: center; color: #ffffff; font-weight:600;" class="p-5">Register as Job Seeker</h1>
+        <h1 class="text-center text-[#093f75] fw-bold py-4" style="color: #093f75; font-weight: 600; margin-bottom: 2rem;">Register as Job Seeker</h1>
         {% if msg %}
-        <p style="text-align: center; color: rgb(253, 253, 255);">{{msg}}</p>
+         <p class="text-center" style="color: #ffffff; font-size: 1rem; margin-bottom: 1rem;">{{msg}}</p>
         {% endif %}
-        <form class="form-group p-5" method="post" id="form"
-            style="background-color: rgb(231, 231, 231); border-radius: 40px;">
+        <form class="form-group p-5 shadow-lg" method="post" id="form"
+            style="background-color: #f5f8fc; border-radius: 30px;">
             {% csrf_token %}
-            <div class="mb-3">
-                <label for="profilepic" class="form-label" required>Upload Profile Pic</label><br>
-                <input type="file" name="profilepic" id="profilepic" class="form-control">
+            <div class="mb-4">
+                <label for="profilepic" class="form-label fw-semibold" style="color: #093f75;" required>Upload Profile Picture  <span class="text-danger">*</span>
+                </label>
+                <input type="file" name="profilepic" id="profilepic" class="form-control form-control-lg border-2" style="border-color: #093f75; border-radius: 12px;">>
             </div>
-            <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" name="name" class="form-control" id="name" pattern="[a-zA-Z\s]+"
-                    title="Enter name using alphabets(a-z)" placeholder="Enter Your Full Name" required>
+            <div class="mb-4">
+               <label for="name" class="form-label fw-semibold" style="color: #093f75;">Full Name <span class="text-danger">*</span></label>
+                <input type="text"
+                 name="name" class="form-control" id="name" pattern="[a-zA-Z\s]+"
+                    title="Enter name using alphabets(a-z)" placeholder="Enter Your Full Name" required
+                    style="border: 2px solid #0a3c74; border-radius: 10px; padding: 0.75rem; font-size: 1rem;">
                 <span class="error-message">Please enter a valid name(ex: Ravi)</span>
             </div>
             <div class="col-md-6 mb-3">
-                <h6 class="mb-2 pb-1">Gender: </h6>
+                <h6 class="mb-2 pb-1" style="color: #0a3c74; font-weight: 600; font-size: 1.1rem;">Gender: </h6>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="gender" id="femaleGender" value="female"
                         checked />
-                    <label class="form-check-label" for="femaleGender">Female</label>
+                    <label class="form-check-label" for="femaleGender" style="color: #333;">Female</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="gender" id="maleGender" value="male" />
-                    <label class="form-check-label" for="maleGender">Male</label>
+                    <label class="form-check-label" for="maleGender" style="color: #333;">Male</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="gender" id="otherGender" value="other" />
-                    <label class="form-check-label" for="otherGender">Other</label>
+                    <label class="form-check-label" for="otherGender" style="color: #333;">Other</label>
                 </div>
             </div>
             <div class="mb-3">
-                <label for="address" class="form-label">Enter Address</label>
+                <label for="address" class="form-label" style="color: #0a3c74; font-weight: 600;">Enter Address</label>
                 <div class="col-md-9 pe-5">
                     <textarea class="form-control" name="address" rows="3" placeholder="Enter Address"
-                        required></textarea>
-                    <span class="error-message">Address is required.</span>
+                        required  style="border-radius: 10px; border: 1px solid #0a3c74;"></textarea>
+                    <span class="error-message"  style="color: #d9534f;">Address is required.</span>
                 </div>
             </div>
             <div class="mb-3">
-                <label for="phone" class="form-label">Enter Phone Number</label>
+                <label for="phone" class="form-label" style="color: #0a3c74; font-weight: 600;">Enter Phone Number</label>
                 <input type="text" name="contactno" class="form-control" pattern="^[6-9]{1}[0-9]{9}"
-                    aria-label="Enter a valid phone no." id="phoneno" placeholder="Enter Phone No." required>
-                <span class="error-message">Please enter a valid 10-digit phone number.</span>
+                    aria-label="Enter a valid phone no." id="phoneno" placeholder="Enter Phone No." required style="border-radius: 10px; border: 1px solid #0a3c74;">
+                <span class="error-message"  style="color: #d9534f;">Please enter a valid 10-digit phone number.</span>
             </div>
             <div class="mb-3">
-                <label for="email" class="form-label">Email address</label>
+                <label for="email" class="form-label" style="color: #0a3c74; font-weight: 600;">Email address</label>
                 <input type="email" name="emailaddress" class="form-control" id="email" placeholder="Enter Email"
-                    required>
-                <span class="error-message">Please enter a valid email address.</span>
+                    required style="border-radius: 10px; border: 1px solid #0a3c74;">
+                <span class="error-message" style="color: #d9534f;">Please enter a valid email address.</span>
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
+                <label for="password" class="form-label" style="color: #0a3c74; font-weight: 600;">Password</label>
                 <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password"
-                    required>
-                <span class="error-message">Password is required.</span>
+                    required  style="border-radius: 10px; border: 1px solid #0a3c74;">
+                <span class="error-message" style="color: #d9534f;">Password is required.</span>
             </div>
             <div class="mb-3">
-                <label for="dob" class="form-label">Date of Birth</label>
-                <input type="date" name="dob" class="form-control" id="dob" required>
-                <span class="error-message">Date of Birth is required.</span>
+                <label for="dob" class="form-label" style="color: #0a3c74; font-weight: 600;">Date of Birth</label>
+                <input type="date" name="dob" class="form-control" id="dob" required  style="border-radius: 10px; border: 1px solid #0a3c74;">
+                <span class="error-message" style="color: #d9534f;">Date of Birth is required.</span>
             </div>
             <div class="mb-3">
-                <label for="qualification" class="form-label">Enter Your Highest Qualification</label>
+                <label for="qualification" class="form-label"  style="color: #0a3c74; font-weight: 600;">Enter Your Highest Qualification</label>
                 <div class="col-md-9 pe-5">
-                    <select name="qualification" id="qualification" class="form-control ">
+                    <select name="qualification" id="qualification" class="form-control " style="border-radius: 10px; border: 1px solid #0a3c74;">
                         <option value="null">--Select Qualification--</option>
                         <option value="BCA">BCA</option>
                         <option value="BBA">BBA</option>
@@ -88,24 +91,26 @@
                         <option value="Bsc">Bsc</option>
                         <option value="Other">Other</option>
                     </select>
-                    <span class="error-message">Qualification is required.</span>
+                    <span class="error-message" style="color: #d9534f;">Qualification is required.</span>
                 </div>
             </div>
             <div class="mb-3">
-                <label for="we" class="form-label">Work Experience</label>
-                <select name="experience" id="experience" class="form-control">
+                <label for="we" class="form-label"  style="color: #0a3c74; font-weight: 600;">Work Experience</label>
+                <select name="experience" id="experience" class="form-control"
+                style="border-radius: 10px; border: 1px solid #0a3c74;">
                     <option value="null">--Select Work Experience--</option>
                     <option value="1-2 Years">1-2 Years</option>
                     <option value="3-4 Years">3-4 Years</option>
                     <option value="5+Years">5+Years</option>
                     <option value="Other">No Experience</option>
                 </select>
-                <span class="error-message">Work experience is required.</span>
+                <span class="error-message" style="color: #d9534f;">Work experience is required.</span>
             </div>
             <div class="mb-3">
-                <label for="Skills" class="form-label">Key Skills</label>
+                <label for="Skills" class="form-label" style="color: #0a3c74; font-weight: 600;">Key Skills</label>
                 <div class="col-md-9 pe-5">
-                    <select name="experience" id="experience" class="form-control">
+                    <select name="experience" id="experience" class="form-control"
+                     style="border-radius: 10px; border: 1px solid #0a3c74;">
                         <option value="null">--Select Skills--</option>
                         <option value="IT">IT</option>
                         <option value="Management">Management</option>
@@ -114,20 +119,35 @@
                         <option value="Digital Marketing">Digital Marketing</option>
                         <option value="Other">Other</option>
                     </select>
-                    <span class="error-message">Key skills are required.</span>
+                    <span class="error-message" style="color: #d9534f;">Key skills are required.</span>
                 </div>
             </div>
             <div class="mb-3 form-check pt-3">
                 <div class="form-check d-flex mb-5">
-                    <input class="form-check-input me-2" type="checkbox" value="" name="checkbox" required />
-                    <label class="form-check-label">
-                        I agree all statements in <a href="#">Terms of service</a>
+                    <input class="form-check-input me-2" type="checkbox" value="" name="checkbox" required 
+                    style="width: 18px; height: 18px; border: 2px solid #0a3c74;"/>
+                    <label class="form-check-label" style="font-size: 15px;">
+                        I agree all statements in <a href="#" style="color: #0a3c74; text-decoration: underline;">Terms of service</a>
                     </label>
                 </div>
-                <span class="error-message">You must agree to the terms.</span>
+                <span class="error-message" style="color: #d9534f;">You must agree to the terms.</span>
             </div>
-            <button type="submit" class="btn btn-primary w-100"
-                style="background-color: #093f75; color:white;">Submit</button>
+            <button type="submit" class="btn w-100"
+                style="
+    background-color: #9cbad8;
+    color: white;
+    padding: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  "
+  onmouseover="this.style.backgroundColor='#072d54'"
+  onmouseout="this.style.backgroundColor='#093f75'"
+  onmousedown="this.style.transform='scale(0.98)'"
+  onmouseup="this.style.transform='scale(1)'"
+>Submit</button>
         </form>
     </div>
 </div>

@@ -139,241 +139,507 @@
   <div class="container px-3">
 
     <section>
-      <div class="row pt-5 px-lg-5 pb-5 bg-body-tertiary d-flex flex-column flex-md-row">
+      <div class="row pt-5 px-lg-5 pb-5 bg-body-tertiary d-flex flex-column flex-md-row align-items-center rounded-4 shadow-sm" style="background: #f9fafb;">
         <!-- IMAGE FIRST on mobile, SECOND on larger screens -->
         <div class="order-1 order-md-2 col-md-6 d-flex align-items-center justify-content-center mb-4 mb-md-0"
           data-aos="fade-left" data-aos-anchor="#example-anchor" data-aos-offset="500" data-aos-duration="500">
           <img src="{% static 'images/right3.jpg' %}" class="img-fluid"
-            style="border-radius: 20px 20px 20px 0px; max-width: 100%; border: 5px solid #0080ff;">
+            style="border-radius: 20px 20px 20px 0px; max-width: 100%; border: 5px solid #0080ff; box-shadow: 0 8px 20px rgba(0, 128, 255, 0.2); transition: transform 0.3s ease;"
+            onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
         </div>
 
         <!-- TEXT -->
         <div id="index-main-text" class="order-2 order-md-1 col-md-6 px-4 px-md-5 pt-2 pt-md-5" data-aos="fade-right"
           data-aos-offset="300" data-aos-easing="ease-in-sine">
-          <h1
-            style="color: #0080ff; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; cursor: pointer;">
+           <h1 style="color: #0080ff; 
+             font-family: 'Segoe UI', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; 
+             font-weight: 700;
+             font-size: 2.8rem; 
+             line-height: 1.2; 
+             text-transform: uppercase; 
+             letter-spacing: 1px; 
+             transition: color 0.3s ease; 
+             cursor: pointer;">
             Get The
-            <span style="color: #56a8fa; text-shadow: 4px 4px #0080ff;">
+            <span style="color: #56a8fa; text-shadow: 2px 2px 6px rgba(0, 128, 255, 0.6); 
+                 font-weight: 900;">
               Right Job
             </span>
           </h1>
-          <h1
-            style="color: #0080ff; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; cursor: pointer;">
-            You Deserve
-          </h1>
-          <p style="cursor: pointer;">
-            Each month, more than 3 million job seekers turn to <br>
-            our website in their search for work,<br>
-            making over 140,000 applications every single day
-          </p>
+         <h1
+  style="color: #0080ff; 
+         font-family: 'Segoe UI', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; 
+         font-weight: 700; 
+         font-size: 2.5rem; 
+         letter-spacing: 1px; 
+         margin-bottom: 0.5rem; 
+         cursor: pointer;">
+  You Deserve
+</h1>
+         <p style="font-size: 1.1rem; 
+          color: #444; 
+          line-height: 1.6; 
+          cursor: pointer; 
+          font-family: 'Segoe UI', sans-serif;">
+  Each month, more than <strong>3 million</strong> job seekers turn to <br />
+  our website in their search for work,<br />
+  making over <strong>140,000</strong> applications every single day.
+</p>
           <form class="d-flex w-100 flex-wrap gap-2 mt-3" role="search">
-            <input class="form-control flex-grow-1" type="search" id="search-input" placeholder="Search Jobs here.."
-              aria-label="Search">
-            <button class="btn btn-primary" id="search-button" style="background-color: #093f75;">Search</button>
+             <input class="form-control flex-grow-1 shadow-sm border-1" 
+         type="search" 
+         id="search-input" 
+         placeholder="🔍 Search Jobs here..." 
+         aria-label="Search"
+         style="padding: 0.75rem 1rem; font-size: 1rem; border-radius: 8px;" />
+            <button class="btn btn-primary px-4" id="search-button" style="background-color: #093f75; 
+                 border-radius: 8px; 
+                 font-weight: 500; 
+                 transition: background-color 0.3s ease;">Search</button>
           </form>
         </div>
       </div>
     </section>
     <!--job card -->
     <section>
-      <div class="row-xxl pt-5 mb-5 mt-3 pb-5" style="background-color: #0080ff;color: black" data-aos="fade-up"
+      <div class="row-xxl pt-5 mb-5 mt-3 pb-5 text-center" style="background: linear-gradient(135deg, #0080ff, #56a8fa); color:#f6f0d6;"  data-aos="fade-up"
         data-aos-duration="3000">
-        <h1 class="text-center" style="color: white;">Latest Jobs Post</h1>
-        <p class="text-center" style="color: white;">Explore the different types of available jobs to apply
+         <h1 style="font-weight: 700; font-size: 2.5rem; text-shadow: 2px 2px #093f75;">
+         Latest Jobs Post
+        </h1>
+        <p class="text-center" style="font-size: 1.1rem; max-width: 700px; margin: 0 auto; opacity: 0.95;">Explore the different types of available jobs to apply
           discover which is right for you.</p>
         <br>
-        <div class="row mx-auto" data-aos="fade-up">
-          <div class="col">
-            <div class="job-card" data-aos="fade-up">
-              <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">React Native Web Developer</h5>
-                <p style="font-size: 13px;" style="color: grey;"><i class="fa-solid fa-location-dot"
-                    style="color: grey;"></i>&nbsp;Mumbai,Maharastra &nbsp;
-                  <i class="fa-regular fa-clock" style="color: grey;"></i>&nbsp;10 Minutes ago
-                </p>
-                <p class="card-text">
-                <ul>
-                  <li>Remote-Full time/Part Time</li>
-                  <li>Experienced:5+Years</li>
-                  <li>Salary: 4 LPA</li>
-                  <li>Skilled in: (HTML,CSS,JSX,React)</li>
-                </ul>
-                </p>
-                <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;"
-                  onclick="login()">Apply Now</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="job-card" data-aos="fade-up">
-              <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Digital Marketing Manager</h5>
-                <p style="font-size: 13px;" style="color: grey;">
-                  <i class="fa-solid fa-location-dot" style="color: grey;"></i>&nbsp;Chicago, US &nbsp;
-                  <i class="fa-regular fa-clock" style="color: grey;"></i>&nbsp;6 Minutes ago &nbsp;<br>
-                  <i class="fa-solid fa-briefcase" style="color: grey;"></i>&nbsp;Full-Time
-                </p>
-                <p class="card-text">
-                <ul>
-                  <li>In-depth knowledge of current digital trends</li>
-                  <li>Experience in digital marketing, or a related field</li>
-                </ul>
-                </p>
-                <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;"
-                  onclick="login()">Apply Now</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="job-card" data-aos="fade-up">
-              <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">IIB Developer</h5>
-                <p style="font-size: 13px;" style="color: grey;"><i class="fa-solid fa-location-dot"
-                    style="color: grey;"></i>&nbsp;Banglore &nbsp;
-                  <i class="fa-regular fa-clock" style="color: grey;"></i>&nbsp;28 Minutes ago<br>
-                  <i class="fa-solid fa-briefcase" style="color: grey;"></i>&nbsp;Remote
-                </p>
-                <ul>
-                  <li>Role: Database Administrator</li>
-                  <li>Department: Engineering</li>
-                  <li>Role Category: DBA / Data warehousing</li>
-                </ul>
-                <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;"
-                  onclick="login()">Apply Now</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="job-card" data-aos="fade-up">
-              <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Full Stack Developer</h5>
-                <p style="font-size: 13px;" style="color: grey;"><i class="fa-solid fa-location-dot"
-                    style="color: grey;"></i>&nbsp;Lucknow,Pradesh &nbsp;
-                  <i class="fa-regular fa-clock" style="color: grey;"></i>&nbsp; 2 Hour ago
-                </p>
-                <ul>
-                  <li>Full Time</li>
-                  <li>Skills:HTML,CSS,Js
-                    Reactjs,Nodejs</li>
-                  <li>Freshers/Experienced</li>
-                  <li>Salary- Based On Skill Set</li>
-                </ul>
-                <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;"
-                  onclick="login()">Apply Now</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="job-card " data-aos="fade-up">
-              <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">UX/UI Designer</h5>
-                <p style="font-size: 13px;" style="color: grey;"><i class="fa-solid fa-location-dot"
-                    style="color: grey;"></i>&nbsp;Lucknow,Pradesh &nbsp;
-                  <i class="fa-regular fa-clock" style="color: grey;"></i>&nbsp; 10 Hours ago
-                </p>
-                <ul>
-                  <li>Up-to-date knowledge of design softwares</li>
-                  <li>BSc in Design, Computer Science or relevant field</li>
-                  <li>Good time-management skills</li>
-                </ul>
-                <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;"
-                  onclick="login()">Apply Now</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="job-card" data-aos="fade-up">
-              <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Data Scientist</h5>
-                <p style="font-size: 13px;" style="color: grey;"><i class="fa-solid fa-location-dot"
-                    style="color: grey;"></i>&nbsp;Lucknow,Pradesh &nbsp;
-                  <i class="fa-regular fa-clock" style="color: grey;"></i>&nbsp; 2 Hour ago
-                </p>
-                <ul>
-                  <li><strong>Job Type:</strong> Full Time</li>
-                  <li><strong>Skills:</strong> Knowledge of R, SQL and Python,Java or C++ </li>
-                  <li><strong>Qualifications:</strong> BSc/BA in Computer Science, Engineering or relevant field</li>
-                </ul>
-                <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;"
-                  onclick="login()">Apply Now</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="job-card" data-aos="fade-up">
-              <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Nestle Nutrition Officer</h5>
-                <p style="font-size: 13px;" style="color: grey;"><i class="fa-solid fa-location-dot"
-                    style="color: grey;"></i>&nbsp;Lucknow,Pradesh &nbsp;
-                  <i class="fa-regular fa-clock" style="color: grey;"></i>&nbsp; 2 Hour ago<br>
-                  <i class="fa-solid fa-briefcase" style="color: grey;"></i>&nbsp;Full-Time
-                </p>
-                <ul>
-                  <h6 style="color:  rgba(9, 4, 95, 0.632)">Nestle</h6>
-                  <li><span style="color: black; font-weight: 600;">Qualifications:</span> Bsc,Bpharm,Btech Graduates
-                    can
-                    apply</li>
-                  <li><span style="color: black; font-weight: 600;">Skills:</span> Communication, Teamwork</li>
-                  <li><span style="color: black; font-weight: 600;">Salary:</span> 6 LPA </li>
-                </ul>
-                <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;"
-                  onclick="login()">Apply Now</a>
-              </div>
-            </div>
-          </div>
-          {% for j in job %}
-          <div class="col">
-            <div class="job-card" data-aos="fade-up" style="height: 100%">
-              <div class="card-body mx-2">
-                <img src="{% static 'images/job.png' %}" class="card-img-top" alt="...">
-                <h5 class="card-title pt-3">{{j.post}}</h5>
-                <p style="font-size: 13px;color: grey;"><i class="fa-solid fa-location-dot"
-                    style="color: grey;"></i>&nbsp;{{j.location}} &nbsp;
-                  <i class="fa-regular fa-clock" style="color: grey;"></i>&nbsp; {{j.posteddate}}<br>
-                  <i class="fa-solid fa-briefcase" style="color: grey;"></i>&nbsp;{{j.jobtitle}}
-                </p>
-                <ul>
-                  <h6 style="color: rgba(9, 4, 95, 0.632);">{{j.firmname}}</h6>
-                  <li><span style="color:black; font-weight: 600;">Qualifications:</span> {{j.qualification}}</li>
-                  <li><strong>Skills:</strong>{{j.jobdesc}}</li>
-                  <li><span style="color:black; font-weight: 600;">Salary:&nbsp;</span>{{j.salarypa}} LPA</li>
-                  <li><a href="https://mail.google.com/mail/u/0/#inbox">{{j.emailaddress}}</a></li>
-                </ul>
-                <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;"
-                  onclick="login()">Apply Now</a>
-              </div>
-            </div>
-          </div>
-          {% endfor %}
+
+        <div class="row mx-auto justify-content-center gap-4" data-aos="fade-up">
+          
+
+<div class="col-md-3 col-sm-6">
+  <div class="job-card shadow rounded-4 overflow-hidden d-flex flex-column" 
+       data-aos="fade-up" 
+       style="background-color: #f6f0d6; height: 500px; transition: transform 0.3s;">
+       
+    <img src="{% static 'images/job.png' %}" 
+         class="card-img-top" 
+         alt="Job Image" 
+         style="object-fit: cover; height: 180px; width: 100%;">
+
+    <div class="card-body d-flex flex-column justify-content-between p-3 flex-grow-1">
+      <div>
+        <h5 class="card-title fw-bold text-primary">React Native Web Developer</h5>
+        <p class="mb-2 text-muted text-center" style="font-size: 13px;">
+          <i class="fa-solid fa-location-dot me-1"></i> Mumbai, Maharashtra &nbsp;&nbsp;
+          <i class="fa-regular fa-clock me-1"></i> 10 Minutes ago
+        </p>
+        <ul class="list-unstyled ps-2 mb-3 text-dark">
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-laptop-house me-2 text-primary"></i>
+            <span>Remote - Full Time / Part Time</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-user-tie me-2 text-primary"></i>
+            <span>Experienced: 5+ Years</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-sack-dollar me-2 text-primary"></i>
+            <span>Salary: 4 LPA</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-code me-2 text-primary"></i>
+            <span>Skilled in: HTML, CSS, JSX, React</span>
+          </li>
+        </ul>
+      </div>
+
+      <a href="{% url 'jobapp:login' %}" 
+         class="btn w-100 d-flex align-items-center justify-content-center gap-2 fw-semibold mt-auto"
+         style="background-color: #093f75; color: white; border-radius: 8px; transition: 0.3s ease;"
+         onmouseover="this.style.backgroundColor='#0a4d94';"
+         onmouseout="this.style.backgroundColor='#093f75';"
+         onclick="login()">
+         <i class="fa-solid fa-paper-plane"></i> Apply Now
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="col-md-3 col-sm-6">
+  <div class="job-card shadow rounded-4 overflow-hidden d-flex flex-column" 
+       data-aos="fade-up" 
+       style="background-color: #f6f0d6; height: 500px; transition: transform 0.3s;">
+    
+    <img src="{% static 'images/job.png' %}" 
+         class="card-img-top" 
+         alt="Job Image"
+         style="object-fit: cover; height: 180px; width: 100%;">
+
+    <div class="card-body d-flex flex-column justify-content-between p-3 flex-grow-1">
+      <div>
+        <h5 class="card-title fw-bold text-primary">Digital Marketing Manager</h5>
+        <p class="mb-2 text-muted text-center" style="font-size: 13px;">
+          <i class="fa-solid fa-location-dot me-1"></i> Chicago, US &nbsp;&nbsp;
+          <i class="fa-regular fa-clock me-1"></i> 6 Minutes ago &nbsp;&nbsp;
+          <i class="fa-solid fa-briefcase me-1"></i> Full-Time
+        </p>
+        <ul class="list-unstyled ps-2 mb-3 text-dark">
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-lightbulb me-2 text-primary"></i>
+            <span>In-depth knowledge of current digital trends</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-chart-line me-2 text-primary"></i>
+            <span>Experience in digital marketing or related field</span>
+          </li>
+        </ul>
+      </div>
+
+      <a href="{% url 'jobapp:login' %}" 
+         class="btn w-100 d-flex align-items-center justify-content-center gap-2 fw-semibold mt-auto"
+         style="background-color: #093f75; color: white; border-radius: 8px; transition: 0.3s ease;"
+         onmouseover="this.style.backgroundColor='#0a4d94';"
+         onmouseout="this.style.backgroundColor='#093f75';"
+         onclick="login()">
+         <i class="fa-solid fa-paper-plane"></i> Apply Now
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-md-3 col-sm-6">
+  <div class="job-card shadow rounded-4 overflow-hidden d-flex flex-column" 
+       data-aos="fade-up" 
+       style="background-color: #f6f0d6; height: 500px; transition: transform 0.3s;">
+       
+    <img src="{% static 'images/job.png' %}" 
+         class="card-img-top" 
+         alt="Job Image" 
+         style="object-fit: cover; height: 180px; width: 100%;">
+
+    <div class="card-body d-flex flex-column justify-content-between p-3 flex-grow-1">
+      <div>
+        <h5 class="card-title fw-bold text-primary">IIB Developer</h5>
+        <p class="mb-2 text-muted text-center" style="font-size: 13px;">
+          <i class="fa-solid fa-location-dot me-1"></i> Bangalore &nbsp;&nbsp;
+          <i class="fa-regular fa-clock me-1"></i> 28 Minutes ago &nbsp;&nbsp;
+          <i class="fa-solid fa-briefcase me-1"></i> Remote
+        </p>
+        <ul class="list-unstyled ps-2 mb-3 text-dark">
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-user-gear me-2 text-primary"></i>
+            <span>Role: Database Administrator</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-building me-2 text-primary"></i>
+            <span>Department: Engineering</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-database me-2 text-primary"></i>
+            <span>Role Category: DBA / Data warehousing</span>
+          </li>
+        </ul>
+      </div>
+
+      <a href="{% url 'jobapp:login' %}" 
+         class="btn w-100 d-flex align-items-center justify-content-center gap-2 fw-semibold mt-auto"
+         style="background-color: #093f75; color: white; border-radius: 8px; transition: 0.3s ease;"
+         onmouseover="this.style.backgroundColor='#0a4d94';"
+         onmouseout="this.style.backgroundColor='#093f75';"
+         onclick="login()">
+         <i class="fa-solid fa-paper-plane"></i> Apply Now
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-md-3 col-sm-6">
+  <div class="job-card shadow rounded-4 overflow-hidden d-flex flex-column"
+       data-aos="fade-up"
+       style="background-color: #f6f0d6; height: 500px; transition: transform 0.3s;">
+       
+    <img src="{% static 'images/job.png' %}"
+         class="card-img-top"
+         alt="Job Image"
+         style="object-fit: cover; height: 180px; width: 100%;">
+
+    <div class="card-body d-flex flex-column justify-content-between p-3 flex-grow-1">
+      <div>
+        <h5 class="card-title fw-bold text-primary">Full Stack Developer</h5>
+        <p class="mb-2 text-muted text-center" style="font-size: 13px;">
+          <i class="fa-solid fa-location-dot me-1"></i> Lucknow, Pradesh &nbsp;&nbsp;
+          <i class="fa-regular fa-clock me-1"></i> 2 Hours ago
+        </p>
+        <ul class="list-unstyled ps-2 mb-3 text-dark">
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-briefcase me-2 text-primary"></i>
+            <span>Full Time</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-code me-2 text-primary"></i>
+            <span>Skills: HTML, CSS, JS, ReactJS, NodeJS</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-user-graduate me-2 text-primary"></i>
+            <span>Freshers / Experienced</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-sack-dollar me-2 text-primary"></i>
+            <span>Salary: Based on Skill Set</span>
+          </li>
+        </ul>
+      </div>
+
+      <a href="{% url 'jobapp:login' %}"
+         class="btn w-100 d-flex align-items-center justify-content-center gap-2 fw-semibold mt-auto"
+         style="background-color: #093f75; color: white; border-radius: 8px; transition: 0.3s ease;"
+         onmouseover="this.style.backgroundColor='#0a4d94';"
+         onmouseout="this.style.backgroundColor='#093f75';"
+         onclick="login()">
+         <i class="fa-solid fa-paper-plane"></i> Apply Now
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-md-3 col-sm-6">
+  <div class="job-card shadow rounded-4 overflow-hidden d-flex flex-column"
+       data-aos="fade-up"
+       style="background-color: #f6f0d6; height: 500px; transition: transform 0.3s;">
+       
+    <img src="{% static 'images/job.png' %}"
+         class="card-img-top"
+         alt="Job Image"
+         style="object-fit: cover; height: 180px; width: 100%;">
+
+    <div class="card-body d-flex flex-column justify-content-between p-3 flex-grow-1">
+      <div>
+        <h5 class="card-title fw-bold text-primary">UX/UI Designer</h5>
+        <p class="mb-2 text-muted text-center" style="font-size: 13px;">
+          <i class="fa-solid fa-location-dot me-1"></i> Lucknow, Pradesh &nbsp;&nbsp;
+          <i class="fa-regular fa-clock me-1"></i> 10 Hours ago
+        </p>
+        <ul class="list-unstyled ps-2 mb-3 text-dark">
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-pen-ruler me-2 text-primary"></i>
+            <span>Knowledge of design software</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-graduation-cap me-2 text-primary"></i>
+            <span>BSc in Design, CS or relevant field</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-clock me-2 text-primary"></i>
+            <span>Good time-management skills</span>
+          </li>
+        </ul>
+      </div>
+
+      <a href="{% url 'jobapp:login' %}"
+         class="btn w-100 d-flex align-items-center justify-content-center gap-2 fw-semibold mt-auto"
+         style="background-color: #093f75; color: white; border-radius: 8px; transition: 0.3s ease;"
+         onmouseover="this.style.backgroundColor='#0a4d94';"
+         onmouseout="this.style.backgroundColor='#093f75';"
+         onclick="login()">
+         <i class="fa-solid fa-paper-plane"></i> Apply Now
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-md-3 col-sm-6">
+  <div class="job-card shadow rounded-4 overflow-hidden d-flex flex-column"
+       data-aos="fade-up"
+       style="background-color: #f6f0d6; height: 500px; transition: transform 0.3s;">
+       
+    <img src="{% static 'images/job.png' %}"
+         class="card-img-top"
+         alt="Job Image"
+         style="object-fit: cover; height: 180px; width: 100%;">
+
+    <div class="card-body d-flex flex-column justify-content-between p-3 flex-grow-1">
+      <div>
+        <h5 class="card-title fw-bold text-primary">Data Scientist</h5>
+        <p class="mb-2 text-muted text-center" style="font-size: 13px;">
+          <i class="fa-solid fa-location-dot me-1"></i> Lucknow, Pradesh &nbsp;&nbsp;
+          <i class="fa-regular fa-clock me-1"></i> 2 Hours ago
+        </p>
+        <ul class="list-unstyled ps-2 mb-3 text-dark">
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-briefcase me-2 text-primary"></i>
+            <span><strong>Job Type:</strong> Full Time</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-code me-2 text-primary"></i>
+            <span><strong>Skills:</strong> R, SQL, Python, Java, C++</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-graduation-cap me-2 text-primary"></i>
+            <span><strong>Qualifications:</strong> BSc/BA in CS, Engineering</span>
+          </li>
+        </ul>
+      </div>
+
+      <a href="{% url 'jobapp:login' %}"
+         class="btn w-100 d-flex align-items-center justify-content-center gap-2 fw-semibold mt-auto"
+         style="background-color: #093f75; color: white; border-radius: 8px; transition: 0.3s ease;"
+         onmouseover="this.style.backgroundColor='#0a4d94';"
+         onmouseout="this.style.backgroundColor='#093f75';"
+         onclick="login()">
+         <i class="fa-solid fa-paper-plane"></i> Apply Now
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-md-3 col-sm-6">
+  <div class="job-card shadow rounded-4 overflow-hidden d-flex flex-column"
+       data-aos="fade-up"
+       style="background-color: #f6f0d6; height: 500px; transition: transform 0.3s;">
+       
+    <img src="{% static 'images/job.png' %}"
+         class="card-img-top"
+         alt="Job Image"
+         style="object-fit: cover; height: 180px; width: 100%;">
+
+    <div class="card-body d-flex flex-column justify-content-between p-3 flex-grow-1">
+      <div>
+        <h5 class="card-title fw-bold text-primary">Nestle Nutrition Officer</h5>
+        <p class="mb-2 text-muted text-center" style="font-size: 13px;">
+          <i class="fa-solid fa-location-dot me-1"></i> Lucknow, Pradesh &nbsp;&nbsp;
+          <i class="fa-regular fa-clock me-1"></i> 2 Hours ago &nbsp;&nbsp;<br>
+          <i class="fa-solid fa-briefcase me-1"></i> Full-Time
+        </p>
+
+        <h6 class="fw-bold text-center mb-2" style="color: rgba(9, 4, 95, 0.632);">Nestle</h6>
+
+        <ul class="list-unstyled ps-2 mb-3 text-dark">
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-graduation-cap me-2 text-primary"></i>
+            <span><strong>Qualifications:</strong> BSc, BPharm, BTech Graduates</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-users me-2 text-primary"></i>
+            <span><strong>Skills:</strong> Communication, Teamwork</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-money-bill me-2 text-primary"></i>
+            <span><strong>Salary:</strong> 6 LPA</span>
+          </li>
+        </ul>
+      </div>
+
+      <a href="{% url 'jobapp:login' %}"
+         class="btn w-100 d-flex align-items-center justify-content-center gap-2 fw-semibold mt-auto"
+         style="background-color: #093f75; color: white; border-radius: 8px; transition: 0.3s ease;"
+         onmouseover="this.style.backgroundColor='#0a4d94';"
+         onmouseout="this.style.backgroundColor='#093f75';"
+         onclick="login()">
+         <i class="fa-solid fa-paper-plane"></i> Apply Now
+      </a>
+    </div>
+  </div>
+</div>
+{% for j in job %}
+
+
+<div class="col-md-3 col-sm-6">
+  <div class="job-card shadow rounded-4 overflow-hidden d-flex flex-column"
+       data-aos="fade-up"
+       style="background-color: #f6f0d6; height: 500px; transition: transform 0.3s;">
+       
+    <img src="{% static 'images/job.png' %}"
+         class="card-img-top"
+         alt="Job Image"
+         style="object-fit: cover; height: 180px; width: 100%;">
+
+    <div class="card-body d-flex flex-column justify-content-between p-3 flex-grow-1">
+      <div>
+        <h5 class="card-title fw-bold text-primary">{{ j.post }}</h5>
+        <p class="mb-2 text-muted text-center" style="font-size: 13px;">
+          <i class="fa-solid fa-location-dot me-1"></i> {{ j.location }} &nbsp;&nbsp;
+          <i class="fa-regular fa-clock me-1"></i> {{ j.posteddate }}<br>
+          <i class="fa-solid fa-briefcase me-1"></i> {{ j.jobtitle }}
+        </p>
+
+        <h6 class="fw-bold text-center mb-2" style="color: rgba(9, 4, 95, 0.632);">{{ j.firmname }}</h6>
+
+        <ul class="list-unstyled ps-2 mb-3 text-dark">
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-graduation-cap me-2 text-primary"></i>
+            <span><strong>Qualifications:</strong> {{ j.qualification }}</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-users me-2 text-primary"></i>
+            <span><strong>Skills:</strong> {{ j.jobdesc }}</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-money-bill me-2 text-primary"></i>
+            <span><strong>Salary:</strong> {{ j.salarypa }} LPA</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="fa-solid fa-envelope me-2 text-primary"></i>
+            <a href="mailto:{{ j.emailaddress }}" class="text-decoration-none text-dark">{{ j.emailaddress }}</a>
+          </li>
+        </ul>
+      </div>
+
+      <a href="{% url 'jobapp:login' %}"
+         class="btn w-100 d-flex align-items-center justify-content-center gap-2 fw-semibold mt-auto"
+         style="background-color: #093f75; color: white; border-radius: 8px; transition: 0.3s ease;"
+         onmouseover="this.style.backgroundColor='#0a4d94';"
+         onmouseout="this.style.backgroundColor='#093f75';"
+         onclick="login()">
+         <i class="fa-solid fa-paper-plane"></i> Apply Now
+      </a>
+    </div>
+  </div>
+</div>
+{% endfor %}
     </section>
-    <h2 class="text-center text-bold" style="font-size: 45px;"> Is Your Resume ATS Friendly?</h2>
-    <p class="text-center" style="font-size: 20px;">Check It Out here...</p>
-    <a class="btn btn-success w-25 mx-auto mb-5">Upload Resume</a>
-    <h2 class="text-center mt-3 mb-3" style="font-weight: 700; font-size: 35px; color: #05284a;">
-      Why an ATS-Friendly Resume is Important?
-      <h2 class="text-center">Only 2% of resumes make it past the first round. Be in the top 2%</h2>
-    </h2>
-    <p class="mt-3 text-center text-bold" style="font-size: 22px; color: #05488b; ">Many companies use Applicant
+
+    
+    <section class="text-center my-5">
+  <h2 style="font-size: 45px; font-weight: 700;">Is Your Resume ATS Friendly?</h2>
+  <p style="font-size: 20px;">Check It Out here...</p>
+
+  <a class="btn btn-success px-4 py-2 mb-4" style="font-size: 18px;">Upload Resume</a>
+
+  <h2 style="font-weight: 700; font-size: 35px; color: #05284a;" class="mt-5">
+    Why an ATS-Friendly Resume is Important?
+  </h2>
+  <p class="text-center" style="font-size: 20px;">
+    Only 2% of resumes make it past the first round. Be in the top 2%.
+  </p>
+</section>
+
+    <p class="mt-3 text-center fw-bold" style="font-size: 22px; color: #05488b; ">Many companies use Applicant
       Tracking
       Systems (ATS) to filter resumes. If your resume isn't ATS-optimized, it might never reach a recruiter. Here's why
       an
       ATS-friendly resume matters:</p>
-    <ul class="mx-5" style="font-size: 25px;">
-      <li type="bullet"> <b>Keyword Matching:</b> ATS scans for job-related keywords, so including them increases your
-        chances of being noticed.</li>
-      <li> <b>Simple Formatting:</b> Complex designs can confuse ATS. A clean, structured resume ensures it’s read
-        correctly.</li>
-      <li> <b>More Interviews:</b> An ATS-friendly resume boosts your chances of being shortlisted for interviews.</li>
-    </ul>
-    <a class="btn btn-primary w-auto m-5 mx-auto" href="resume-sample.pdf">View Top Resume Samples</a>
+
+ <div class="d-flex justify-content-center">
+  <ul style="font-size: 20px; list-style-type: disc; text-align: left;">
+    <li><b>Keyword Matching:</b> ATS scans for job-related keywords, so including them increases your chances of being noticed.</li>
+    <li><b>Simple Formatting:</b> Complex designs can confuse ATS. A clean, structured resume ensures it’s read correctly.</li>
+    <li><b>More Interviews:</b> An ATS-friendly resume boosts your chances of being shortlisted for interviews.</li>
+  </ul>
+</div>
+
+    <div class="d-flex justify-content-center m-5">
+  <a class="btn btn-primary" href="resume-sample.pdf" target="_blank">
+    View Top Resume Samples
+  </a>
+</div>
+ 
   </div>
+
   <div class="row pt-5 mb-3 bg-body-tertiary" data-aos="fade-up">
     <section>
       <div class="row d-flex justify-content-center" data-aos-anchor-placement="center-bottom">

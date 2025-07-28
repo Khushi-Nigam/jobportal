@@ -139,21 +139,28 @@
   }
 </style>
 
-<div class="container  pb-2">
-  <h1 class="contact-title">Contact Us</h1>
-  <div class="row pt-5 contact-section">
-    <div class="col-sm-6 mb-4">
-      <h2>DreamJobs Office</h2>
-      <p><i class="fas fa-home me-2"></i> 501, Cyber Heights, Lucknow</p>
-      <p><i class="fas fa-phone me-2"></i> 9878648647</p>
-      <p><i class="fas fa-envelope me-2"></i> info@dreamjobs.com</p>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3559.0700769905407!2d81.00675540936595!3d26.869514561851368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDUyJzEwLjQiTiA4McKwMDAnMzMuNSJF!5e0!3m2!1sen!2sin!4v1718951750100!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<div class="container  pb-4">
+  <h1 class="contact-title text-center mb-4">Contact Us</h1>
+  <div class="row pt-4 justify-content-center contact-section">
+    <div class="col-md-6">
+      <h3 class="mb-3">DreamJobs Office</h3>
+      <p><i class="fas fa-home me-2 text-primary"></i> 501, Cyber Heights, Lucknow</p>
+      <p><i class="fas fa-phone me-2 text-primary"></i> 9878648647</p>
+      <p><i class="fas fa-envelope me-2 text-primary"></i> info@dreamjobs.com</p>
+       <div class="ratio ratio-4x3 mt-3 rounded-3 shadow-sm overflow-hidden">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3559.0700769905407!2d81.00675540936595!3d26.869514561851368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDUyJzEwLjQiTiA4McKwMDAnMzMuNSJF!5e0!3m2!1sen!2sin!4v1718951750100!5m2!1sen!2sin"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
     </div>
 
-    <div class="col-sm-6">
-      <h2>Fill the form below</h2>
+    <div class="col-md-6">
+      <h3 class="mb-3">Fill the form below</h3>
       {% if msg %}
-        <p style="text-align: center; color: green;">{{ msg }}</p>
+        <p class="text-center text-success">{{ msg }}</p>
       {% endif %}
       <p>Please fill the form accurately. Our agents will reach out within 24 hours.</p>
 
@@ -165,7 +172,7 @@
         </div>
 
         <div class="mb-3">
-          <label>Gender:</label><br>
+          <label class="form-label d-block mb-2">Gender:</label><br>
           <input class="form-check-input" type="radio" name="gender" value="female" checked>
           <label class="form-check-label">Female</label>
           <input class="form-check-input" type="radio" name="gender" value="male">

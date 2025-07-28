@@ -18,18 +18,26 @@
     <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" />
 </head>
 <body>
-    <div class="container-scroller" style="background-color:  rgb(3, 3, 114);">
-      <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:  rgb(3, 3, 114);">
-          <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top" style="background-color:  white; color:rgb(3, 3, 114);">
+    <div class="container-scroller" style="background: linear-gradient(to bottom, #02027a, #0a0a5e); min-height: 100vh; font-family: 'Poppins', sans-serif; color: white;">
+      <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color: #030372; box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);">
+          <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top" style="background-color: white; height: 80px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
             <span style="color: rgb(8, 8, 151); font-size: 30px; font-weight: 600;">DreamJobs</span>
           </div>
-          <ul class="nav">
+          <ul class="nav" style="padding-top: 100px;">
             <li class="nav-item profile">
-              <div class="profile-desc">
+              <div class="profile-desc" style="display: flex; align-items: center; gap: 10px; padding: 10px 15px;">
                 <div class="profile-pic">
-                  <div class="count-indicator">
-                    <img class="img-xs rounded-circle " src="{% static 'assets/images/faces/face15.jpg' %}" alt="">
-                    <span class="count bg-success"></span>
+                  <div class="count-indicator position-relative">
+                    <img class="img-xs rounded-circle shadow " src="{% static 'assets/images/faces/face15.jpg' %}" alt="" style="border: 2px solid #fff;">
+                    <span class="count bg-success" style="
+                     width: 10px;
+                     height: 10px;
+                    border-radius: 50%;
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    border: 2px solid white;
+                    box-shadow: 0 0 4px rgba(0,0,0,0.2);"></span>
                   </div>
                   <div class="profile-name">
                     <h5 class="mb-0 font-weight-normal">Admin</h5>                    

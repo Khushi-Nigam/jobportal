@@ -278,68 +278,77 @@
 
 <div class="container pt-5">
   <!-- About Section -->
-  <section id="about-section" class="mb-5">
-    <h1 class="about-heading">About Us</h1>
+  <section id="about-section" class="mb-5 px-3">
+    <h1 class="about-heading text-center mb-4">About Us</h1>
 
-    <div class="marquee-container">
-      <div class="marquee-content">
+    <div class="marquee-container text-center mb-4">
+      <div class="marquee-content" >
         The #1 Job Board for Hiring or Find Your Next Job. Each month, more than 3 million job seekers turn to website in
         their search for work, making over 140,000 applications every single day.
       </div>
     </div>
 
-    <div class="row pt-5">
-      <div class="col-md-6 fade-in-left">
-        <img src="{% static 'images/img5.png' %}" alt="Team working together" class="img-fluid teacher-image">
+    <div class="row pt-5 align-items-center">
+      <div class="col-md-6 fade-in-left text-center">
+        <img src="{% static 'images/img5.png' %}" alt="Team working together" class="img-fluid teacher-image rounded shadow" style="max-width: 90%;">
       </div>
+
       <div class="col-md-6 px-md-4 fade-in-right" id="textabout">
-        <h1 class="section-title">
+        <h2 class="section-title mb-4" style="font-size: 30px; font-weight: 700; color: #05284a;">
           We Help To Get The Best Job<br> And Find A Talent
-        </h1>
+        </h2>
+
         <div class="row text-center pt-4">
-          <div class="col-md-4 feature-item">
-            <i class="fa fa-briefcase fa-3x feature-icon"></i>
-            <h5 class="pt-2">Verified Jobs</h5>
+          <div class="col-md-4 feature-item mb-4">
+            <i class="fa fa-briefcase fa-3x feature-icon text-primary mb-3"></i>
+            <h5 class="fw-semibold">Verified Jobs</h5>
           </div>
-          <div class="col-md-4 feature-item">
-            <i class="fa fa-users fa-3x feature-icon"></i>
-            <h5 class="pt-2">Employer Connect</h5>
+          <div class="col-md-4 feature-item mb-4">
+            <i class="fa fa-users fa-3x feature-icon text-success mb-3"></i>
+            <h5 class="fw-semibold">Employer Connect</h5>
           </div>
-          <div class="col-md-4 feature-item">
-            <i class="fa fa-graduation-cap fa-3x feature-icon"></i>
-            <h5 class="pt-2">Internships & Trainings</h5>
+          <div class="col-md-4 feature-item mb-4">
+            <i class="fa fa-graduation-cap fa-3x feature-icon text-warning mb-3"></i>
+            <h5 class="fw-semibold">Internships & Trainings</h5>
           </div>
         </div>
 
-        <p class="pt-2 about-description">
-          At DreamJobs, we believe in empowering job seekers with the tools and opportunities they need to succeed in today's competitive job
-          market. Our platform offers a comprehensive suite of services designed to cater to every stage of your career
-          journey, from internships and training programs to full-time job placements. <br>We offer a wide range of
-          services to support you at every stage of your professional journey.
-        </p>
-        <a href="{% url 'jobapp:aboutus' %}" class="btn btn-primary read-more-btn">Read More</a>
+       <p class="pt-2 about-description">
+  At <strong>DreamJobs</strong>, we are committed to empowering job seekers with the tools and opportunities they need to thrive in today's competitive job market. 
+  Our platform provides a comprehensive suite of services tailored to support every stage of your career journey — from internships and training programs to full-time job placements. <br />
+  Whether you're just starting out or looking to advance, we’re here to guide and support you at every step.
+</p>
+
+     <div class="d-flex justify-content-center mt-3">
+  <a href="{% url 'jobapp:aboutus' %}" class="btn btn-primary read-more-btn">Read More</a>
+</div>
+
       </div>
     </div>
   </section>
 
   <!-- Stats Section -->
-  <div class="row stats-section pt-5">
-    <div class="col-sm-6 col-md-3 text-center stat-item">
+   <div class="container my-5">
+  <div class="row stats-section pt-5 justify-content-center">
+    <div class="col-sm-6 col-md-3 text-center stat-item mb-4">
       <h1 class="counter" data-target="25000">0</h1>
       <h4>Completed Cases</h4>
       <p>We always provide people a complete solution upon focused of any business</p>
     </div>
-    <div class="col-sm-6 col-md-3 text-center stat-item">
+
+    <div class="col-sm-6 col-md-3 text-center stat-item mb-4">
       <h1 class="counter" data-target="17">0</h1>
       <h4>Our Office</h4>
       <p>We always provide people a complete solution upon focused of any business</p>
     </div>
-    <div class="col-sm-6 col-md-3 text-center stat-item">
+
+    <div class="col-sm-6 col-md-3 text-center stat-item mb-4">
       <h1 class="counter" data-target="286">0</h1>
       <h4>Skilled People</h4>
       <p>We always provide people a complete solution upon focused of any business</p>
     </div>
-    <div class="col-sm-6 col-md-3 text-center stat-item">
+
+    <div class="col-sm-6 col-md-3 text-center stat-item mb-4">
       <h1 class="counter" data-target="1000">0</h1>
       <h4>Job Opportunities</h4>
       <p>We always provide people a complete solution upon focused of any business</p>
@@ -349,7 +358,7 @@
   <!-- Companies Section -->
   <section class="companies-section py-5">
     <h2 class="section-heading text-center mb-5">Top Companies where Our Clients were Placed</h2>
-    <div class="company-logos">
+    <div class="company-logos d-flex flex-wrap justify-content-center align-items-center gap-4">
       {% with 'goo.png tech.webp ibm.jpg micro.jpg cp.png lk.png fb.jpg' as logos %}
         {% for logo in logos.split %}
           <div class="company-logo">
@@ -370,17 +379,17 @@
       </p>
     </div>
 
-    <div class="row">
+    <div class="row justify-content-center">
       <!-- Testimonial 1 -->
-      <div class="col-md-4 mb-4">
-        <div class="testimonial-card">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp" alt="Maria Smantha" class="testimonial-img">
+      <div class="col-md-4 col-lg-4 mb-4">
+        <div class="testimonial-card text-center p-4 shadow-sm">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp" alt="Maria Smantha" class="testimonial-img rounded-circle mb-3" width="80">
           <h4>Maria Smantha</h4>
           <h5 class="text-primary">Web Developer</h5>
-          <p class="testimonial-text"><i class="fa fa-quote-left"></i> I've used several job portals in the past, but this one stands out
+          <p class="testimonial-text mt-3"><i class="fa fa-quote-left me-2"></i> I've used several job portals in the past, but this one stands out
               for its simplicity and ease of use. The interface is intuitive, and I was able to set up my profile and
               start applying for jobs within minutes. Highly recommended!</p>
-          <div class="rating">
+          <div class="rating mt-3">
             {% for i in "12345" %}
               <i class="fas fa-star{% if forloop.last %}-half-alt{% endif %} text-warning"></i>
             {% endfor %}
@@ -389,15 +398,15 @@
       </div>
 
       <!-- Testimonial 2 -->
-      <div class="col-md-4 mb-4">
-        <div class="testimonial-card">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp" alt="Lisa Cudrow" class="testimonial-img">
+      <div class="col-md-6  col-lg-4 mb-4">
+        <div class="testimonial-card text-center p-4 shadow-sm">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp" alt="Lisa Cudrow" class="testimonial-img rounded-circle mb-3" width="80">
           <h4>Lisa Cudrow</h4>
           <h5 class="text-primary">Graphic Designer</h5>
-          <p class="testimonial-text"><i class="fa fa-quote-left"></i>What really impressed me about this job portal is the exceptional
+          <p class="testimonial-text  mt-3"><i class="fa fa-quote-left me-2"></i>What really impressed me about this job portal is the exceptional
               customer support. Whenever I had a question or ran into an issue, the support team was quick to respond
               and incredibly helpful. It's clear they care about their users' success.</p>
-          <div class="rating">
+          <div class="rating mt-3">
             {% for i in "12345" %}
               <i class="fas fa-star text-warning"></i>
             {% endfor %}
@@ -406,15 +415,15 @@
       </div>
 
       <!-- Testimonial 3 -->
-      <div class="col-md-4 mb-4">
-        <div class="testimonial-card">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp" alt="John Smith" class="testimonial-img">
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="testimonial-card text-center p-4 shadow-sm">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp" alt="John Smith" class="testimonial-img rounded-circle mb-3" width="80">
           <h4>John Smith</h4>
           <h5 class="text-primary">Marketing Specialist</h5>
-          <p class="testimonial-text"><i class="fa fa-quote-left"></i> This platform offers a wide range of job listings across various
+          <p class="testimonial-text mt-3"><i class="fa fa-quote-left me-2"></i> This platform offers a wide range of job listings across various
               industries. I was able to find opportunities that matched my skills and interests perfectly. It's the best
               resource for job seekers I've come across.</p>
-          <div class="rating">
+          <div class="rating mt-3">
             {% for i in "1234" %}
               <i class="fas fa-star text-warning"></i>
             {% endfor %}

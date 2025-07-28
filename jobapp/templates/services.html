@@ -19,278 +19,384 @@
 
 <!-- Featured Jobs -->
 <div class="row">
-    <h1 class="head text-center pt-5">Featured Jobs</h1>
-    <div class="col-sm-3 mb-3 pt-5">
-        <div class="card">
-          <img src="{% static 'images/react.png' %}" class="card-img-top" alt="..." >
+    <h1 class="text-center pt-5 mb-4">Featured Jobs</h1>
+    <div class="col-sm-6 col-md-4 col-lg-3 pt-5  mb-4">
+        <div class="card h-100 bg-light shadow-sm">
+          <img src="{% static 'images/react.png' %}" class="card-img-top" alt="React Native Job" >
           <div class="card-body">
             <h5 class="card-title">React Native Web Developer</h5>
-            <p style="font-size: 13px;" style="color: grey;"><i class="fa-solid fa-location-dot" style="color: grey;"></i>&nbsp;Mumbai,Maharastra &nbsp;
+            
+            <p class="text-muted mb-2" style="font-size: 13px;"><i class="fa-solid fa-location-dot" style="color: grey;"></i>&nbsp;Mumbai,Maharastra &nbsp;
             <i class="fa-regular fa-clock" style="color: grey;"></i>&nbsp;10 Minutes ago
             </p>
-            <p class="card-text"><ul>
-              <li>Remote-Full time/Part Time</li>
-              <li>Experienced:5+Years</li>
+
+           <ul class="mb-3 ps-3" style="font-size: 14px;">
+              <li>Remote - Full time/Part Time</li>
+              <li>Experienced: 5+ Years</li>
               <li>Salary: Based on Skill set</li>
-              <li>Skilled in: (HTML,CSS,JSX,React)</li>
-            </ul></p>
-           <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Apply Now</a>
+              <li>Skilled in: HTML, CSS, JSX, React</li>
+            </ul>
+             <div class="mt-auto d-flex justify-content-center">
+        <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Apply Now</a>
+      </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-3 pt-5 ">
-        <div class="card" >
-          <img src="{% static 'images/dm.png' %}" class="card-img-top" alt="...">
+
+
+      <div class="col-sm-6 col-md-4 col-lg-3 pt-5 mb-4">
+        <div class="card h-100 bg-light shadow-sm" >
+          <img src="{% static 'images/dm.png' %}" class="card-img-top" alt="Digital Marketing Manager">
           <div class="card-body">
             <h5 class="card-title">Digital Marketing Manager</h5>
-            <p style="font-size: 13px;" style="color: grey;">
-            <i class="fa-solid fa-location-dot" style="color: grey;"></i>&nbsp;Chicago, US &nbsp;
+
+            <p class="text-muted mb-2" style="font-size: 13px;">
+            <i class="fa-solid fa-location-dot" style="color: grey;" ></i>&nbsp;Chicago, US &nbsp;
             <i class="fa-regular fa-clock" style="color: grey;"></i>&nbsp;6 Minutes ago &nbsp;<br>
             <i class="fa-solid fa-briefcase" style="color: grey;"></i>&nbsp;Full-Time
           </p>
-            <p class="card-text">
-            <ul><li>In-depth knowledge of current digital trends</li>
+            
+            <ul  class="mb-3 ps-3" style="font-size: 14px;">
+              <li>In-depth knowledge of current digital trends</li>
             <li>Experience with SEO and SEM strategy and keyword research</li></ul>  
-            </p>
-            <a href="{% url 'jobapp:login' %}" class="btn btn-primary"style="background-color: #093f75;" onclick="login()">Apply Now</a>
+            
+               <div class="mt-auto d-flex justify-content-center">
+        <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Apply Now</a>
+      </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-3 pt-5">
-        <div class="card" >
-          <img src="{% static 'images/customercare.png' %}" class="card-img-top" alt="...">
+
+
+      <div class="col-sm-6 col-md-4 col-lg-3 pt-5 mb-4">
+        <div class="card h-100 bg-light shadow-sm">
+          <img src="{% static 'images/customercare.png' %}" class="card-img-top" alt="Customer Care Executive">
           <div class="card-body">
             <h5 class="card-title">Customer Care Executive </h5>
-            <p style="font-size: 13px;" style="color: grey;"><i class="fa-solid fa-location-dot" style="color: grey;"></i>&nbsp;Hyderabad,India &nbsp;
+
+            <p class="text-muted mb-2" style="font-size: 13px;">
+              <i class="fa-solid fa-location-dot" style="color: grey;"></i>&nbsp;Hyderabad,India &nbsp;
               <i class="fa-regular fa-clock" style="color: grey;"></i>&nbsp;10 Minutes ago
               </p>
-              <ul>
+
+              <ul class="mb-3 ps-3" style="font-size:14px;">
               <li> Total Experience: 5.00 to 10.00 Years</li>
               <li> Job Post Date: 17/04/2024</li>
               <li> Domain: IT</li>
             </ul>
-            <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Apply Now</a>
+               <div class="mt-auto d-flex justify-content-center">
+        <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Apply Now</a>
+      </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-3 mt-5 mb-5">
-        <div class="card " >
-          <img src="{% static 'images/dba.png' %}" class="card-img-top" alt="...">
+
+
+      <div class="col-sm-6 col-md-4 col-lg-3 pt-5 mb-4">
+      <div class="card h-100 bg-light shadow-sm">
+          <img src="{% static 'images/dba.png' %}" class="card-img-top" alt="IIB Developer">
           <div class="card-body">
             <h5 class="card-title">IIB Developer</h5>
-            <p style="font-size: 13px;" style="color: grey;"><i class="fa-solid fa-location-dot" style="color: grey;"></i>&nbsp;Banglore &nbsp;
+            
+            <p class="text-muted mb-2" style="font-size: 13px;">
+              <i class="fa-solid fa-location-dot" style="color: grey;"></i>&nbsp;Banglore &nbsp;
               <i class="fa-regular fa-clock" style="color: grey;"></i>&nbsp;28 Minutes ago<br>
               <i class="fa-solid fa-briefcase" style="color: grey;"></i>&nbsp;Remote
               </p>
-            <ul>
+            <ul class="mb-3 ps-3" style="font-size: 14px;">
               <li>Role: Database Administrator</li>
               <li>Engineering - Software & QA</li>
               <li>Data warehousing</li>
             </ul>
-            <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Apply Now</a>
+               <div class="mt-auto d-flex justify-content-center">
+        <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Apply Now</a>
+      </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-3 mt-5 mb-5">
-        <div class="card " >
-          <img src="{% static 'images/fullstack.png' %}" class="card-img-top" alt="...">
+
+
+      <div class="col-sm-6 col-md-4 col-lg-3 pt-5 mb-4">
+      <div class="card h-100 bg-light shadow-sm">
+          <img src="{% static 'images/fullstack.png' %}" class="card-img-top" alt="Full Stack Developer">
           <div class="card-body">
             <h5 class="card-title">Full Stack Developer</h5>
-            <p style="font-size: 13px;" style="color: grey;"><i class="fa-solid fa-location-dot" style="color: grey;"></i>&nbsp;Lucknow,Pradesh &nbsp;
+            <p class="text-muted mb-2" style="font-size: 13px;">
+              <i class="fa-solid fa-location-dot" style="color: grey;"></i>&nbsp;Lucknow,Pradesh &nbsp;
               <i class="fa-regular fa-clock" style="color: grey;"></i>&nbsp; 2 Hour ago
               </p>
-            <ul>
+             <ul class="mb-3 ps-3" style="font-size: 14px;">
               <li>Full Time</li>
               <li>Skills:HTML,CSS,Js
                 Reactjs,Nodejs</li>
               <li>For Freshers Only</li>
             </ul>
-            <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Apply Now</a>
+            <div class="mt-auto d-flex justify-content-center">
+        <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Apply Now</a>
+      </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-3 mt-5 mb-5">
-        <div class="card ">
+      
+      <div class="col-sm-6 col-md-4 col-lg-3 pt-5 mb-4">
+      <div class="card h-100 bg-light shadow-sm">
           <img src="{% static 'images/ux.png' %}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">UX/UI Designer</h5>
-            <p style="font-size: 13px;" style="color: grey;"><i class="fa-solid fa-location-dot" style="color: grey;"></i>&nbsp;Lucknow,Pradesh &nbsp;
+           <p class="text-muted mb-2" style="font-size: 13px;">
+            <i class="fa-solid fa-location-dot" style="color: grey;"></i>&nbsp;Lucknow,Pradesh &nbsp;
               <i class="fa-regular fa-clock" style="color: grey;"></i>&nbsp; 10 Hours ago
               </p>
-            <ul>
+            <ul class="mb-3 ps-3" style="font-size: 14px;">
               <li>Up-to-date knowledge of design software like Adobe Illustrator and Photoshop</li>
               <li>Good time-management skills</li>
             </ul>
-            <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;">Apply Now</a>
+           <div class="mt-auto d-flex justify-content-center">
+        <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Apply Now</a>
+      </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-3 mb-5 pt-5">
-        <div class="card">
+
+
+       <div class="col-sm-6 col-md-4 col-lg-3 pt-5 mb-4">
+      <div class="card h-100 bg-light shadow-sm">
           <img src="{% static 'images/react.png' %}" class="card-img-top" alt="..." >
           <div class="card-body">
             <h5 class="card-title">Software Engineer</h5>
-            <p style="font-size: 13px;" style="color: grey;"><i class="fa-solid fa-location-dot" style="color: grey;"></i>&nbsp;Mumbai,Maharastra &nbsp;
+            <p class="text-muted mb-2" style="font-size: 13px;">
+            <i class="fa-solid fa-location-dot" style="color: grey;"></i>&nbsp;Mumbai,Maharastra &nbsp;
             <i class="fa-regular fa-clock" style="color: grey;"></i>&nbsp;10 Minutes ago
             </p>
-            <p class="card-text"><ul>
+            <ul class="mb-3 ps-3" style="font-size: 14px;">
               <li>Remote-Full time/Part Time</li>
               <li>Experienced:5+Years</li>
               <li>Skilled in: (HTML,CSS,JSX,React)</li>
-            </ul></p>
-           <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Apply Now</a>
+            </ul>
+            <div class="mt-auto d-flex justify-content-center">
+        <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Apply Now</a>
+      </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-3 pt-5 ">
-        <div class="card">
+
+
+       <div class="col-sm-6 col-md-4 col-lg-3 pt-5 mb-4">
+      <div class="card h-100 bg-light shadow-sm">
           <img src="{% static 'images/dm.png' %}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Digital Marketing Manager</h5>
-            <p style="font-size: 13px;" style="color: grey;">
+             <p class="text-muted mb-2" style="font-size: 13px;">
             <i class="fa-solid fa-location-dot" style="color: grey;"></i>&nbsp;Chicago, US &nbsp;
             <i class="fa-regular fa-clock" style="color: grey;"></i>&nbsp;6 Minutes ago &nbsp;<br>
             <i class="fa-solid fa-briefcase" style="color: grey;"></i>&nbsp;Full-Time
           </p>
-            <p class="card-text">
-            <ul><li>In-depth knowledge of current digital trends</li>
-             <li>Experienced in digital marketing, or a related field</li></ul>
-            </p>
-            <a href="{% url 'jobapp:login' %}" class="btn btn-primary"style="background-color: #093f75;" onclick="login()">Apply Now</a>
+            
+            <ul class="mb-3 ps-3" style="font-size: 14px;">
+              <li>In-depth knowledge of current digital trends</li>
+             <li>Experienced in digital marketing, or a related field</li>
+            </ul>
+            
+               <div class="mt-auto d-flex justify-content-center">
+        <a href="{% url 'jobapp:login' %}" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Apply Now</a>
+      </div>
           </div>
         </div>
       </div>
 </div>
+
+
 <!-- Internships and training section -->
 <div class="row pt-5 pb-5">
-<h1 class="head text-center pb-5">Internship and Trainings</h1>
+ <h1 class="head text-center pb-4 fw-bold">Internship and Trainings</h1>
+    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+      <div class="card shadow-sm bg-light border-0 h-100">
+        <img src="https://www.creative-tim.com/blog/content/images/size/w960/2022/01/which-development-job-is-right-for-you.jpg"
+          class="card-img-top" alt="..." style="height: 180px; object-fit: cover;">
+        <div class="card-body d-flex flex-column justify-content-between">
+          <div>
+            <h5 class="card-title text-dark fw-semibold">Web Development Intern</h5>
+            <ul class="card-text ps-3" style="font-size: 14px;">
+              <li>3 Months Internship</li>
+              <li>LOR & Certificate will be provided</li>
+              <li>Unpaid</li>
+            </ul>
+          </div>
+          <div class="mt-3 text-center">
+            <a href="#" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Register</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
     <div class="col-sm-3 mb-3">
-        <div class="card" >
-            <img src="https://www.creative-tim.com/blog/content/images/size/w960/2022/01/which-development-job-is-right-for-you.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Web Development Intern</h5>
-              <p class="card-text"><ul>
-                <li>3 Months Internship</li>
-                <li>LOR & Certficate will be provided</li>
-                <li>Unpaid</li>
-            </ul></p>
-              <a href="#" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Register</a>
-            </div>
-          </div>
+  <div class="card shadow-sm bg-light border-0 h-100">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUYuz3Or_SzA4OIdoCYRL9EDcExBqVVtEhgw&s" class="card-img-top" alt="..." style="height: 180px; object-fit: cover;">
+    <div class="card-body d-flex flex-column justify-content-between">
+      <div>
+        <h5 class="card-title text-dark fw-semibold">Graphics Designer Intern</h5>
+        <ul class="card-text ps-3" style="font-size: 14px;">
+          <li>1 Month Internship</li>
+          <li>LOR & Certificate will be provided</li>
+          <li>Unpaid</li>
+        </ul>
+      </div>
+      <div class="mt-3 d-flex justify-content-center">
+        <a href="#" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Register</a>
+      </div>
     </div>
-    <div class="col-sm-3 mb-3">
-        <div class="card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUYuz3Or_SzA4OIdoCYRL9EDcExBqVVtEhgw&s" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Graphics Designer Intern</h5>
-              <p class="card-text"><ul>
-                <li>1 Month Internship</li>
-                <li>LOR & Certficate will be provided</li>
-                <li>Unpaid</li>
-            </ul></p>
-              <a href="#" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Register</a>
-            </div>
-          </div>
-    </div>
-    <div class="col-sm-3 mb-3">
-        <div class="card" >
-            <img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/What_Is_MBA_In_HR_And_The_Use_Of_An_MBA_In_HR.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">HR Intern</h5>
-              <p class="card-text"><ul>
-                <li>3 Months Internship</li>
-                <li>LOR & Certficate will be provided</li>
-                <li>Stipend as per skills</li>
-            </ul></p>
-              <a href="#" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Register</a>
-            </div>
-          </div>
-    </div>
-    <div class="col-sm-3 mb-3">
-        <div class="card">
-            <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--V0ekZaVJ--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://thepracticaldev.s3.amazonaws.com/i/h68x0up43hmknl5tjcww.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Software Developer</h5>
-              <p class="card-text"><ul>
-                <li>6 Months Internship</li>
-                <li>With Certfication</li>
-                <li>In Association with GDC Maad</li>
-                <li>Paid</li>
-            </ul></p>
-              <a href="#" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Register</a>
-            </div>
-          </div>
-    </div>
-    <div class="col-sm-3 pt-5 mb-3">
-        <div class="card">
-            <img src="https://miro.medium.com/v2/resize:fit:600/1*fOdb_ET1sOd4uZStK4E8HA.jpeg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Java Developer</h5>
-              <p class="card-text"><ul>
-                <li>2 Months training</li>
-                <li>Java Complete Course/li>
-                <li>Course Fee: 4500</li>
-            </ul></p>
-              <a href="#" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Register</a>
-            </div>
-          </div>
-    </div>
-    <div class="col-sm-3 pt-5 mb-3">
-        <div class="card">
-            <img src="https://www.spec-india.com/wp-content/uploads/2022/05/PHP-Developer.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">PHP With MySql</h5>
-              <p class="card-text"><ul>
-                <li>45  Days Training </li>
-                <li>In Collaboration with Microsoft</li>
-                <li>Training Cost- 6300</li>
-                <li>LOR+ Certificate</li>
-            </ul></p>
-              <a href="#" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Register</a>
-            </div>
-          </div>
-    </div>
-    <div class="col-sm-3 pt-5 mb-3">
-        <div class="card">
-            <img src="https://i.ytimg.com/vi/aW9JI9ckVXY/maxresdefault.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Python with Django</h5>
-              <p class="card-text"><ul>
-                <li>2 Months Training</li>
-                <li>LOR & Certficate will be provided</li>
-                <li>Training Cost: 1350</li>
-            </ul></p>
-              <a href="#" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Register</a>
-            </div>
-          </div>
-    </div>
-    <div class="col-sm-3 pt-5 mb-3">
-        <div class="card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqYT9Qe01DeBXDa-KqvPJ8WjaBUSHhHW0d2A&s" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Learn Generative AI Tools </h5>
-              <p class="card-text"><ul>
-                <li>45 Days Training</li>
-                <li>With Certfication</li>
-                <li>Training Cost:3500/-</li>
-            </ul></p>
-              <a href="#" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Register</a>
-            </div>
-          </div>
-    </div>
+  </div>
 </div>
+
+<div class="col-sm-3 mb-3">
+  <div class="card shadow-sm bg-light border-0 h-100">
+    <img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/What_Is_MBA_In_HR_And_The_Use_Of_An_MBA_In_HR.jpg" class="card-img-top" alt="..." style="height: 180px; object-fit: cover;">
+    <div class="card-body d-flex flex-column justify-content-between">
+      <div>
+        <h5 class="card-title text-dark fw-semibold">HR Intern</h5>
+        <ul class="card-text ps-3" style="font-size: 14px;">
+          <li>3 Months Internship</li>
+          <li>LOR & Certificate will be provided</li>
+          <li>Stipend as per skills</li>
+        </ul>
+      </div>
+      <div class="mt-3 d-flex justify-content-center">
+        <a href="#" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Register</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-sm-3 mb-3">
+  <div class="card shadow-sm bg-light border-0 h-100">
+    <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--V0ekZaVJ--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://thepracticaldev.s3.amazonaws.com/i/h68x0up43hmknl5tjcww.jpg" class="card-img-top" alt="..." style="height: 180px; object-fit: cover;">
+    <div class="card-body d-flex flex-column justify-content-between">
+      <div>
+        <h5 class="card-title text-dark fw-semibold">Software Developer</h5>
+        <ul class="card-text ps-3" style="font-size: 14px;">
+          <li>6 Months Internship</li>
+          <li>With Certification</li>
+          <li>In Association with GDC Maad</li>
+          <li>Paid</li>
+        </ul>
+      </div>
+      <div class="mt-3 d-flex justify-content-center">
+        <a href="#" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Register</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+<div class="col-sm-3 pt-5 mb-3">
+  <div class="card shadow-sm bg-light border-0 h-100">
+    <img src="https://miro.medium.com/v2/resize:fit:600/1*fOdb_ET1sOd4uZStK4E8HA.jpeg" class="card-img-top" alt="..." style="height: 180px; object-fit: cover;">
+    <div class="card-body d-flex flex-column justify-content-between">
+      <div>
+        <h5 class="card-title text-dark fw-semibold">Java Developer</h5>
+        <ul class="card-text ps-3" style="font-size: 14px;">
+          <li>2 Months Training</li>
+          <li>Java Complete Course</li>
+          <li>Course Fee: ₹4500</li>
+        </ul>
+      </div>
+      <div class="mt-3 d-flex justify-content-center">
+        <a href="#" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Register</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+<div class="col-sm-3 pt-5 mb-3">
+  <div class="card shadow-sm bg-light border-0 h-100">
+    <img src="https://www.spec-india.com/wp-content/uploads/2022/05/PHP-Developer.png" class="card-img-top" alt="..." style="height: 180px; object-fit: cover;">
+    <div class="card-body d-flex flex-column justify-content-between">
+      <div>
+        <h5 class="card-title text-dark fw-semibold">PHP with MySQL</h5>
+        <ul class="card-text ps-3" style="font-size: 14px;">
+          <li>45 Days Training</li>
+          <li>In Collaboration with Microsoft</li>
+          <li>Training Cost: ₹6300</li>
+          <li>LOR + Certificate</li>
+        </ul>
+      </div>
+      <div class="mt-3 d-flex justify-content-center">
+        <a href="#" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Register</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-sm-3 pt-5 mb-3">
+  <div class="card shadow-sm bg-light border-0 h-100">
+    <img src="https://i.ytimg.com/vi/aW9JI9ckVXY/maxresdefault.jpg" class="card-img-top" alt="..." style="height: 180px; object-fit: cover;">
+    <div class="card-body d-flex flex-column justify-content-between">
+      <div>
+        <h5 class="card-title text-dark fw-semibold">Python with Django</h5>
+        <ul class="card-text ps-3" style="font-size: 14px;">
+          <li>2 Months Training</li>
+          <li>LOR & Certificate will be provided</li>
+          <li>Training Cost: ₹1350</li>
+        </ul>
+      </div>
+      <div class="mt-3 d-flex justify-content-center">
+        <a href="#" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Register</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-3 pt-5 mb-3">
+  <div class="card shadow-sm bg-light border-0 h-100">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqYT9Qe01DeBXDa-KqvPJ8WjaBUSHhHW0d2A&s" class="card-img-top" alt="..." style="height: 180px; object-fit: cover;">
+    <div class="card-body d-flex flex-column justify-content-between">
+      <div>
+        <h5 class="card-title text-dark fw-semibold">Learn Generative AI Tools</h5>
+        <ul class="card-text ps-3" style="font-size: 14px;">
+          <li>45 Days Training</li>
+          <li>With Certification</li>
+          <li>Training Cost: ₹3500</li>
+        </ul>
+      </div>
+      <div class="mt-3 d-flex justify-content-center">
+        <a href="#" class="btn btn-primary" style="background-color: #093f75;" onclick="login()">Register</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="row mb-3 mx-auto">
   <h2 class="text-center mb-2" style="font-size: 35px; color: #093f75;">Interview Preparation Guide</h2>
   <h3 class="text-center mb-5">Here are some common interview questions you can go throughwith.</h3>
   <div class="vid-container">
-    <iframe width="500"  height="300" src="https://www.youtube.com/embed/1mHjMNZZvFo?si=neuGdUZt4HtemNlT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-    <iframe width="500" height="300" src="https://www.youtube.com/embed/WAvBxdNFimk?si=f9QhdAmmUynymNYm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-<iframe width="500"  height="300" src="https://www.youtube.com/embed/eV_xfy_zRiA?si=TXixtJik7RlEAs1m" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-<iframe width="500" height="300" src="https://www.youtube.com/embed/SoyNG31EAUw?si=jY0Y3TUgrHoHCn7O" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-<iframe width="500" height="300" src="https://www.youtube.com/embed/gsvqdO-2v4g?si=gj_xwnbDEE-Sy_in" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-<iframe width="500" height="300" src="https://www.youtube.com/embed/uqU89z8DRDo?si=3PSnd12QTr6xpnIB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+   <div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 mb-4">
+      <iframe width="100%" height="300" src="https://www.youtube.com/embed/1mHjMNZZvFo?si=neuGdUZt4HtemNlT" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="col-md-6 mb-4">
+      <iframe width="100%" height="300" src="https://www.youtube.com/embed/WAvBxdNFimk?si=f9QhdAmmUynymNYm" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="col-md-6 mb-4">
+      <iframe width="100%" height="300" src="https://www.youtube.com/embed/eV_xfy_zRiA?si=TXixtJik7RlEAs1m" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="col-md-6 mb-4">
+      <iframe width="100%" height="300" src="https://www.youtube.com/embed/SoyNG31EAUw?si=jY0Y3TUgrHoHCn7O" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="col-md-6 mb-4">
+      <iframe width="100%" height="300" src="https://www.youtube.com/embed/gsvqdO-2v4g?si=gj_xwnbDEE-Sy_in" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="col-md-6 mb-4">
+      <iframe width="100%" height="300" src="https://www.youtube.com/embed/uqU89z8DRDo?si=3PSnd12QTr6xpnIB" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
 
 </div>
 {% endblock body %}
