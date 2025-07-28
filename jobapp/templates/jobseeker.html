@@ -2,13 +2,16 @@
 {% block body %}
 {% load static %}
 <style>
-    .error-message {
-        color: gray;
-        display: none;
+    .required-asterisk {
+    color: red;
     }
-
-    input:invalid~.error-message {
-        display: block;
+    .error-message {
+        color: red;
+        display: none;
+        font-size: 0.875rem;
+    }
+    input:invalid {
+      border-color: initial; 
     }
 </style>
 <div class="container-fluid" style="background-color:rgba(255, 255, 255, 0.95);; min-height: 100vh;">
@@ -17,14 +20,18 @@
         {% if msg %}
          <p class="text-center" style="color: #ffffff; font-size: 1rem; margin-bottom: 1rem;">{{msg}}</p>
         {% endif %}
+
+        {% endif %} ui-enhancement
         <form class="form-group p-5 shadow-lg" method="post" id="form"
             style="background-color: #f5f8fc; border-radius: 30px;">
+
             {% csrf_token %}
             <div class="mb-4">
                 <label for="profilepic" class="form-label fw-semibold" style="color: #093f75;" required>Upload Profile Picture  <span class="text-danger">*</span>
                 </label>
                 <input type="file" name="profilepic" id="profilepic" class="form-control form-control-lg border-2" style="border-color: #093f75; border-radius: 12px;">>
             </div>
+ ui-enhancement
             <div class="mb-4">
                <label for="name" class="form-label fw-semibold" style="color: #093f75;">Full Name <span class="text-danger">*</span></label>
                 <input type="text"
@@ -35,6 +42,8 @@
             </div>
             <div class="col-md-6 mb-3">
                 <h6 class="mb-2 pb-1" style="color: #0a3c74; font-weight: 600; font-size: 1.1rem;">Gender: </h6>
+
+
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="gender" id="femaleGender" value="female"
                         checked />
@@ -50,6 +59,7 @@
                 </div>
             </div>
             <div class="mb-3">
+ ui-enhancement
                 <label for="address" class="form-label" style="color: #0a3c74; font-weight: 600;">Enter Address</label>
                 <div class="col-md-9 pe-5">
                     <textarea class="form-control" name="address" rows="3" placeholder="Enter Address"
@@ -82,6 +92,7 @@
             </div>
             <div class="mb-3">
                 <label for="qualification" class="form-label"  style="color: #0a3c74; font-weight: 600;">Enter Your Highest Qualification</label>
+
                 <div class="col-md-9 pe-5">
                     <select name="qualification" id="qualification" class="form-control " style="border-radius: 10px; border: 1px solid #0a3c74;">
                         <option value="null">--Select Qualification--</option>
@@ -95,9 +106,11 @@
                 </div>
             </div>
             <div class="mb-3">
+ ui-enhancement
                 <label for="we" class="form-label"  style="color: #0a3c74; font-weight: 600;">Work Experience</label>
                 <select name="experience" id="experience" class="form-control"
                 style="border-radius: 10px; border: 1px solid #0a3c74;">
+
                     <option value="null">--Select Work Experience--</option>
                     <option value="1-2 Years">1-2 Years</option>
                     <option value="3-4 Years">3-4 Years</option>
@@ -107,10 +120,12 @@
                 <span class="error-message" style="color: #d9534f;">Work experience is required.</span>
             </div>
             <div class="mb-3">
+ui-enhancement
                 <label for="Skills" class="form-label" style="color: #0a3c74; font-weight: 600;">Key Skills</label>
                 <div class="col-md-9 pe-5">
                     <select name="experience" id="experience" class="form-control"
                      style="border-radius: 10px; border: 1px solid #0a3c74;">
+
                         <option value="null">--Select Skills--</option>
                         <option value="IT">IT</option>
                         <option value="Management">Management</option>
@@ -122,12 +137,18 @@
                     <span class="error-message" style="color: #d9534f;">Key skills are required.</span>
                 </div>
             </div>
+            <div class="mb-3"> 
+                <label for="resume" class="form-label" required>Upload Resume<span class="required-asterisk">*</span></label><br>
+                <input type="file" name="resume" id="resume" class="form-control">
+            </div> 
             <div class="mb-3 form-check pt-3">
                 <div class="form-check d-flex mb-5">
+ ui-enhancement
                     <input class="form-check-input me-2" type="checkbox" value="" name="checkbox" required 
                     style="width: 18px; height: 18px; border: 2px solid #0a3c74;"/>
                     <label class="form-check-label" style="font-size: 15px;">
                         I agree all statements in <a href="#" style="color: #0a3c74; text-decoration: underline;">Terms of service</a>
+
                     </label>
                 </div>
                 <span class="error-message" style="color: #d9534f;">You must agree to the terms.</span>
@@ -151,4 +172,126 @@
         </form>
     </div>
 </div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="registerSuccessModal" tabindex="-1" aria-labelledby="registerSuccessModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <h5 class="modal-title w-100" id="registerSuccessModalLabel">Registration Successful</h5>
+      </div>
+      <div class="modal-body">
+        Your career profile has been registered successfully!
+      </div>
+      <div class="modal-footer justify-content-center">
+        <a href="{% url 'jobapp:login' %}" class="btn btn-primary">Login Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if show_modal %}
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        var myModal = new bootstrap.Modal(document.getElementById('registerSuccessModal'), {
+            backdrop: 'static',
+            keyboard: false
+        });
+        myModal.show();
+    });
+</script>
+{% endif %}
+
+<script>
+  function validateForm() {
+    let valid = true;
+
+    // Name
+    const name = document.getElementById('name');
+    const nameError = name.nextElementSibling;
+    const namePattern = /^[A-Za-z]{2,}(?:\s+[A-Za-z]{2,})+$/;
+    if (!name.value.trim().match(namePattern)) {
+        nameError.textContent = "Enter a valid name (eg. John Doe).";
+        nameError.style.display = 'block';
+        valid = false;
+    } else {
+        nameError.style.display = 'none';
+    }
+
+    // Phone
+    const phone = document.getElementById('phoneno');
+    const phoneError = phone.nextElementSibling;
+    if (!phone.value.trim().match(/^[6-9]\d{9}$/)) {
+      phoneError.textContent = "Enter a valid 10-digit Indian mobile number.";
+      phoneError.style.display = 'block';
+      valid = false;
+    } else {
+      phoneError.style.display = 'none';
+    }
+
+    // Email
+    const email = document.getElementById('email');
+    const emailError = email.nextElementSibling;
+    if (!email.value.trim().match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      emailError.textContent = "Please enter a valid email address.";
+      emailError.style.display = 'block';
+      valid = false;
+    } else {
+      emailError.style.display = 'none';
+    }
+
+    // Password
+    const password = document.getElementById('password');
+    const passwordError = password.nextElementSibling;
+    if (!password.value.trim()) {
+      passwordError.style.display = 'block';
+      valid = false;
+    } else {
+      passwordError.style.display = 'none';
+    }
+
+    // DOB
+    const dob = document.getElementById('dob');
+    const dobError = dob.nextElementSibling;
+    if (!dob.value.trim()) {
+      dobError.style.display = 'block';
+      valid = false;
+    } else {
+      dobError.style.display = 'none';
+    }
+
+    // Qualification
+    const qualification = document.getElementById('qualification');
+    const qualificationError = qualification.nextElementSibling;
+    if (qualification.value === 'null') {
+      qualificationError.style.display = 'block';
+      valid = false;
+    } else {
+      qualificationError.style.display = 'none';
+    }
+
+    // Work Experience
+    const experience = document.querySelectorAll('experience');
+    const experienceError = experience.nextElementSibling;
+    if (experience.value === 'null') {
+      experienceError.style.display = 'block';
+      valid = false;
+    } else {
+      experienceError.style.display = 'none';
+    }
+
+    // Skills
+    const skills = document.querySelectorAll('skills');  
+    const skillsError = skills.nextElementSibling;
+    if (skills.value === 'null') {
+      skillsError.style.display = 'block';
+      valid = false;
+    } else {
+      skillsError.style.display = 'none';
+    }
+
+    return valid;
+  }
+</script>
+
 {% endblock body %}

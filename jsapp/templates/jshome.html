@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 {% block body %}
 <div class="row pt-4">
@@ -96,7 +98,15 @@
     {% for a in apost %}
     <div class="card bg-light mb-3">
         <div class="card-body bg-light text-dark">
-            <img class="img-xs rounded-circle " src="{{empreg.profilepic.url}}" alt=""><h5 class="card-title text-dark">{{a.cpname}}</h5>
+            {% if a.profilepic %}
+                <img class="img-xs rounded-circle" src="{{ a.profilepic.url }}" alt="" width="40" height="40">
+            {% else %}
+                <span class="img-xs rounded-circle bg-secondary d-inline-flex justify-content-center align-items-center" 
+                    style="width: 40px; height: 40px;">
+                    <i class="fa-solid fa-user"></i>
+                </span>
+            {% endif %}
+            <h5 class="card-title text-dark">{{a.cpname}}</h5>
             <p class="card-text">{{a.caption}}</p>
             <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
         </div>

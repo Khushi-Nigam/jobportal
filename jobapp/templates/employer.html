@@ -2,14 +2,17 @@
 {% block body %}
 {% load static %}
 <style>
-  .error-message {
-    color: gray;
-    display: none;
+    .required-asterisk {
+    color: red;
   }
-
-  input:invalid ~ .error-message {
-    display: block;
-  }
+    .error-message {
+        color: red;
+        display: none;
+        font-size: 0.875rem;
+    }
+    input:invalid {
+      border-color: initial; 
+    } 
 
   .inter-font {
     font-family: 'Inter', sans-serif;
@@ -86,84 +89,105 @@
       {% if msg %}
         <p style="text-align: center; color: rgb(253, 253, 255);">{{ msg }}</p>
       {% endif %}
-
       <div class="mb-3">
         <label for="empprofilepic" class="form-label">Upload Profile Pic</label>
         <input type="file" name="empprofilepic" class="form-input">
       </div>
-
       <div class="mb-3">
-        <label for="firmname" class="form-label">Firm Name</label>
-        <input type="text" class="form-input" name="firmname" placeholder="Name of the firm" pattern="[a-zA-Z\s]+" required>
+        <label for="FirmName" class="form-label">Firm Name<span class="required-asterisk">*</span></label>
+        <input type="text" class="form-control" name="firmname" placeholder="Name of the firm" pattern="[a-zA-Z\s]+" required>
         <span class="error-message">Please enter a valid firm name.</span>
       </div>
-
       <div class="mb-3">
-        <label for="firmwork" class="form-label">Firm Work</label>
-        <input type="text" class="form-input" name="firmwork" placeholder="Work of the firm" required>
+        <label for="Firmwork" class="form-label">Firm Work<span class="required-asterisk">*</span></label>
+        <input type="text" class="form-control" name="firmwork" placeholder="Work of the firm" required>
         <span class="error-message">Firm work is required.</span>
       </div>
-
       <div class="mb-3">
-        <label for="firmaddress" class="form-label">Firm Address</label>
-        <textarea class="form-input" name="firmaddress" rows="3" placeholder="Enter your firm's Address" required></textarea>
+        <label for="address" class="form-label">Firm Address<span class="required-asterisk">*</span></label>
+        <textarea class="form-control" name="firmaddress" rows="3" placeholder="Enter your firm's Address" required></textarea>
         <span class="error-message">Firm address is required.</span>
       </div>
-
       <div class="mb-3">
-        <label for="cpname" class="form-label">Company Name</label>
-        <input type="text" class="form-input" name="cpname" placeholder="Enter your Company's Name" required>
+        <label for="CompanyName" class="form-label">Name of the company<span class="required-asterisk">*</span></label>
+        <input type="text" class="form-control" name="cpname" placeholder="Enter your Company's Name" required>
         <span class="error-message">Company name is required.</span>
       </div>
-
       <div class="mb-3">
-        <label for="cpcontactno" class="form-label">Company's Contact No</label>
-        <input type="text" class="form-input" name="cpcontactno" placeholder="Enter Contact no." pattern="\d{10}" required>
+        <label for="contactno" class="form-label">Company's Contact No<span class="required-asterisk">*</span></label>
+        <input type="text" class="form-control" name="cpcontactno" placeholder="Enter Contact no." pattern="\d{10}" required>
         <span class="error-message">Please enter a valid 10-digit contact number.</span>
       </div>
-
       <div class="mb-3">
-        <label for="cpemailaddress" class="form-label">Email address</label>
-        <input type="email" class="form-input" name="cpemailaddress" placeholder="Enter Email" required>
+        <label for="email" class="form-label">Email address<span class="required-asterisk">*</span></label>
+        <input type="email" class="form-control" name="cpemailaddress" placeholder="Enter Email" required>
         <span class="error-message">A valid email address is required.</span>
       </div>
-
       <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-input" name="password" placeholder="Enter Password" required>
+        <label for="password" class="form-label">Password<span class="required-asterisk">*</span></label>
+        <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
         <span class="error-message">Password is required.</span>
       </div>
-
       <div class="mb-3">
-        <label for="aadharno" class="form-label">Aadhar No.</label>
-        <input type="text" class="form-input" name="aadharno" placeholder="Enter Aadhar No." pattern="\d{12}" required>
+        <label for="aadhar" class="form-label">Aadhar No.<span class="required-asterisk">*</span></label>
+        <input type="text" class="form-control" name="aadharno" placeholder="Enter Aadhar No." pattern="\d{12}" required>
         <span class="error-message">Aadhar number must be 12 digits.</span>
       </div>
-
       <div class="mb-3">
-        <label for="panno" class="form-label">PAN No.</label>
-        <input type="text" class="form-input" name="panno" placeholder="Enter PAN No." pattern="[A-Z]{5}\d{4}[A-Z]" required>
+        <label for="panno" class="form-label">PAN No.<span class="required-asterisk">*</span></label>
+        <input type="text" class="form-control" name="panno" placeholder="Enter PAN No." pattern="[A-Z]{5}\d{4}[A-Z]" required>
         <span class="error-message">Please enter a valid PAN number.</span>
       </div>
-
       <div class="mb-3">
-        <label for="gstno" class="form-label">GST No.</label>
-        <input type="text" class="form-input" name="gstno" placeholder="Enter GST No." required>
+        <label for="gstno" class="form-label">GST No.<span class="required-asterisk">*</span></label>
+        <input type="text" class="form-control" name="gstno" placeholder="Enter GST No." required>
         <span class="error-message">GST number is required.</span>
       </div>
-
       <div class="mb-3 form-check pt-3">
         <div class="form-check d-flex mb-5">
           <input class="form-check-input me-2" type="checkbox" required />
           <label class="form-check-label">
-            I agree to all statements in <a href="#">Terms of service</a>
+            I agree all statements in <a href="#">Terms of service<span class="required-asterisk">*</span></a>
           </label>
         </div>
-      </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100" style="background-color: #093f75; color:white;">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
 
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="registerSuccessModal" tabindex="-1" aria-labelledby="registerSuccessModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <h5 class="modal-title w-100" id="registerSuccessModalLabel">Registration Successful</h5>
+      </div>
+      <div class="modal-body">
+        Your employer account has been registered successfully!
+      </div>
+      <div class="modal-footer justify-content-center">
+        <a href="{% url 'jobapp:login' %}" class="btn btn-primary">Login Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if show_modal %}
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        var myModal = new bootstrap.Modal(document.getElementById('registerSuccessModal'), {
+            backdrop: 'static',
+            keyboard: false
+        });
+        myModal.show();
+    });
+</script>
+{% endif %}
+      </div>
       <button type="submit" class="btn btn-primary w-100" style="background-color: #093f75; color:white;">Submit</button>
     </form>
   </div>
 </div>
-
 {% endblock body %}

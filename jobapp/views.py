@@ -3,7 +3,9 @@ from .models import Login,Employer,JobSeeker,Enquiry
 from adminapp.models import News
 from employer.models import Jobs
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib import messages
 import datetime
+
 # Create your views here.
 def index(request):
     job=Jobs.objects.all()
@@ -11,22 +13,37 @@ def index(request):
 def aboutus(request):
     return render(request,"aboutus.html")
 def jobseekerreg(request):
-    if request.method=="POST":
-        profilepic=request.POST["profilepic"]
-        name=request.POST["name"]
-        gender=request.POST["gender"]
-        address=request.POST["address"]
-        contactno=request.POST["contactno"]
-        emailaddress=request.POST["emailaddress"]
-        password=request.POST["password"]
-        dob=request.POST["dob"]
-        regdate=datetime.datetime.today()
-        jobseek=JobSeeker(profilepic=profilepic,name=name,gender=gender,address=address,contactno=contactno,emailaddress=emailaddress,dob=dob,regdate=regdate)
+    if request.method == "POST":
+        profilepic = request.POST["profilepic"]
+        name = request.POST["name"]
+        gender = request.POST["gender"]
+        address = request.POST["address"]
+        contactno = request.POST["contactno"]
+        emailaddress = request.POST["emailaddress"]
+        password = request.POST["password"]
+        dob = request.POST["dob"]
+        regdate = datetime.datetime.today()
+
+        jobseek = JobSeeker(
+            profilepic=profilepic,
+            name=name,
+            gender=gender,
+            address=address,
+            contactno=contactno,
+            emailaddress=emailaddress,
+            dob=dob,
+            regdate=regdate
+        )
         jobseek.save()
-        log=Login(username=emailaddress,password=password,usertype="jobseeker")
+
+        log = Login(username=emailaddress, password=password, usertype="jobseeker")
         log.save()
-        return render(request,"jobseeker.html",{"msg":"Registration is done"})
-    return render(request,"jobseeker.html")
+
+        messages.success(request, "Registration successful! You can now log in.")
+        return render(request, "jobseeker.html", {"show_modal": True})
+
+    return render(request, "jobseeker.html")
+
 def login(request):
     if request.method=="POST":  
         username=request.POST["username"]
@@ -48,25 +65,43 @@ def login(request):
          return render(request,'login.html',{"msg":"Invalid user"}) 
     return render(request,"login.html")
 def employerreg(request):
-    if request.method=="POST":
-        empprofilepic=request.POST["empprofilepic"]
-        firmname=request.POST["firmname"]
-        firmwork=request.POST["firmwork"]
-        firmaddress=request.POST["firmaddress"]
-        cpname=request.POST['cpname']
-        cpcontactno=request.POST['cpcontactno']
-        cpemailaddress=request.POST["cpemailaddress"]
-        password=request.POST["password"]
-        aadharno=request.POST["aadharno"]
-        panno=request.POST["panno"]
-        gstno=request.POST["gstno"]
-        regdate=datetime.datetime.today()
-        empreg=Employer(empprofilepic=empprofilepic,firmname=firmname,firmwork=firmwork,firmaddress=firmaddress,cpname=cpname,cpcontactno=cpcontactno,cpemailaddress=cpemailaddress,aadharno=aadharno,panno=panno,gstno=gstno,regdate=regdate)
+    if request.method == "POST":
+        empprofilepic = request.POST["empprofilepic"]
+        firmname = request.POST["firmname"]
+        firmwork = request.POST["firmwork"]
+        firmaddress = request.POST["firmaddress"]
+        cpname = request.POST["cpname"]
+        cpcontactno = request.POST["cpcontactno"]
+        cpemailaddress = request.POST["cpemailaddress"]
+        password = request.POST["password"]
+        aadharno = request.POST["aadharno"]
+        panno = request.POST["panno"]
+        gstno = request.POST["gstno"]
+        regdate = datetime.datetime.today()
+
+        empreg = Employer(
+            empprofilepic=empprofilepic,
+            firmname=firmname,
+            firmwork=firmwork,
+            firmaddress=firmaddress,
+            cpname=cpname,
+            cpcontactno=cpcontactno,
+            cpemailaddress=cpemailaddress,
+            aadharno=aadharno,
+            panno=panno,
+            gstno=gstno,
+            regdate=regdate
+        )
         empreg.save()
-        log=Login(username=cpemailaddress,password=password,usertype="employer")
+
+        log = Login(username=cpemailaddress, password=password, usertype="employer")
         log.save()
-        return render(request,"employer.html",{"msg":"Registration is done"})
-    return render(request,"employer.html")
+
+        messages.success(request, "Employer registration successful! Please log in.")
+        return render(request, "employer.html", {"show_modal": True})
+
+    return render(request, "employer.html")
+
 def contactus(request):
     if request.method=="POST": 
         name=request.POST["name"] 
