@@ -22,10 +22,71 @@
 </head>
 <body>
     <div class="container-scroller">
-      <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:  rgb(3, 3, 114);; color: white;">
-          <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top " style="background-color:  #ffffff;">
-           <a href="{%url 'jsapp:jshome' %}" style="text-decoration: none;"><span style="color: rgb(7, 7, 125); font-weight: 600; font-size: 30px;">DreamJobs</span></a> 
-          </div>
+        <nav style="background-color: rgb(255, 255, 255); width: 100%; z-index: 1000; position: fixed; top: 0; left: 0;" class="navbar p-0">
+            <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+              <a class="navbar-brand brand-logo-mini" href="#"><img src="{% static 'images/img2.png' %}" alt="logo" /></a>
+            </div>
+            <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+              <div class="d-flex align-items-center" style="height: 100%;">
+                <a href="{%url 'jsapp:jshome' %}" style="text-decoration: none;">
+                  <span style="color: rgb(7, 7, 125); font-weight: 600; font-size: 30px;">DreamJobs</span>
+                </a>
+              </div>
+              <button class="navbar-toggler navbar-toggler align-self-center" style="margin-left: 10px;" type="button" data-toggle="minimize">
+                <span class="mdi mdi-menu"></span>
+              </button>
+              <ul class="navbar-nav navbar-nav-right">
+                <li class="nav-item dropdown">
+                  <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
+                    <div class="navbar-profile">
+                      {% if jobseek.profilepic %}
+                          <img class="img-xs rounded-circle" src="{{ jobseek.profilepic.url }}" alt="" width="40" height="40">
+                      {% else %}
+                          <span class="img-xs rounded-circle bg-secondary d-inline-flex justify-content-center align-items-center" 
+                              style="width: 40px; height: 40px;">
+                              <i class="fa-solid fa-user"></i>
+                          </span>
+                      {% endif %}
+                      <p class="mb-0 d-none d-sm-block navbar-profile-name text-dark">{{jobseek.name}}</p>
+                      <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                    </div>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
+                    <h6 class="p-3 mb-0">Profile</h6>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item preview-item">
+                      <div class="preview-thumbnail">
+                        <div class="preview-icon bg-dark rounded-circle">
+                          <i class="mdi mdi-settings text-success"></i>
+                        </div>
+                      </div>
+                      <div class="preview-item-content">
+                        <p class="preview-subject mb-1">Settings</p>
+                      </div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="{% url 'jsapp:logout' %}" class="dropdown-item preview-item">
+                      <div class="preview-thumbnail">
+                        <div class="preview-icon bg-dark rounded-circle">
+                          <i class="mdi mdi-logout text-danger"></i>
+                        </div>
+                      </div>
+                      <div class="preview-item-content">
+                        <p class="preview-subject mb-1">Log out</p>
+                      </div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <p class="p-3 mb-0 text-center">Advanced settings</p>
+                  </div>
+                </li>
+              </ul>
+              <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                <span class="mdi mdi-format-line-spacing"></span>
+              </button>
+            </div>
+          </nav>
+        <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:  rgb(3, 3, 114); color: white; position: fixed;height: 100%;">
+          
           <ul class="nav" style="color: white;">
             <li class="nav-item profile">
               <div class="profile-desc">
@@ -127,67 +188,10 @@
           </ul>
         </nav>
         
-        <div class="container-fluid page-body-wrapper">
+        <div class="container-fluid page-body-wrapper" style="width: 100%; margin-left: 70px;">
         
-          <nav class="navbar p-0 fixed-top d-flex flex-row" style="background-color: rgb(255, 255, 255);">
-            <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-              <a class="navbar-brand brand-logo-mini" href="#"><img src="{% static 'images/img2.png' %}" alt="logo" /></a>
-            </div>
-            <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
-              <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-                <span class="mdi mdi-menu"></span>
-              </button>
-              <ul class="navbar-nav navbar-nav-right">
-                <li class="nav-item dropdown">
-                  <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
-                    <div class="navbar-profile">
-                      {% if jobseek.profilepic %}
-                          <img class="img-xs rounded-circle" src="{{ jobseek.profilepic.url }}" alt="" width="40" height="40">
-                      {% else %}
-                          <span class="img-xs rounded-circle bg-secondary d-inline-flex justify-content-center align-items-center" 
-                              style="width: 40px; height: 40px;">
-                              <i class="fa-solid fa-user"></i>
-                          </span>
-                      {% endif %}
-                      <p class="mb-0 d-none d-sm-block navbar-profile-name text-dark">{{jobseek.name}}</p>
-                      <i class="mdi mdi-menu-down d-none d-sm-block"></i>
-                    </div>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
-                    <h6 class="p-3 mb-0">Profile</h6>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                      <div class="preview-thumbnail">
-                        <div class="preview-icon bg-dark rounded-circle">
-                          <i class="mdi mdi-settings text-success"></i>
-                        </div>
-                      </div>
-                      <div class="preview-item-content">
-                        <p class="preview-subject mb-1">Settings</p>
-                      </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="{% url 'jsapp:logout' %}" class="dropdown-item preview-item">
-                      <div class="preview-thumbnail">
-                        <div class="preview-icon bg-dark rounded-circle">
-                          <i class="mdi mdi-logout text-danger"></i>
-                        </div>
-                      </div>
-                      <div class="preview-item-content">
-                        <p class="preview-subject mb-1">Log out</p>
-                      </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <p class="p-3 mb-0 text-center">Advanced settings</p>
-                  </div>
-                </li>
-              </ul>
-              <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-                <span class="mdi mdi-format-line-spacing"></span>
-              </button>
-            </div>
-          </nav>
-          <div class="main-panel" style="background-color: white;">
+          
+          <div class="main-panel" style="background-color: white; width: 100%;">
             <div class="content-wrapper" style="background-color: white; color: black;">
               {% block body %}              
 
@@ -204,7 +208,7 @@
           
         </div>
         
-      </div>
+    </div>
       <script src="{% static 'assets/vendors/js/vendor.bundle.base.js' %}"></script>
     
     <script src="{% static 'assets/vendors/chart.js/Chart.min.js' %}"></script>
