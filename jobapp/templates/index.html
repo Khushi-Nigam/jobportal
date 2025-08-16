@@ -774,9 +774,39 @@
       <h2 style="font-size: 2.5rem; font-weight: 700; color: #093f75; margin-bottom: 0.5rem;">Is Your Resume ATS Friendly?</h2>
       <p style="font-size: 1.1rem; color: #555;">Check It Out here...</p>
       <div style="margin-top: 1.5rem;">
-        <button class="btn fw-semibold px-4 py-2 rounded-pill" style="background: #093f75; color: #fff; padding: 0.8rem 2rem; font-size: 1rem; font-weight: 600; border: none; border-radius: 8px; cursor: pointer; animation: pulse 1.5s infinite;">Upload Resume</button>
+        
+        {% if user.is_authenticated %}
+          <a href="{% url 'upload_resume' %}">
+            <button class="btn fw-semibold px-4 py-2 rounded-pill" 
+                    style="background: #093f75; color: #fff; padding: 0.8rem 2rem; 
+                           font-size: 1rem; font-weight: 600; border: none; border-radius: 8px; 
+                           cursor: pointer; animation: pulse 1.5s infinite;">
+              Upload Resume
+            </button>
+          </a>
+        {% else %}
+          <button id="uploadBtn" 
+                  class="btn fw-semibold px-4 py-2 rounded-pill" 
+                  style="background: #093f75; color: #fff; padding: 0.8rem 2rem; 
+                         font-size: 1rem; font-weight: 600; border: none; border-radius: 8px; 
+                         cursor: pointer; animation: pulse 1.5s infinite;">
+            Upload Resume
+          </button>
+        {% endif %}
+
       </div>
     </div>
+  </div>
+</section>
+
+<!-- Top Popup -->
+<div id="popupMessage" 
+     style="position: fixed; top: -80px; left: 50%; transform: translateX(-50%);
+            background: #ff4d4d; color: #fff; padding: 1rem 2rem; border-radius: 8px;
+            font-weight: 600; font-size: 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: top 0.5s ease, opacity 0.5s ease; opacity: 0; z-index: 9999;">
+  Please log in to upload your resume.
+</div>
     
  <div style="background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-top: 2rem;">
   <h2 style="text-align: center; font-weight: 700; font-size: 2.2rem; color: #05284a; margin-bottom: 1rem;">
@@ -1049,6 +1079,23 @@
       });
     }
   });
+
+// Show popup + redirect if user clicks upload without login
+document.getElementById("uploadBtn")?.addEventListener("click", function() {
+    const popup = document.getElementById("popupMessage");
+
+    popup.style.top = "20px";
+    popup.style.opacity = "1";
+
+    setTimeout(function() {
+        popup.style.top = "-80px";
+        popup.style.opacity = "0";
+    }, 2500);
+
+    setTimeout(function() {
+        window.location.href = "/login/";
+    }, 3000);
+});
 </script>
 
 {% endblock body %}
