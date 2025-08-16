@@ -7,12 +7,10 @@
   .card { transition: transform .3s ease, box-shadow .3s ease, border .3s ease; border:1px solid transparent; }
   .card:hover { transform: scale(1.03); box-shadow: 0 10px 20px rgb(19 19 19 / 55%), 0 0 10px rgb(156 206 211); border:1px solid #096275e0; }
 </style>
-<script>
-  function login(){ alert("Please login to continue"); }
-</script>
-<!-- Featured Jobs -->
+<script>function login(){ alert("Please login to continue"); }</script>
 <div class="row">
   <h1 class="head text-center pt-5">Featured Jobs</h1>
+  <!-- Job Cards (copied) -->
   <!-- Card 1 -->
   <div class="col-sm-3 mb-5 pt-5"><div class="card shadow-sm rounded-4 border-0 h-100"><img src="{% static 'images/react.png' %}" class="card-img-top img-fluid rounded-top-4" alt="React Developer"><div class="card-body"><h5 class="card-title fw-semibold mb-2" style="font-size: 1rem; color: #1e1e1e;">React Native Web Developer</h5><p class="mb-3 text-secondary" style="font-size: 0.85rem;"><i class="fa-solid fa-location-dot me-1"></i> Mumbai, Maharashtra &nbsp;|&nbsp;<i class="fa-regular fa-clock me-1"></i> 10 Minutes ago</p><ul class="ps-3 mb-4 text-secondary" style="font-size: 0.85rem; line-height: 1.4;"><li>Remote - Full time/Part Time</li><li>Experienced: 5+ Years</li><li>Salary: Based on Skill set</li><li>Skilled in: (HTML, CSS, JSX, React)</li></ul><a href="{% url 'jobapp:login' %}" class="btn btn-primary w-100 rounded-pill fw-semibold" style="background-color: #093f75;" onclick="login()">Apply Now</a></div></div></div>
   <!-- Card 2 -->
@@ -28,9 +26,9 @@
   <!-- Card 7 -->
   <div class="col-sm-3 mb-5 pt-5"><div class="card shadow-sm rounded-4 border-0 h-100"><img src="{% static 'images/react.png' %}" class="card-img-top img-fluid rounded-top-4" alt="Software Engineer"><div class="card-body"><h5 class="card-title fw-semibold mb-2" style="font-size: 1rem; color: #1e1e1e;">Software Engineer</h5><p class="mb-3 text-secondary" style="font-size: 0.85rem;"><i class="fa-solid fa-location-dot me-1"></i> Mumbai, Maharashtra &nbsp;|&nbsp;<i class="fa-regular fa-clock me-1"></i> 10 Minutes ago</p><ul class="ps-3 mb-4 text-secondary" style="font-size: 0.85rem; line-height: 1.4;"><li>Remote - Full time/Part Time</li><li>Experienced: 5+ Years</li><li>Skilled in: (HTML, CSS, JSX, React)</li></ul><a href="{% url 'jobapp:login' %}" class="btn btn-primary w-100 rounded-pill fw-semibold" style="background-color: #093f75;" onclick="login()">Apply Now</a></div></div></div>
 </div>
-<!-- Internship and Trainings Section -->
 <div class="row pt-5 pb-5">
   <h1 class="head text-center pb-5">Internship and Trainings</h1>
+  <!-- Intern Cards (copied) -->
   <div class="col-sm-3 mb-5"><div class="card shadow-sm rounded-4 border-0 h-100"><img src="https://www.creative-tim.com/blog/content/images/size/w960/2022/01/which-development-job-is-right-for-you.jpg" class="card-img-top img-fluid rounded-top-4" alt="Web Development Intern"><div class="card-body"><h5 class="card-title fw-semibold mb-3" style="font-size: 1rem; color: #1e1e1e;">Web Development Intern</h5><ul class="ps-3 mb-4 text-secondary" style="font-size: 0.85rem; line-height: 1.4;"><li>3 Months Internship</li><li>LOR & Certificate will be provided</li><li>Unpaid</li></ul><a href="#" class="btn btn-primary w-100 rounded-pill fw-semibold" style="background-color: #093f75;" onclick="login()">Register</a></div></div></div>
   <div class="col-sm-3 mb-5"><div class="card shadow-sm rounded-4 border-0 h-100"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUYuz3Or_SzA4OIdoCYRL9EDcExBqVVtEhgw&s" class="card-img-top img-fluid rounded-top-4" alt="Graphics Designer Intern"><div class="card-body"><h5 class="card-title fw-semibold mb-3" style="font-size: 1rem; color: #1e1e1e;">Graphics Designer Intern</h5><ul class="ps-3 mb-4 text-secondary" style="font-size: 0.85rem; line-height: 1.4;"><li>1 Month Internship</li><li>LOR & Certificate will be provided</li><li>Unpaid</li></ul><a href="#" class="btn btn-primary w-100 rounded-pill fw-semibold" style="background-color: #093f75;" onclick="login()">Register</a></div></div></div>
   <div class="col-sm-3 mb-5"><div class="card shadow-sm rounded-4 border-0 h-100"><img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/What_Is_MBA_In_HR_And_The_Use_Of_An_MBA_In_HR.jpg" class="card-img-top img-fluid rounded-top-4" alt="HR Intern"><div class="card-body"><h5 class="card-title fw-semibold mb-3" style="font-size: 1rem; color: #1e1e1e;">HR Intern</h5><ul class="ps-3 mb-4 text-secondary" style="font-size: 0.85rem; line-height: 1.4;"><li>3 Months Internship</li><li>LOR & Certificate will be provided</li><li>Stipend as per skills</li></ul><a href="#" class="btn btn-primary w-100 rounded-pill fw-semibold" style="background-color: #093f75;" onclick="login()">Register</a></div></div></div>
@@ -40,19 +38,16 @@
   <div class="col-sm-3 mb-5 pt-5"><div class="card shadow-sm rounded-4 border-0 h-100"><img src="https://i.ytimg.com/vi/aW9JI9ckVXY/maxresdefault.jpg" class="card-img-top img-fluid rounded-top-4" alt="Python with Django"><div class="card-body"><h5 class="card-title fw-semibold mb-3" style="font-size: 1rem; color: #1e1e1e;">Python with Django</h5><ul class="ps-3 mb-4 text-secondary" style="font-size: 0.85rem; line-height: 1.4;"><li>2 Months Training</li><li>LOR & Certificate will be provided</li><li>Training Cost: ₹1350</li></ul><a href="#" class="btn btn-primary w-100 rounded-pill fw-semibold" style="background-color: #093f75;" onclick="login()">Register</a></div></div></div>
   <div class="col-sm-3 mb-5 pt-5"><div class="card shadow-sm rounded-4 border-0 h-100"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqYT9Qe01DeBXDa-KqvPJ8WjaBUSHhHW0d2A&s" class="card-img-top img-fluid rounded-top-4" alt="Generative AI Tools"><div class="card-body"><h5 class="card-title fw-semibold mb-3" style="font-size: 1rem; color: #1e1e1e;">Learn Generative AI Tools</h5><ul class="ps-3 mb-4 text-secondary" style="font-size: 0.85rem; line-height: 1.4;"><li>45 Days Training</li><li>With Certification</li><li>Training Cost: ₹3500</li></ul><a href="#" class="btn btn-primary w-100 rounded-pill fw-semibold" style="background-color: #093f75;" onclick="login()">Register</a></div></div></div>
 </div>
-<!-- Interview Prep Videos -->
 <div class="row mb-5 mx-auto">
   <h2 class="text-center mb-2" style="font-size: 35px; color: #093f75;">Interview Preparation Guide</h2>
   <h3 class="text-center mb-5" style="font-size: 1.25rem; color: #333;">Here are some common interview questions you can go through.</h3>
-  <div class="container">
-    <div class="row g-4 justify-content-center">
-      <div class="col-md-4"><div class="card shadow-sm rounded-4 border-0 h-100"><div class="ratio ratio-16x9 rounded-top-4"><iframe src="https://www.youtube.com/embed/1mHjMNZZvFo?si=neuGdUZt4HtemNlT" title="YouTube video player" allowfullscreen></iframe></div></div></div>
-      <div class="col-md-4"><div class="card shadow-sm rounded-4 border-0 h-100"><div class="ratio ratio-16x9 rounded-top-4"><iframe src="https://www.youtube.com/embed/WAvBxdNFimk?si=f9QhdAmmUynymNYm" title="YouTube video player" allowfullscreen></iframe></div></div></div>
-      <div class="col-md-4"><div class="card shadow-sm rounded-4 border-0 h-100"><div class="ratio ratio-16x9 rounded-top-4"><iframe src="https://www.youtube.com/embed/eV_xfy_zRiA?si=TXixtJik7RlEAs1m" title="YouTube video player" allowfullscreen></iframe></div></div></div>
-      <div class="col-md-4"><div class="card shadow-sm rounded-4 border-0 h-100"><div class="ratio ratio-16x9 rounded-top-4"><iframe src="https://www.youtube.com/embed/SoyNG31EAUw?si=jY0Y3TUgrHoHCn7O" title="YouTube video player" allowfullscreen></iframe></div></div></div>
-      <div class="col-md-4"><div class="card shadow-sm rounded-4 border-0 h-100"><div class="ratio ratio-16x9 rounded-top-4"><iframe src="https://www.youtube.com/embed/gsvqdO-2v4g?si=gj_xwnbDEE-Sy_in" title="YouTube video player" allowfullscreen></iframe></div></div></div>
-      <div class="col-md-4"><div class="card shadow-sm rounded-4 border-0 h-100"><div class="ratio ratio-16x9 rounded-top-4"><iframe src="https://www.youtube.com/embed/uqU89z8DRDo?si=3PSnd12QTr6xpnIB" title="YouTube video player" allowfullscreen></iframe></div></div></div>
-    </div>
-  </div>
+  <div class="container"><div class="row g-4 justify-content-center">
+    <div class="col-md-4"><div class="card shadow-sm rounded-4 border-0 h-100"><div class="ratio ratio-16x9 rounded-top-4"><iframe src="https://www.youtube.com/embed/1mHjMNZZvFo?si=neuGdUZt4HtemNlT" title="YouTube video player" allowfullscreen></iframe></div></div></div>
+    <div class="col-md-4"><div class="card shadow-sm rounded-4 border-0 h-100"><div class="ratio ratio-16x9 rounded-top-4"><iframe src="https://www.youtube.com/embed/WAvBxdNFimk?si=f9QhdAmmUynymNYm" title="YouTube video player" allowfullscreen></iframe></div></div></div>
+    <div class="col-md-4"><div class="card shadow-sm rounded-4 border-0 h-100"><div class="ratio ratio-16x9 rounded-top-4"><iframe src="https://www.youtube.com/embed/eV_xfy_zRiA?si=TXixtJik7RlEAs1m" title="YouTube video player" allowfullscreen></iframe></div></div></div>
+    <div class="col-md-4"><div class="card shadow-sm rounded-4 border-0 h-100"><div class="ratio ratio-16x9 rounded-top-4"><iframe src="https://www.youtube.com/embed/SoyNG31EAUw?si=jY0Y3TUgrHoHCn7O" title="YouTube video player" allowfullscreen></iframe></div></div></div>
+    <div class="col-md-4"><div class="card shadow-sm rounded-4 border-0 h-100"><div class="ratio ratio-16x9 rounded-top-4"><iframe src="https://www.youtube.com/embed/gsvqdO-2v4g?si=gj_xwnbDEE-Sy_in" title="YouTube video player" allowfullscreen></iframe></div></div></div>
+    <div class="col-md-4"><div class="card shadow-sm rounded-4 border-0 h-100"><div class="ratio ratio-16x9 rounded-top-4"><iframe src="https://www.youtube.com/embed/uqU89z8DRDo?si=3PSnd12QTr6xpnIB" title="YouTube video player" allowfullscreen></iframe></div></div></div>
+  </div></div>
 </div>
 {% endblock %}
