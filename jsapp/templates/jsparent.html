@@ -95,7 +95,7 @@
             <li class="nav-item profile">
               <div class="profile-desc">
                 <div class="profile-pic">
-                  <div class="count-indicator">
+                  <div class="count-indicator" id="profilePicToggle" style="cursor: pointer;">
                     {% if jobseek.profilepic %}
                         <img class="img-xs rounded-circle" src="{{ jobseek.profilepic.url }}" alt="" width="40" height="40">
                     {% else %}
