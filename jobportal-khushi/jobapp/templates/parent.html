@@ -1,15 +1,20 @@
-<!DOCTYPE html>
 <html>
   <head>
     {% load static %}
     <title>Dream Jobs</title>
     <link rel="icon" href="{% static 'images/img2.png' %}">
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Boxicons -->
     <script defer src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Plus Jakarta Sans for footer brand text -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-QGgKq4u5asJ5AZt0pOEtpJR/YWZLxE+nobVhtSGcVwqDAVBBusfvEvF5aYlXgWLa" crossorigin="anonymous"></script>
     {% block head %}{% endblock %}
     <style>
+      /* --- Existing styles (merged) --- */
       header { background: linear-gradient(to right, #0c3056, #1c5aa6); color: white; padding: 20px 0; text-align: center; font-size: 30px; font-weight: bold; border-bottom: 5px solid #56a8fa; box-shadow: 0 4px 8px rgba(0,0,0,0.1);}    
       .navbar { position: sticky; top: 0; z-index: 1000; }
       .nav-link { position: relative; font-weight: 500; color: #0c3056 !important; }
@@ -31,6 +36,7 @@
       .collapse li a:hover { font-weight:600; color:#0b447e; }
       #backToTopBtn { display:none; position:fixed; bottom:30px; right:30px; z-index:1000; width:50px; height:50px; border:none; background-color:#0c3056; color:white; cursor:pointer; border-radius:50%; font-size:20px; box-shadow:0 2px 6px rgba(0,0,0,0.3); line-height:50px; transition:opacity .3s; }
       #backToTopBtn:hover { background-color:#093f75; }
+      /* Glassmorphism Navbar */
       .glass-nav { background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(50,130,220,0.22)) !important; backdrop-filter: blur(16px) saturate(160%); -webkit-backdrop-filter: blur(16px) saturate(160%); border:1px solid rgba(120,180,240,0.45); border-radius:22px; padding:.6rem 1rem; margin:12px auto 24px; box-shadow:0 8px 24px -8px rgba(0,0,0,0.25); transition:background .4s, box-shadow .4s; position:sticky; top:0; z-index:1200; }
       .glass-nav:hover { box-shadow:0 12px 32px -10px rgba(0,0,0,0.35); background: linear-gradient(135deg, rgba(255,255,255,0.20), rgba(40,120,215,0.30)) !important; }
       .glass-nav .navbar-brand img { border-radius:18px; border:1px solid rgba(255,255,255,0.4); box-shadow:0 4px 14px -4px rgba(0,0,0,.35); }
@@ -44,14 +50,39 @@
       .glass-nav .dropdown-menu { background:rgba(255,255,255,0.55); backdrop-filter: blur(18px) saturate(180%); border:1px solid rgba(255,255,255,0.4); box-shadow:0 10px 28px -8px rgba(0,0,0,.35); margin-top:.65rem; border-radius:22px; }
       .glass-nav .dropdown-item { color:#0a2f52; font-weight:500; }
       .glass-nav .dropdown-item:hover { background:rgba(255,255,255,0.4); }
+      /* Footer glass */
       .glass-footer { position:relative; background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(35,115,205,0.26)) !important; backdrop-filter: blur(20px) saturate(170%); border-top:1px solid rgba(140,190,245,0.50); border-left:1px solid rgba(140,190,245,0.30); border-right:1px solid rgba(140,190,245,0.30); border-radius:34px 34px 0 0; padding-top:3rem; box-shadow:0 -8px 28px -6px rgba(0,0,0,0.25); }
       .glass-footer::before { content:""; position:absolute; inset:0; background: radial-gradient(circle at 18% 22%, rgba(180,220,255,0.45), transparent 60%), linear-gradient(135deg, rgba(255,255,255,0.15), rgba(60,140,230,0.25)); pointer-events:none; border-radius:inherit; }
       .glass-footer .footer-link, .glass-footer a { color:#0b4f86; font-weight:500; transition:color .3s, text-shadow .3s; }
       .glass-footer .footer-link:hover, .glass-footer a:hover { color:#0a6ac0; text-shadow:0 0 6px rgba(255,255,255,0.65); text-decoration:none; }
+      .glass-footer h6, .glass-footer h5 { color:#0a2f52 !important; }
+      .glass-footer .social-link { display:inline-flex; width:40px; height:40px; align-items:center; justify-content:center; border-radius:50%; background:rgba(255,255,255,0.35); border:1px solid rgba(255,255,255,0.4); margin:0 4px; transition: background .35s, transform .35s; }
+      .glass-footer .social-link:hover { background:rgba(255,255,255,0.55); transform:translateY(-4px); }
+      .glass-footer .text-center.p-3 { background: linear-gradient(135deg,#0b4d8a,#0b6fbf); border-radius:20px; margin-top:2rem; box-shadow:0 6px 20px -6px rgba(0,0,0,.35); }
+      @media (max-width:991px){ .glass-nav { border-radius:18px; } }
+      @media (max-width:576px){ .glass-nav { margin:8px auto 18px; } .glass-nav .navbar-nav { gap:6px; } }
+      .glass-nav, .glass-nav .container-fluid { overflow:visible !important; }
+      .glass-nav .dropdown-menu { display:none; z-index:3000; }
+      .glass-nav .dropdown-menu.show { display:block; }
+      /* Nav hover wipe effect */
+      .nav-link::after { display:none !important; }
+      .glass-nav .nav-link { position:relative; overflow:hidden; background:transparent !important; border-radius:16px; font-weight:500; transition:color .35s ease; }
+      .glass-nav .nav-link::before { content:""; position:absolute; inset:0; background:linear-gradient(110deg, rgba(11,111,191,0.85), rgba(86,168,250,0.9)); transform:translateX(-105%); transition:transform .55s cubic-bezier(.19,.72,.29,1); z-index:-1; }
+      .glass-nav .nav-link:hover::before, .glass-nav .nav-link:focus-visible::before { transform:translateX(0); }
+      .glass-nav .nav-link:hover, .glass-nav .nav-link:focus-visible { color:#fff !important; }
+      .glass-nav .nav-link.active { color:#fff !important; font-weight:600; }
+      .glass-nav .nav-link.active::before { transform:translateX(0); }
+      .glass-nav .nav-link.active::after, .glass-nav .nav-link:hover::after { content:""; position:absolute; inset:0; box-shadow:inset 0 0 0 1px rgba(255,255,255,0.35), 0 4px 12px -6px rgba(0,0,0,0.35); border-radius:16px; pointer-events:none; }
+      @media (prefers-reduced-motion:reduce){ .glass-nav .nav-link::before { transition:none; } }
+      .glass-nav { background: rgba(190,225,255,0.32) !important; }
+      .glass-nav:hover { background: rgba(190,225,255,0.45) !important; }
+      .glass-footer { background: rgba(190,225,255,0.22) !important; }
+      .glass-footer::before { background: radial-gradient(circle at 18% 22%, rgba(255,255,255,0.38), transparent 55%), radial-gradient(circle at 82% 78%, rgba(190,225,255,0.28), transparent 62%); }
+      /* Footer enhancements (moved & merged) */
       .glass-footer .footer-section-title { font-size:.8rem; text-transform:uppercase; letter-spacing:.6px; font-weight:700; display:flex; align-items:center; gap:.25rem; color:#0a2f52; position:relative; margin-bottom:.85rem; }
       .glass-footer .footer-section-title i { font-size:.85rem; color:#0b6fbf; }
       .glass-footer .footer-section-title:after { content:""; position:absolute; left:0; bottom:-6px; width:42px; height:2px; background:linear-gradient(90deg,#0b6fbf,#56a8fa); border-radius:2px; opacity:.9; }
-      .glass-footer .brand-text { font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif; font-size:.86rem; line-height:1.6; color:#0a2f52; font-weight:600; letter-spacing:.2px; position:relative; padding-left:14px; margin:.25rem 0 0; }
+      .glass-footer .brand-text { font-family:'Plus Jakarta Sans', system-ui, -apple-system,'Segoe UI', Roboto,'Helvetica Neue', Arial,'Noto Sans',sans-serif; font-size:.86rem; line-height:1.6; color:#0a2f52; font-weight:600; letter-spacing:.2px; position:relative; padding-left:14px; margin:.25rem 0 0; }
       .glass-footer .brand-text::before { content:""; position:absolute; left:0; top:.15rem; bottom:.15rem; width:4px; border-radius:6px; background:linear-gradient(180deg,#56a8fa,#0b6fbf); box-shadow:0 4px 12px -6px rgba(11,111,191,.6); }
       .glass-footer .trust-points { color:#0a4d83; opacity:.9; }
       .glass-footer .trust-points i { color:#0b6fbf !important; }
@@ -96,32 +127,18 @@
       .footer-links-col .footer-list a:hover, .footer-links-col .footer-list a:focus-visible { color:#0a2f52; transform:translateY(-2px); text-shadow:0 2px 6px rgba(0,0,0,.18); }
       .footer-links-col .footer-list a span { transition:letter-spacing .45s; }
       .footer-links-col .footer-list a:hover span, .footer-links-col .footer-list a:focus-visible span { letter-spacing:.5px; }
+      @media (prefers-reduced-motion:reduce){ .footer-links-col .footer-list a, .footer-links-col .footer-list a::before { transition:none !important; } }
       .glass-footer { margin-top:2rem; }
-      @media (max-width:991px){ .glass-nav { border-radius:18px; } }
-      @media (max-width:576px){ .glass-nav { margin:8px auto 18px; } .glass-nav .navbar-nav { gap:6px; } }
-      .glass-nav, .glass-nav .container-fluid { overflow:visible !important; }
-      .glass-nav .dropdown-menu { display:none; z-index:3000; }
-      .glass-nav .dropdown-menu.show { display:block; }
-      .glass-nav .nav-link::after { display:none !important; }
-      .glass-nav .nav-link { position:relative; overflow:hidden; background:transparent !important; border-radius:16px; font-weight:500; transition:color .35s ease; }
-      .glass-nav .nav-link::before { content:""; position:absolute; inset:0; background:linear-gradient(110deg, rgba(11,111,191,0.85), rgba(86,168,250,0.9)); transform:translateX(-105%); transition:transform .55s cubic-bezier(.19,.72,.29,1); z-index:-1; }
-      .glass-nav .nav-link:hover::before, .glass-nav .nav-link:focus-visible::before { transform:translateX(0); }
-      .glass-nav .nav-link:hover, .glass-nav .nav-link:focus-visible { color:#fff !important; }
-      .glass-nav .nav-link.active { color:#fff !important; font-weight:600; }
-      .glass-nav .nav-link.active::before { transform:translateX(0); }
-      .glass-nav .nav-link.active::after, .glass-nav .nav-link:hover::after { content:""; position:absolute; inset:0; box-shadow:inset 0 0 0 1px rgba(255,255,255,0.35), 0 4px 12px -6px rgba(0,0,0,0.35); border-radius:16px; pointer-events:none; }
-      @media (prefers-reduced-motion:reduce){ .glass-nav .nav-link::before { transition:none; } }
-      .glass-nav { background: rgba(190,225,255,0.32) !important; }
-      .glass-nav:hover { background: rgba(190,225,255,0.45) !important; }
-      .glass-footer { background: rgba(190,225,255,0.22) !important; }
-      .glass-footer::before { background: radial-gradient(circle at 18% 22%, rgba(255,255,255,0.38), transparent 55%), radial-gradient(circle at 82% 78%, rgba(190,225,255,0.28), transparent 62%); }
     </style>
   </head>
   <body>
     <div class="container">
+      <!-- Navbar -->
       <nav class="navbar navbar-expand-lg shadow-sm glass-nav">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'jobapp:index' %}"><img src="{% static 'images/logo.png' %}" height="60" width="120" alt="Logo" /></a>
+          <a class="navbar-brand" href="{% url 'jobapp:index' %}">
+            <img src="{% static 'images/logo.png' %}" height="60" width="120" alt="Logo" />
+          </a>
           <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -135,6 +152,7 @@
             </ul>
             <div class="auth-buttons ms-auto d-flex align-items-center gap-3">
               {% if request and request.resolver_match and request.resolver_match.url_name == 'login' %}
+                {# Hide Login button on login page #}
               {% else %}
                 <a href="{% url 'jobapp:login' %}" class="btn fw-semibold">Login</a>
               {% endif %}
@@ -150,9 +168,11 @@
         </div>
       </nav>
       {% block body %}{% endblock body %}
+      <!-- Footer -->
       <footer class="glass-footer text-center text-lg-start" role="contentinfo">
         <div class="footer-top container pt-4">
           <div class="row g-4 align-items-start">
+            <!-- Brand / Intro -->
             <div class="col-12 col-md-5 col-lg-4 footer-brand text-start">
               <a href="{% url 'jobapp:index' %}" class="d-inline-flex align-items-center mb-3 text-decoration-none footer-logo">
                 <img src="{% static 'images/logo.png' %}" alt="Dream Jobs" class="img-fluid" style="max-width:170px; border-radius:16px; border:1px solid rgba(255,255,255,.45);">
@@ -164,6 +184,7 @@
                 <li class="list-inline-item"><i class="fa-solid fa-award me-1 text-primary"></i>Trusted</li>
               </ul>
             </div>
+            <!-- Important Links -->
             <div class="col-6 col-md-3 col-lg-2 footer-links-col">
               <h6 class="footer-section-title"><i class="fa-solid fa-link me-2"></i>Important</h6>
               <ul class="footer-list clean-list">
@@ -175,6 +196,7 @@
                 <li><a href="{% url 'jobapp:index' %}"><span>Terms</span></a></li>
               </ul>
             </div>
+            <!-- Contact -->
             <div class="col-6 col-md-4 col-lg-2 footer-contact-col">
               <h6 class="footer-section-title"><i class="fa-solid fa-address-card me-2"></i>Contact</h6>
               <ul class="contact-list clean-list">
@@ -183,6 +205,7 @@
                 <li><i class="fa-solid fa-phone"></i><span>+91 9889106834</span></li>
               </ul>
             </div>
+            <!-- Newsletter & Social -->
             <div class="col-12 col-md-7 col-lg-4">
               <h6 class="footer-section-title"><i class="fa-solid fa-envelope-open-text me-2"></i>Newsletter</h6>
               <div class="newsletter-box modern">
@@ -213,82 +236,32 @@
       </footer>
     </div>
     <button id="backToTopBtn" title="Back to Top">↑</button>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-QGgKq4u5asJ5AZt0pOEtpJR/YWZLxE+nobVhtSGcVwqDAVBBusfvEvF5aYlXgWLa" crossorigin="anonymous"></script>
     <script>
-      // Initialize Bootstrap dropdowns present in the DOM (Navbar)
-      document.addEventListener('DOMContentLoaded', function () {
+      document.addEventListener('DOMContentLoaded', function(){
         if (window.bootstrap && bootstrap.Dropdown) {
-          document.querySelectorAll('[data-bs-toggle="dropdown"]').forEach((btn) => {
-            try {
-              bootstrap.Dropdown.getOrCreateInstance(btn);
-            } catch (e) {
-              console.warn('Dropdown init error', e);
-            }
-          });
+          document.querySelectorAll('[data-bs-toggle="dropdown"]').forEach(btn=>{ try { bootstrap.Dropdown.getOrCreateInstance(btn); } catch(e) { console.warn('Dropdown init error', e); } });
         }
       });
-
-      // Back-to-top button behavior
       const backToTopBtn = document.getElementById('backToTopBtn');
-      if (backToTopBtn) {
-        window.addEventListener('scroll', () => {
-          if (document.documentElement.scrollTop > 300) backToTopBtn.style.display = 'block';
-          else backToTopBtn.style.display = 'none';
-        });
-        backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      if(backToTopBtn){
+        window.addEventListener('scroll', () => { if (document.documentElement.scrollTop > 300) backToTopBtn.style.display = 'block'; else backToTopBtn.style.display = 'none'; });
+        backToTopBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
       }
-
-      // Navbar: Register dropdown fallback when Bootstrap's JS instance isn't active
-      (function () {
-        const registerDropdownButton = document.getElementById('registerDropdown');
-        const registerDropdownMenu = registerDropdownButton ? registerDropdownButton.nextElementSibling : null;
-        if (!registerDropdownButton || !registerDropdownMenu) return;
-
-        function isBootstrapDropdownActive() {
-          return !!(
-            window.bootstrap &&
-            bootstrap.Dropdown &&
-            bootstrap.Dropdown.getInstance(registerDropdownButton)
-          );
-        }
-
-        registerDropdownButton.addEventListener('click', function (e) {
-          if (isBootstrapDropdownActive()) return;
-          e.preventDefault();
-          registerDropdownMenu.classList.toggle('show');
-          registerDropdownButton.setAttribute('aria-expanded', registerDropdownMenu.classList.contains('show'));
-        });
-
-        document.addEventListener('click', function (e) {
-          if (isBootstrapDropdownActive()) return;
-          const clickedOutside = !e.target.closest('#registerDropdownWrapper');
-          if (registerDropdownMenu.classList.contains('show') && clickedOutside) {
-            registerDropdownMenu.classList.remove('show');
-            registerDropdownButton.setAttribute('aria-expanded', 'false');
-          }
-        });
-
-        registerDropdownMenu.addEventListener('keydown', function (e) {
-          if (e.key === 'Escape') {
-            registerDropdownMenu.classList.remove('show');
-            registerDropdownButton.focus();
-            registerDropdownButton.setAttribute('aria-expanded', 'false');
-          }
-        });
+      (function(){
+        const trigger = document.getElementById('registerDropdown');
+        const menu = trigger ? trigger.nextElementSibling : null;
+        if(!trigger || !menu) return;
+        function bootstrapActive(){ return !!(window.bootstrap && bootstrap.Dropdown && bootstrap.Dropdown.getInstance(trigger)); }
+        trigger.addEventListener('click', function(e){ if(bootstrapActive()) return; e.preventDefault(); menu.classList.toggle('show'); trigger.setAttribute('aria-expanded', menu.classList.contains('show')); });
+        document.addEventListener('click', function(e){ if(bootstrapActive()) return; if(menu.classList.contains('show') && !e.target.closest('#registerDropdownWrapper')) { menu.classList.remove('show'); trigger.setAttribute('aria-expanded','false'); } });
+        menu.addEventListener('keydown', function(e){ if(e.key==='Escape'){ menu.classList.remove('show'); trigger.focus(); trigger.setAttribute('aria-expanded','false'); }});
       })();
-
-      // Navbar: Highlight active link based on current path
-      (function () {
-        const currentPath = location.pathname.replace(/\/$/, '');
-        document.querySelectorAll('.glass-nav .nav-link').forEach((link) => {
-          try {
-            const linkPath = new URL(link.href, location.origin).pathname.replace(/\/$/, '');
-            if (linkPath === currentPath) link.classList.add('active');
-          } catch (e) {
-            // ignore URL parsing errors
-          }
-        });
+      (function(){
+        const current = location.pathname.replace(/\/$/, "");
+        document.querySelectorAll('.glass-nav .nav-link').forEach(a=>{ try { const path = new URL(a.href, location.origin).pathname.replace(/\/$/, ""); if(path === current) { a.classList.add('active'); } } catch(e){} });
       })();
+      console.log('Bootstrap present:', !!window.bootstrap, 'Dropdown element:', document.getElementById('registerDropdown'));
     </script>
   </body>
 </html>
+
