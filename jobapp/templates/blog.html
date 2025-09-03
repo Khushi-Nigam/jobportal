@@ -46,27 +46,46 @@
     }
     
     .blog-card {
-        border-radius: 20px;
-        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        overflow: hidden;
-    }
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    background: #fff;
     
-    .blog-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    }
+    /* subtle shadow + transition */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     
-    .blog-card .card-img-top {
-        transition: transform 0.4s ease;
-        height: 220px;
-        object-fit: cover;
-    }
-    
-    .blog-card:hover .card-img-top {
-        transform: scale(1.05);
-    }
-    
+    /* start hidden for entrance animation */
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+/* delay each card’s animation slightly */
+.blog-card:nth-child(1) { animation-delay: 0.1s; }
+.blog-card:nth-child(2) { animation-delay: 0.2s; }
+.blog-card:nth-child(3) { animation-delay: 0.3s; }
+
+/* hover effect */
+.blog-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* image zoom on hover */
+.blog-card .card-img-top {
+    transition: transform 0.4s ease;
+}
+.blog-card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+/* reuse fade-in animation from comment section */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
     .author-avatar {
         width: 40px;
         height: 40px;
@@ -95,20 +114,57 @@
         border-radius: 2px;
     }
     
-    .comment-section {
-        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-        border-radius: 20px;
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+   .comment-section {
+  max-width: 800px;          /* limit the width */
+  margin: 0 auto;            /* force center alignment */
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 20px;
+  margin-top: 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  margin-top: 3rem;
+  clear: both;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease-out forwards;
+  
+}
+
+/* Keyframes for entrance animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover effect for interactive feel */
+.comment-section:hover {
+    box-shadow: 0 15px 40px rgba(3, 50, 97, 0.15);
+    transform: scale(1.01);
+    transition: all 0.3s ease;
+  }
+
     
     .comment-textarea {
-        border: 2px solid #e9ecef;
-        border-radius: 15px;
-        transition: all 0.3s ease;
-        min-height: 120px;
-        resize: vertical;
-    }
+  border: 2px solid #e9ecef;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  min-height: 160px;   /* was 120px, now taller */
+  resize: vertical;    /* user can still drag to resize */
+  }
+
+.comment-textarea:focus {
+  border-color: #0a4d8c;
+  box-shadow: 0 0 8px rgba(10, 77, 140, 0.3);
+  transform: scale(1.01);
+  transition: all 0.3s ease;
+}
+
     
     .comment-textarea:focus {
         border-color: #033261;
@@ -240,71 +296,73 @@
         </div>
     </div>
 
-    <div class="col-md-9">
-      <div class="row g-4">
-        <!-- Blog Card 1 -->
-        <div class="col-md-4">
-          <div class="card shadow-sm border-0 rounded-4 h-100 overflow-hidden">
-            <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img1.png" class="card-img-top" alt="Interview Tips">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title fw-semibold mb-2 fs-6">21 Job Interview Tips: How To Make a Great Impression</h5>
-              <p class="card-text text-secondary mb-3 small" style="-webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;">Making a great impression and demonstrating your best qualities during an interview increases your chances of getting a job offer.</p>
-              <div class="d-flex align-items-center justify-content-between mt-auto">
-                <div class="d-flex align-items-center">
-                  <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png" class="rounded-circle me-2" style="width: 35px; height: 35px;">
-                  <div>
-                    <span class="fw-semibold text-primary small text-dreamblue">Aman Gupta</span><br>
-                    <small class="text-muted">HR, Infosys</small>
-                  </div>
-                </div>
-                <a href="#" class="btn btn-dreamjobs">Read</a>
-              </div>
-            </div>
-          </div>
-        </div>
+    <!-- BLOG CARDS (centered, responsive, equal height) -->
+<div class="container">
+  <div class="row g-4 justify-content-center mb-4">
 
-        <!-- Blog Card 2 -->
-        <div class="col-md-4">
-          <div class="card shadow-sm border-0 rounded-4 h-100 overflow-hidden">
-            <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img2.png" class="card-img-top" alt="Email Tips">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title fw-semibold mb-2 fs-6">Email Examples: How To Respond to Employer Interview Requests</h5>
-              <p class="card-text text-secondary mb-3 small" style="-webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;">Respond to interview requests quickly and with enthusiasm to increase your chances.</p>
-              <div class="d-flex align-items-center justify-content-between mt-auto">
-                <div class="d-flex align-items-center">
-                  <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png" class="rounded-circle me-2" style="width: 35px; height: 35px;">
-                  <div>
-                    <span class="fw-semibold text-primary small text-dreamblue">Aman Gupta</span><br>
-                    <small class="text-muted">HR, Infosys</small>
-                  </div>
-                </div>
-                <a href="#" class="btn btn-dreamjobs">Read</a>
+    <!-- Card 1 -->
+    <div class="col-12 col-md-6 col-lg-4 d-flex">
+      <div class="blog-card card shadow-sm border-0 rounded-4 h-100 w-100 overflow-hidden">
+        <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img1.png" class="card-img-top" alt="Interview Tips">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title fw-semibold mb-2 fs-6">21 Job Interview Tips: How To Make a Great Impression</h5>
+          <p class="card-text text-secondary mb-3 small" style="-webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;">Making a great impression and demonstrating your best qualities during an interview increases your chances of getting a job offer.</p>
+          <div class="d-flex align-items-center justify-content-between mt-auto">
+            <div class="d-flex align-items-center">
+              <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png" class="rounded-circle me-2" style="width: 35px; height: 35px;">
+              <div>
+                <span class="fw-semibold text-primary small text-dreamblue">Aman Gupta</span><br>
+                <small class="text-muted">HR, Infosys</small>
               </div>
             </div>
+            <a href="#" class="btn btn-dreamjobs">Read</a>
           </div>
         </div>
-
-        <!-- Blog Card 3 -->
-        <div class="col-md-4">
-          <div class="card shadow-sm border-0 rounded-4 h-100 overflow-hidden">
-            <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img3.png" class="card-img-top" alt="Teen Jobs">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title fw-semibold mb-2 fs-6">17 Jobs Hired at 15 (and even 14) You Should Know</h5>
-              <p class="card-text text-secondary mb-3 small" style="-webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;">Teenagers face struggles of job hunting. Here's a list of early career opportunities for them.</p>
-              <div class="d-flex align-items-center justify-content-between mt-auto">
-                <div class="d-flex align-items-center">
-                  <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png" class="rounded-circle me-2" style="width: 35px; height: 35px;">
-                  <div>
-                    <span class="fw-semibold text-primary small text-dreamblue">Aman Gupta</span><br>
-                    <small class="text-muted">HR, Infosys</small>
-                  </div>
-                </div>
-                <a href="#" class="btn btn-dreamjobs">Read</a>
-              </div>
-            </div>
-          </div>
-        </div>
+      </div>
     </div>
+
+    <!-- Card 2 -->
+    <div class="col-12 col-md-6 col-lg-4 d-flex">
+      <div class="blog-card card shadow-sm border-0 rounded-4 h-100 w-100 overflow-hidden">
+        <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img2.png" class="card-img-top" alt="Email Tips">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title fw-semibold mb-2 fs-6">Email Examples: How To Respond to Employer Interview Requests</h5>
+          <p class="card-text text-secondary mb-3 small" style="-webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;">Respond to interview requests quickly and with enthusiasm to increase your chances.</p>
+          <div class="d-flex align-items-center justify-content-between mt-auto">
+            <div class="d-flex align-items-center">
+              <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png" class="rounded-circle me-2" style="width: 35px; height: 35px;">
+              <div>
+                <span class="fw-semibold text-primary small text-dreamblue">Aman Gupta</span><br>
+                <small class="text-muted">HR, Infosys</small>
+              </div>
+            </div>
+            <a href="#" class="btn btn-dreamjobs">Read</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-12 col-md-6 col-lg-4 d-flex">
+      <div class="blog-card card shadow-sm border-0 rounded-4 h-100 w-100 overflow-hidden">
+        <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img3.png" class="card-img-top" alt="Teen Jobs">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title fw-semibold mb-2 fs-6">17 Jobs Hired at 15 (and even 14) You Should Know</h5>
+          <p class="card-text text-secondary mb-3 small" style="-webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;">Teenagers face struggles of job hunting. Here's a list of early career opportunities for them.</p>
+          <div class="d-flex align-items-center justify-content-between mt-auto">
+            <div class="d-flex align-items-center">
+              <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png" class="rounded-circle me-2" style="width: 35px; height: 35px;">
+              <div>
+                <span class="fw-semibold text-primary small text-dreamblue">Aman Gupta</span><br>
+                <small class="text-muted">HR, Infosys</small>
+              </div>
+            </div>
+            <a href="#" class="btn btn-dreamjobs">Read</a>
+          </div>
+        </div>
+      </div>
+    </div>    
+</div>
 
     <!-- Comment Section -->
     <div class="container pb-5">
@@ -315,7 +373,7 @@
                     <form class="comment">
                         <div class="mb-4">
                             <label for="commentText" class="form-label fw-semibold">Your Comment</label>
-                            <textarea class="form-control comment-textarea" id="commentText" rows="5" placeholder="Share your insights, ask questions, or start a discussion..."></textarea>
+                            <textarea class="form-control comment-textarea" id="commentText" rows="7" placeholder="Share your insights, ask questions, or start a discussion..."></textarea>
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary rounded-pill px-5 py-3 fw-semibold">
@@ -327,6 +385,6 @@
             </div>
         </div>
     </div>
-</div>
+
 
 {% endblock body %}
