@@ -21,8 +21,8 @@
   .section-heading { font-size:2.2rem; color:#093f75; font-weight:700; }
   .company-logos { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:2rem; padding:1rem; }
   .company-logo { flex:0 0 calc(14% - 2rem); text-align:center; }
-  .company-logo img { max-height:80px; width:auto; object-fit:contain; filter:grayscale(100%); opacity:.7; transition:.3s; }
-  .company-logo img:hover { filter:grayscale(0); opacity:1; transform:scale(1.1); }
+  .company-logo img { max-height:80px; width:auto; object-fit:contain; filter:none; opacity:.7; transition:.3s; }
+  .company-logo img:hover { filter:none; opacity:1; transform:scale(1.1); }
   .testimonials-section { background-color:rgba(142,200,248,0.3); }
   .testimonials-heading { font-size:2rem; color:#093f75; }
   .highlight-text { color:#093f75; font-style:italic; font-weight:800; }
@@ -80,7 +80,7 @@
       {% with 'goo.png tech.webp ibm.jpg micro.jpg cp.png lk.png fb.jpg' as logos %}
         {% for logo in logos.split %}
           <div class="company-logo bg-white rounded-3 shadow-sm p-3 d-flex align-items-center justify-content-center" style="width:120px; height:80px;">
-            <img src="{% static 'images/'|add:logo %}" alt="{{ logo|slice:':-4'|title }} logo" loading="lazy" class="img-fluid" style="max-height:40px;">
+            <img src="{% static 'images/'|add:logo %}" alt="{{ logo|slice:':-4'|title }} logo" loading="lazy" class="img-fluid">
           </div>
         {% endfor %}
       {% endwith %}
