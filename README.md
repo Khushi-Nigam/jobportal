@@ -38,7 +38,65 @@ This  Project is a dynamic web application designed to bridge the gap between jo
 
 ![Screenshot 2025-02-09 000251](https://github.com/user-attachments/assets/837a1424-7924-4059-9e29-01fe81e62608)
 
+🚀 Getting Started
 
+Follow these steps to set up and run the project locally.
+
+✅ Prerequisites
+
+Make sure you have the following installed on your system:
+
+Python 3.8+ → Download Python
+
+Git → Install Git
+
+Virtual Environment (Recommended for dependency isolation)
+
+
+
+---
+
+⚙️ Installation & Setup
+
+1. Clone the Repository
+
+git clone https://github.com/jobportal.git
+cd jobportal
+
+2. Create & Activate Virtual Environment
+
+On Windows:
+
+python -m venv venv
+venv\Scripts\activate
+
+On macOS/Linux:
+
+python3 -m venv venv
+source venv/bin/activate
+
+3. Install Dependencies
+
+pip install -r requirements.txt
+
+4. Database Setup
+
+python manage.py makemigrations
+python manage.py migrate
+
+5. Create Superuser (Optional)
+
+python manage.py createsuperuser
+
+6. Run the Development Server
+
+python manage.py runserver
+
+7. 🎉 Access Your Job Portal
+
+Main Application → http://127.0.0.1:8000
+
+Admin Panel → http://127.0.0.1:8000/admin
 ##  🗂️ File Structure
 
 ```
