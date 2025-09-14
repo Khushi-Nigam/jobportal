@@ -1,18 +1,11 @@
 {% extends 'parent.html' %} {% load static %}
 
 {% block head %}
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 <link
   href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap"
-  rel="stylesheet"
-/>
+  rel="stylesheet" />
 
 <style>
   :root {
@@ -25,19 +18,15 @@
     --bg-light: #f8fafc;
     --shadow-light: 0 4px 20px rgba(9, 63, 117, 0.08);
     --shadow-medium: 0 8px 32px rgba(9, 63, 117, 0.12);
-    --gradient-primary: linear-gradient(
-      135deg,
-      #0c3056 0%,
-      #1c5aa6 50%,
-      #56a8fa 100%
-    );
+    --gradient-primary: linear-gradient(135deg,
+        #0c3056 0%,
+        #1c5aa6 50%,
+        #56a8fa 100%);
     --gradient-accent: linear-gradient(45deg, #56a8fa, #a1d0ff);
-    --gradient-hero: linear-gradient(
-      135deg,
-      #093f75 0%,
-      #1c5aa6 50%,
-      #56a8fa 100%
-    );
+    --gradient-hero: linear-gradient(135deg,
+        #093f75 0%,
+        #1c5aa6 50%,
+        #56a8fa 100%);
   }
 
   /* Reset and Base Styles */
@@ -63,32 +52,29 @@
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: radial-gradient(
-        circle at 20% 80%,
+    background: radial-gradient(circle at 20% 80%,
         rgba(9, 63, 117, 0.1) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 80% 20%,
+        transparent 50%),
+      radial-gradient(circle at 80% 20%,
         rgba(86, 168, 250, 0.1) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 40% 40%,
+        transparent 50%),
+      radial-gradient(circle at 40% 40%,
         rgba(28, 90, 166, 0.08) 0%,
-        transparent 50%
-      );
+        transparent 50%);
     animation: float 20s ease-in-out infinite;
   }
 
   @keyframes float {
+
     0%,
     100% {
       transform: translateY(0px) rotate(0deg);
     }
+
     33% {
       transform: translateY(-20px) rotate(1deg);
     }
+
     66% {
       transform: translateY(10px) rotate(-1deg);
     }
@@ -108,12 +94,14 @@
   /* Ensure dropdown appears above other content */
   .hero-section {
     position: relative;
-    z-index: 1; /* Lower than navbar */
+    z-index: 1;
+    /* Lower than navbar */
   }
 
   .jobs-section {
     position: relative;
-    z-index: 1; /* Lower than navbar */
+    z-index: 1;
+    /* Lower than navbar */
   }
 
   /* Hero Section Styles */
@@ -132,11 +120,9 @@
     right: -10%;
     width: 100%;
     height: 200%;
-    background: radial-gradient(
-      circle,
-      rgba(255, 255, 255, 0.1) 0%,
-      transparent 70%
-    );
+    background: radial-gradient(circle,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 70%);
     animation: rotate 30s linear infinite;
   }
 
@@ -144,6 +130,7 @@
     from {
       transform: rotate(0deg);
     }
+
     to {
       transform: rotate(360deg);
     }
@@ -228,11 +215,9 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(
-      ellipse at top,
-      rgba(86, 168, 250, 0.03) 0%,
-      transparent 70%
-    );
+    background: radial-gradient(ellipse at top,
+        rgba(86, 168, 250, 0.03) 0%,
+        transparent 70%);
     z-index: 1;
   }
 
@@ -264,7 +249,7 @@
     border-radius: 2px;
   }
 
-  .jobs-section > .container > p {
+  .jobs-section>.container>p {
     font-size: 1.2rem;
     color: #64748b;
     line-height: 1.7;
@@ -421,11 +406,9 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(
-      ellipse at bottom,
-      rgba(9, 63, 117, 0.03) 0%,
-      transparent 70%
-    );
+    background: radial-gradient(ellipse at bottom,
+        rgba(9, 63, 117, 0.03) 0%,
+        transparent 70%);
     z-index: 1;
   }
 
@@ -457,7 +440,7 @@
     border-radius: 2px;
   }
 
-  .ats-section > .container > p {
+  .ats-section>.container>p {
     font-size: 1.2rem;
     color: #64748b;
     text-align: center;
@@ -552,7 +535,7 @@
     line-height: 1.4;
   }
 
-  .ats-benefits > p {
+  .ats-benefits>p {
     font-size: 1.1rem;
     color: #05488b;
     max-width: 900px;
@@ -724,9 +707,11 @@
     0% {
       box-shadow: 0 0 0 0 rgba(0, 238, 255, 0.7);
     }
+
     70% {
       box-shadow: 0 0 0 10px rgba(0, 238, 255, 0);
     }
+
     100% {
       box-shadow: 0 0 0 0 rgba(0, 238, 255, 0);
     }
@@ -744,11 +729,11 @@
     .jobs-section h1 {
       font-size: 2.5rem;
     }
-    
+
     .ats-section h2 {
       font-size: 2.5rem;
     }
-    
+
     .job-cards-container {
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     }
@@ -849,20 +834,12 @@
   <div class="container px-3">
     <div class="row px-lg-5 d-flex flex-column flex-md-row align-items-center">
       <!-- Hero Image -->
-      <div
-        class="order-1 order-md-2 col-md-6 d-flex align-items-center justify-content-center mb-4 mb-md-0 hero-image"
-      >
-        <img
-          src="{% static 'images/right3.jpg' %}"
-          class="img-fluid rounded-4 shadow"
-          alt="Hero Image"
-        />
+      <div class="order-1 order-md-2 col-md-6 d-flex align-items-center justify-content-center mb-4 mb-md-0 hero-image">
+        <img src="{% static 'images/right3.jpg' %}" class="img-fluid rounded-4 shadow" alt="Hero Image" />
       </div>
 
       <!-- Hero Content -->
-      <div
-        class="order-2 order-md-1 col-md-6 px-4 px-md-5 pt-3 pt-md-5 hero-content"
-      >
+      <div class="order-2 order-md-1 col-md-6 px-4 px-md-5 pt-3 pt-md-5 hero-content">
         <h1 class="fw-bold mb-3">Get The Right Job You Deserve</h1>
         <p class="mb-4">
           Each month, more than 3 million job seekers turn to our website in
@@ -871,21 +848,10 @@
         </p>
 
         <!-- Search Form -->
-        <form
-          class="d-flex w-100 flex-wrap gap-2 search-container"
-          role="search"
-        >
-          <input
-            class="form-control flex-grow-1 rounded-pill px-4 py-2"
-            type="search"
-            id="search-input"
-            placeholder="Search jobs here..."
-            aria-label="Search"
-          />
-          <button
-            class="btn search-btn rounded-pill fw-semibold px-4"
-            id="search-button"
-          >
+        <form class="d-flex w-100 flex-wrap gap-2 search-container" role="search" onsubmit="return handleSearch(event)">
+          <input class="form-control flex-grow-1 rounded-pill px-4 py-2" type="search" id="search-input"
+            placeholder="Search jobs here..." aria-label="Search" />
+          <button type="submit" class="btn search-btn rounded-pill fw-semibold px-4" id="search-button">
             Search
           </button>
         </form>
@@ -893,6 +859,13 @@
     </div>
   </div>
 </section>
+<!-- Popup message -->
+<div id="searchPopup" style="position: fixed; top: -80px; left: 50%; transform: translateX(-50%);
+            background: #ff4d4d; color: #fff; padding: 1rem 2rem; border-radius: 8px;
+            font-weight: 600; font-size: 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: top 0.5s ease, opacity 0.5s ease; opacity: 0; z-index: 99999;">
+  Please log in to search jobs.
+</div>
 
 <section class="jobs-section">
   <div class="container">
@@ -919,9 +892,7 @@
           <li><strong>Skills:</strong> HTML, CSS, JSX, React</li>
         </ul>
         <div class="text-center">
-          <a href="{% url 'jobapp:apply' %}" onclick="login()" class="apply-btn"
-            >Apply Now</a
-          >
+          <a href="{% url 'jobapp:apply' %}" onclick="login()" class="apply-btn">Apply Now</a>
         </div>
       </div>
 
@@ -938,9 +909,7 @@
           <li><strong>Experience:</strong> Experience in digital marketing</li>
         </ul>
         <div class="text-center">
-          <a href="{% url 'jobapp:apply' %}" onclick="login()" class="apply-btn"
-            >Apply Now</a
-          >
+          <a href="{% url 'jobapp:apply' %}" onclick="login()" class="apply-btn">Apply Now</a>
         </div>
       </div>
 
@@ -958,9 +927,7 @@
           <li><strong>Category:</strong> DBA / Data warehousing</li>
         </ul>
         <div class="text-center">
-          <a href="{% url 'jobapp:apply' %}" onclick="login()" class="apply-btn"
-            >Apply Now</a
-          >
+          <a href="{% url 'jobapp:apply' %}" onclick="login()" class="apply-btn">Apply Now</a>
         </div>
       </div>
 
@@ -978,9 +945,7 @@
           <li><strong>Salary:</strong> Based On Skill Set</li>
         </ul>
         <div class="text-center">
-          <a href="{% url 'jobapp:apply' %}" onclick="apply()" class="apply-btn"
-            >Apply Now</a
-          >
+          <a href="{% url 'jobapp:apply' %}" onclick="apply()" class="apply-btn">Apply Now</a>
         </div>
       </div>
 
@@ -998,9 +963,7 @@
           <li><strong>Salary:</strong> Based On Skill Set</li>
         </ul>
         <div class="text-center">
-          <a href="{% url 'jobapp:apply' %}" onclick="login()" class="apply-btn"
-            >Apply Now</a
-          >
+          <a href="{% url 'jobapp:apply' %}" onclick="login()" class="apply-btn">Apply Now</a>
         </div>
       </div>
 
@@ -1018,9 +981,7 @@
           <li><strong>Salary:</strong> Based On Skill Set</li>
         </ul>
         <div class="text-center">
-          <a href="{% url 'jobapp:apply' %}" onclick="login()" class="apply-btn"
-            >Apply Now</a
-          >
+          <a href="{% url 'jobapp:apply' %}" onclick="login()" class="apply-btn">Apply Now</a>
         </div>
       </div>
 
@@ -1039,9 +1000,7 @@
           <li><strong>Salary:</strong> 6 LPA</li>
         </ul>
         <div class="text-center">
-          <a href="{% url 'jobapp:apply' %}" onclick="login()" class="apply-btn"
-            >Apply Now</a
-          >
+          <a href="{% url 'jobapp:apply' %}" onclick="login()" class="apply-btn">Apply Now</a>
         </div>
       </div>
 
@@ -1061,15 +1020,11 @@
           <li><strong>Salary:</strong> {{ j.salarypa }} LPA</li>
           <li>
             <strong>Email:</strong>
-            <a href="mailto:{{ j.emailaddress }}" style="color: #0ef"
-              >{{ j.emailaddress }}</a
-            >
+            <a href="mailto:{{ j.emailaddress }}" style="color: #0ef">{{ j.emailaddress }}</a>
           </li>
         </ul>
         <div class="text-center">
-          <a href="{% url 'jobapp:apply' %}" onclick="login()" class="apply-btn"
-            >Apply Now</a
-          >
+          <a href="{% url 'jobapp:apply' %}" onclick="login()" class="apply-btn">Apply Now</a>
         </div>
       </div>
       {% endfor %}
@@ -1081,27 +1036,25 @@
 <section style="padding: 4rem 0; background: #f9f9f9;">
   <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
     <div style="text-align: center; margin-bottom: 2rem; animation: fadeIn 1s ease;">
-      <h2 style="font-size: 2.5rem; font-weight: 700; color: #093f75; margin-bottom: 0.5rem;">Is Your Resume ATS Friendly?</h2>
+      <h2 style="font-size: 2.5rem; font-weight: 700; color: #093f75; margin-bottom: 0.5rem;">Is Your Resume ATS
+        Friendly?</h2>
       <p style="font-size: 1.1rem; color: #555;">Check It Out here...</p>
       <div style="margin-top: 1.5rem;">
-        
+
         {% if user.is_authenticated %}
-          <a href="{% url 'upload_resume' %}">
-            <button class="btn fw-semibold px-4 py-2 rounded-pill" 
-                    style="background: #093f75; color: #fff; padding: 0.8rem 2rem; 
+        <a href="{% url 'upload_resume' %}">
+          <button class="btn fw-semibold px-4 py-2 rounded-pill" style="background: #093f75; color: #fff; padding: 0.8rem 2rem; 
                            font-size: 1rem; font-weight: 600; border: none; border-radius: 8px; 
                            cursor: pointer; animation: pulse 1.5s infinite;">
-              Upload Resume
-            </button>
-          </a>
-        {% else %}
-          <button id="uploadBtn" 
-                  class="btn fw-semibold px-4 py-2 rounded-pill" 
-                  style="background: #093f75; color: #fff; padding: 0.8rem 2rem; 
-                         font-size: 1rem; font-weight: 600; border: none; border-radius: 8px; 
-                         cursor: pointer; animation: pulse 1.5s infinite;">
             Upload Resume
           </button>
+        </a>
+        {% else %}
+        <button id="uploadBtn" class="btn fw-semibold px-4 py-2 rounded-pill" style="background: #093f75; color: #fff; padding: 0.8rem 2rem; 
+                         font-size: 1rem; font-weight: 600; border: none; border-radius: 8px; 
+                         cursor: pointer; animation: pulse 1.5s infinite;">
+          Upload Resume
+        </button>
         {% endif %}
 
       </div>
@@ -1109,16 +1062,15 @@
   </div>
 </section>
 
-<!-- Top Popup -->
-<div id="popupMessage" 
-     style="position: fixed; top: -80px; left: 50%; transform: translateX(-50%);
+<div id="popupMessage" style="position: fixed; top: -80px; left: 50%; transform: translateX(-50%);
             background: #ff4d4d; color: #fff; padding: 1rem 2rem; border-radius: 8px;
             font-weight: 600; font-size: 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             transition: top 0.5s ease, opacity 0.5s ease; opacity: 0; z-index: 9999;">
   Please log in to upload your resume.
 </div>
-    
- <div style="background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-top: 2rem;">
+
+<div
+  style="background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-top: 2rem;">
   <h2 style="text-align: center; font-weight: 700; font-size: 2.2rem; color: #05284a; margin-bottom: 1rem;">
     Why an ATS-Friendly Resume is Important?
   </h2>
@@ -1126,16 +1078,20 @@
     Only 2% of resumes make it past the first round. Be in the top 2%
   </h3>
   <p style="text-align: center; font-size: 1.1rem; color: #05488b; max-width: 800px; margin: 0 auto 2rem;">
-    Many companies use Applicant Tracking Systems (ATS) to filter resumes. If your resume isn't ATS-optimized, 
+    Many companies use Applicant Tracking Systems (ATS) to filter resumes. If your resume isn't ATS-optimized,
     it might never reach a recruiter. Here's why an ATS-friendly resume matters:
   </p>
   <ul style="list-style: none; padding: 0; font-size: 1rem; color: #444; max-width: 800px; margin: 0 auto 2rem;">
-    <li style="margin-bottom: 0.8rem;"><strong>Keyword Matching:</strong> ATS scans for job-related keywords, so including them increases your chances of being noticed.</li>
-    <li style="margin-bottom: 0.8rem;"><strong>Simple Formatting:</strong> Complex designs can confuse ATS. A clean, structured resume ensures it's read correctly.</li>
-    <li><strong>More Interviews:</strong> An ATS-friendly resume boosts your chances of being shortlisted for interviews.</li>
+    <li style="margin-bottom: 0.8rem;"><strong>Keyword Matching:</strong> ATS scans for job-related keywords, so
+      including them increases your chances of being noticed.</li>
+    <li style="margin-bottom: 0.8rem;"><strong>Simple Formatting:</strong> Complex designs can confuse ATS. A clean,
+      structured resume ensures it's read correctly.</li>
+    <li><strong>More Interviews:</strong> An ATS-friendly resume boosts your chances of being shortlisted for
+      interviews.</li>
   </ul>
   <div style="text-align: center;">
-    <a href="resume-sample.pdf" class="btn fw-semibold px-4 py-2 rounded-pill" style="background: linear-gradient(135deg, #093f75, #093f75); color: #fff; padding: 0.8rem 2rem; font-weight: 600; border-radius: 10px; text-decoration: none;">
+    <a href="resume-sample.pdf" class="btn fw-semibold px-4 py-2 rounded-pill"
+      style="background: linear-gradient(135deg, #093f75, #093f75); color: #fff; padding: 0.8rem 2rem; font-weight: 600; border-radius: 10px; text-decoration: none;">
       View Top Resume Samples
     </a>
   </div>
@@ -1147,32 +1103,23 @@
     <p>
       The experiences of our clients with us are truly commendable. DreamJobs
       helped them to get their<br />
-      <span
-        style="
+      <span style="
           color: #0ef;
           font-style: italic;
           font-weight: 800;
           font-size: 1.3rem;
-        "
-        >Dream job.</span
-      >
+        ">Dream job.</span>
     </p>
 
     <div class="testimonial-cards">
       <div class="testimonial-card">
         <div style="display: flex; justify-content: center">
-          <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp"
-            alt="Maria Smantha"
-          />
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp" alt="Maria Smantha" />
         </div>
         <h5>Maria Smantha</h5>
         <h6>Web Developer</h6>
         <p>
-          <i
-            class="fas fa-quote-left"
-            style="color: #0ef; margin-right: 6px"
-          ></i>
+          <i class="fas fa-quote-left" style="color: #0ef; margin-right: 6px"></i>
           I've used several job portals in the past, but this one stands out for
           its simplicity and ease of use. The interface is intuitive, and I was
           able to set up my profile and start applying for jobs within minutes.
@@ -1189,18 +1136,12 @@
 
       <div class="testimonial-card">
         <div style="display: flex; justify-content: center">
-          <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp"
-            alt="Lisa Cudrow"
-          />
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp" alt="Lisa Cudrow" />
         </div>
         <h5>Lisa Cudrow</h5>
         <h6>Graphic Designer</h6>
         <p>
-          <i
-            class="fas fa-quote-left"
-            style="color: #0ef; margin-right: 6px"
-          ></i>
+          <i class="fas fa-quote-left" style="color: #0ef; margin-right: 6px"></i>
           What really impressed me about this job portal is the exceptional
           customer support. Whenever I had a question or ran into an issue, the
           support team was quick to respond and incredibly helpful. It's clear
@@ -1217,18 +1158,12 @@
 
       <div class="testimonial-card">
         <div style="display: flex; justify-content: center">
-          <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp"
-            alt="John Smith"
-          />
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp" alt="John Smith" />
         </div>
         <h5>John Smith</h5>
         <h6>Marketing Specialist</h6>
         <p>
-          <i
-            class="fas fa-quote-left"
-            style="color: #0ef; margin-right: 6px"
-          ></i>
+          <i class="fas fa-quote-left" style="color: #0ef; margin-right: 6px"></i>
           This platform offers a wide range of job listings across various
           industries. I was able to find opportunities that matched my skills
           and interests perfectly. It's the best resource for job seekers I've
@@ -1248,28 +1183,28 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     const uploadBtn = document.querySelector('.upload-btn');
     if (uploadBtn) {
-      uploadBtn.addEventListener('mouseenter', function() {
+      uploadBtn.addEventListener('mouseenter', function () {
         this.style.animation = 'pulse 1s infinite';
       });
-      uploadBtn.addEventListener('mouseleave', function() {
+      uploadBtn.addEventListener('mouseleave', function () {
         this.style.animation = 'none';
       });
     }
     const jobCards = document.querySelectorAll('.job-card');
     jobCards.forEach(card => {
-      card.addEventListener('mouseenter', function() {
+      card.addEventListener('mouseenter', function () {
         this.style.transform = 'scale(1.02)';
       });
-      card.addEventListener('mouseleave', function() {
+      card.addEventListener('mouseleave', function () {
         this.style.transform = 'scale(1)';
       });
     });
     const links = document.querySelectorAll('a[href^="#"]');
     links.forEach(link => {
-      link.addEventListener('click', function(e) {
+      link.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
@@ -1286,7 +1221,7 @@
     const jobsContainer = document.querySelector('#jobs-container');
     const spinner = document.querySelector('#loading-spinner');
     if (searchForm && jobsContainer && spinner) {
-      searchForm.addEventListener('submit', function(e) {
+      searchForm.addEventListener('submit', function (e) {
         e.preventDefault();
         const query = document.querySelector('#search-input').value;
         spinner.style.display = 'block';
@@ -1338,22 +1273,35 @@
     }
   });
 
-// Show popup + redirect if user clicks upload without login
-document.getElementById("uploadBtn")?.addEventListener("click", function() {
-    const popup = document.getElementById("popupMessage");
+    // Show popup + redirect if user clicks upload without login for upload resume
+  document.getElementById("uploadBtn").addEventListener("click", function (e) {
+    e.preventDefault();
 
-    popup.style.top = "20px";
+    let popup = document.getElementById("popupMessage");
+    popup.style.top = "20px";  // slide down
     popup.style.opacity = "1";
 
-    setTimeout(function() {
-        popup.style.top = "-80px";
-        popup.style.opacity = "0";
-    }, 2500);
+    setTimeout(() => {
+      popup.style.top = "-80px";
+      popup.style.opacity = "0";
+      window.location.href = "/login";
+    }, 2000);
+  });
 
-    setTimeout(function() {
-        window.location.href = "/login/";
-    }, 3000);
-});
+  // Show popup + redirect if user clicks upload without login for search job
+  document.getElementById("search-button").addEventListener("click", function (e) {
+    e.preventDefault();
+
+    let popup1 = document.getElementById("searchPopup");
+    popup1.style.top = "20px";  // slide down
+    popup1.style.opacity = "1";
+
+    setTimeout(() => {
+      popup1.style.top = "-80px";
+      popup1.style.opacity = "0";
+      window.location.href = "/login"; 
+    }, 2000);
+  });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
