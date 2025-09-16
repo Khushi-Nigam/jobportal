@@ -12,6 +12,9 @@ build/
 develop-eggs/
 dist/
 myenv/
+venv/
+__pycache__/
+*.pyc
 downloads/
 eggs/
 .eggs/
