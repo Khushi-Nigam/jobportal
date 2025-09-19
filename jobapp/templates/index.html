@@ -3,6 +3,8 @@
 {% block head %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
 <link
   href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap"
   rel="stylesheet" />
@@ -29,177 +31,368 @@
         #56a8fa 100%);
   }
 
-  /* Reset and Base Styles */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: radial-gradient(circle at 20% 80%, rgba(9, 63, 117, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(86, 168, 250, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 40% 40%, rgba(28, 90, 166, 0.08) 0%, transparent 50%);
+  animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-20px) rotate(1deg); }
+  66% { transform: translateY(10px) rotate(-1deg); }
+}
+
+/* Fix dropdown z-index issue */
+.navbar .dropdown-menu {
+  z-index: 9999 !important;
+  position: absolute !important;
+}
+
+.navbar .dropdown {
+  position: relative;
+  z-index: 1000;
+}
+
+.hero-section,
+.jobs-section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero Section Styles */
+.hero-section {
+  --gradient-hero: linear-gradient(135deg, #ffffff 40%, #58a5c98f 80%);
+  background: var(--gradient-hero);
+  position: relative;
+  overflow: hidden;
+  padding: 4rem 2rem;
+  margin-top: 0;
+  z-index: 1;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  border-radius: 20px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+}
+
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: -60%;
+  right: -20%;
+  width: 140%;
+  height: 250%;
+  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.22), transparent 70%);
+  filter: blur(90px);
+  z-index: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  border-radius: 50%;
+}
+
+
+.hero-section::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 180%;
+  background: conic-gradient(
+    from 160deg,
+    rgba(21, 123, 166, 0.18),
+    rgba(182, 23, 23, 0) 30%,
+    rgba(255, 255, 255, 0.15) 60%,
+    rgba(255, 255, 255, 0) 90%
+  );
+  pointer-events: none;
+  transform: rotate(75deg); 
+}
+
+/* Hero Layout */
+.hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Hero Text */
+.hero-content {
+  flex: 1 1 50%;
+  z-index: 2;
+  text-align: left;
+}
+.hero-content h1 {
+  font-weight: 900;
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  line-height: 1.1;
+  background: linear-gradient(60deg,#0a2e63, #0e8ac4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  margin-bottom: 1.5rem;
+  cursor: default;
+  user-select: none;
+}
+
+.hero-content h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -12px;
+  width: 80px;
+  height: 6px;
+ 
+}
+
+.hero-content p {
+  font-size: 1rem;
+  color: #0c3056 !important;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+/* Hero Image */
+.hero-image {
+  flex: 1 1 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 2;
+  padding: 1rem;
+  height: auto;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 500px;
+  max-height: 500px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 25px;
+
+  border: 4px solid rgba(13, 86, 145, 0.3);
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.2),
+    0 20px 20px rgba(255, 255, 255, 0.1),
+    inset 0 0 8px rgba(255, 255, 255, 0.05);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  background-color: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(2px);
+  will-change: transform, box-shadow;
+}
+
+.hero-image img:hover {
+  transform: scale(1.05) rotate(2deg);
+  box-shadow:
+    0 40px 80px rgba(0, 0, 0, 0.25),
+    0 0 30px rgba(255, 255, 255, 0.1),
+    inset 0 0 12px rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+
+/* Search Box */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border-radius: 50px;
+  padding: 0.3rem 1rem;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  border: 3px solid rgba(15, 90, 182, 0.6); 
+  max-width: 600px;
+  margin: 0 auto 6%;
+  transition: box-shadow 0.3s ease;
+}
+.search-container:hover {
+ border: 3px solid rgba(44, 163, 182, 0.6); 
+}
+.search-container input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 1.1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 50px;
+  color: #333;
+  font-weight: 500;
+}
+.search-container input::placeholder { color: #888; }
+.search-container input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.05);
+}
+
+.search-btn {
+  background: linear-gradient(135deg, #56a8fa, #2c5cae);
+  border: none;
+  border-radius: 15px;
+  padding: 0.4rem 1.8rem;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(44, 92, 174, 0.4);
+}
+.search-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(44, 92, 174, 0.5);
+  background: linear-gradient(135deg, #5bb0ff, #2b58c4);
+}
+
+/* Hero Actions */
+.hero-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  max-width: 100%;
+  padding: 0 1rem;
+}
+
+.post-job-btn {
+  background: linear-gradient(135deg, #00b4db, #1455b7);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 0.8rem 1.6rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(21, 85, 183, 0.3);
+  white-space: nowrap;
+  text-decoration: none;
+  margin-top: -1rem;
+  margin-right: 0.75rem;  
+  margin-bottom: 1rem;
+}
+
+.post-job-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #3eb5cf, #336dc3);
+  box-shadow: 0 10px 25px rgba(21, 85, 183, 0.5);
+}
+
+.search-wrapper {
+  display: flex;
+  flex-direction: column;   
+  align-items: center;      
+  gap: 1rem;              
+}
+.buttons-wrapper {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 991px) {
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
   }
-
-  body {
-    font-family: "Inter", sans-serif;
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    overflow-x: hidden;
-    position: relative;
-    min-height: 100vh;
+  .hero-content {
+    flex: 1 1 100%;
+    text-align: center;
   }
-
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: radial-gradient(circle at 20% 80%,
-        rgba(9, 63, 117, 0.1) 0%,
-        transparent 50%),
-      radial-gradient(circle at 80% 20%,
-        rgba(86, 168, 250, 0.1) 0%,
-        transparent 50%),
-      radial-gradient(circle at 40% 40%,
-        rgba(28, 90, 166, 0.08) 0%,
-        transparent 50%);
-    animation: float 20s ease-in-out infinite;
+  .hero-image {
+    flex: 1 1 100%;
+    justify-content: center;
   }
+}
 
-  @keyframes float {
-
-    0%,
-    100% {
-      transform: translateY(0px) rotate(0deg);
-    }
-
-    33% {
-      transform: translateY(-20px) rotate(1deg);
-    }
-
-    66% {
-      transform: translateY(10px) rotate(-1deg);
-    }
-  }
-
-  /* Fix dropdown z-index issue */
-  .navbar .dropdown-menu {
-    z-index: 9999 !important;
-    position: absolute !important;
-  }
-
-  .navbar .dropdown {
-    position: relative;
-    z-index: 1000;
-  }
-
-  /* Ensure dropdown appears above other content */
+@media (max-width: 767px) {
   .hero-section {
-    position: relative;
-    z-index: 1;
-    /* Lower than navbar */
+    padding: 3rem 1.5rem;
   }
-
-  .jobs-section {
-    position: relative;
-    z-index: 1;
-    /* Lower than navbar */
-  }
-
-  /* Hero Section Styles */
-  .hero-section {
-    background: var(--gradient-hero);
-    position: relative;
-    overflow: hidden;
-    padding: 4rem 0;
-    margin-top: 0;
-  }
-
-  .hero-section::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    right: -10%;
-    width: 100%;
-    height: 200%;
-    background: radial-gradient(circle,
-        rgba(255, 255, 255, 0.1) 0%,
-        transparent 70%);
-    animation: rotate 30s linear infinite;
-  }
-
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
   .hero-content h1 {
-    font-family: "Poppins", sans-serif;
-    font-weight: 800;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    color: white !important;
-    text-shadow: 0 4px 20px rgba(9, 63, 117, 0.3);
-    margin-bottom: 1rem;
+    font-size: clamp(2rem, 7vw, 3.5rem);
   }
-
-  .hero-content p {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.9) !important;
-    margin-bottom: 2rem;
-    font-weight: 400;
-  }
-
   .hero-image img {
-    border-radius: 30px;
-    border: 5px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 20px 60px rgba(9, 63, 117, 0.3);
-    transition: transform 0.3s ease;
-  }
-
-  .hero-image img:hover {
-    transform: scale(1.05) rotate(2deg);
-  }
-
-  .search-container {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    max-height: 280px;
+    width: 100%;
     border-radius: 20px;
-    padding: 1rem;
-    box-shadow: var(--shadow-medium);
-    border: 1px solid rgba(255, 255, 255, 0.2);
   }
-
-  .search-container input {
-    border: none;
-    background: transparent;
-    font-size: 1.1rem;
+  .search-container {
+    flex-direction: column;
     padding: 0.8rem 1rem;
+    border-radius: 20px;
   }
-
-  .search-container input:focus {
-    outline: none;
-    box-shadow: none;
-  }
-
   .search-btn {
-    background: var(--gradient-primary) !important;
-    border: none !important;
-    border-radius: 15px;
-    padding: 0.8rem 2rem;
-    color: white !important;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(9, 63, 117, 0.3);
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 12px;
   }
+  .hero-actions {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0;
+  }
+  .post-job-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
 
-  .search-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(9, 63, 117, 0.4);
-    color: white !important;
-  }
+.highlight-job {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(60deg, #022f6b, #00d0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.highlight-job::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 100%; 
+  height: 6px;
+  background: linear-gradient(90deg, #ffffff, #d0f2ff);
+  border-radius: 10px;
+  box-shadow: 0 0 12px #00b4db, 0 0 20px #0083b0;
+}
 
   /* Jobs Section Styles */
   .jobs-section {
@@ -834,32 +1027,61 @@
 <section class="hero-section py-5">
   <div class="container px-3">
     <div class="row px-lg-5 d-flex flex-column flex-md-row align-items-center">
+
       <!-- Hero Image -->
       <div class="order-1 order-md-2 col-md-6 d-flex align-items-center justify-content-center mb-4 mb-md-0 hero-image">
         <img src="{% static 'images/right3.jpg' %}" class="img-fluid rounded-4 shadow" alt="Hero Image" />
       </div>
 
       <!-- Hero Content -->
-      <div class="order-2 order-md-1 col-md-6 px-4 px-md-5 pt-3 pt-md-5 hero-content">
-        <h1 class="fw-bold mb-3">Get The Right Job You Deserve</h1>
+      <div class="order-2 order-md-1 col-md-6 px-4 pt-3 hero-content">
         <p class="mb-4">
-          Each month, more than 3 million job seekers turn to our website in
-          their search for work, making over 140,000 applications every single
-          day.
+          <strong>
+            <i class="bi bi-people-fill" style="color:#17c047; margin-right: 0.3rem;"></i>
+            <span style="color:#3b65a2;">3M+ Job Seekers.</span>
+            <span style="color:#0f2558;">140,000 Applications Daily.</span>
+            <span style="color:#196374;">One Platform.</span>
+          </strong>
+        </p>
+      <h1 class="fw-bold mb-3 hero-heading" 
+        style="text-shadow: 3px 3px 6px rgba(90, 90, 90, 0.185);">
+      Get The Right <span class="highlight-job">Job</span> You<span class="highlight-deserve"> Deserve</span>
+      </h1>
+
+        <p class="mb-4">
+          Each month, more than 
+          <strong style="color: #187684; background-color: #f6e33b; padding: 2px 6px; border-radius: 4px;">
+            3 million job seekers
+          </strong> 
+          turn to our website in their search for work, making over 140,000 applications every single day.
         </p>
 
         <!-- Search Form -->
+         <div class="search-wrapper">
         <form class="d-flex w-100 flex-wrap gap-2 search-container" role="search" onsubmit="return handleSearch(event)">
-          <input class="form-control flex-grow-1 rounded-pill px-4 py-2" type="search" id="search-input"
-            placeholder="Search jobs here..." aria-label="Search" />
+          <input class="form-control flex-grow-1 rounded-pill px-4 py-2" 
+                 type="search" 
+                 id="search-input" 
+                 placeholder="Search jobs here..." 
+                 aria-label="Search" />
           <button type="submit" class="btn search-btn rounded-pill fw-semibold px-4" id="search-button">
             Search
           </button>
         </form>
+        <div class="buttons-wrapper">
+        <a href="/login/" class="post-job-btn">
+          <i class="bi bi-briefcase-fill"></i> Post a Job
+        </a>
+        <a href="/services/" class="post-job-btn">
+          <i class="bi bi-grid-fill"></i> Browse Services
+        </a>    
+        </div>
+       </div>
       </div>
     </div>
   </div>
 </section>
+
 <!-- Popup message -->
 <div id="searchPopup" style="position: fixed; top: -80px; left: 50%; transform: translateX(-50%);
             background: #ff4d4d; color: #fff; padding: 1rem 2rem; border-radius: 8px;
