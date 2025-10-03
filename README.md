@@ -204,10 +204,11 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 A heartfelt thank you to all the contributors who have dedicated their time and effort to make this project a success.  
 Your contributions—whether it’s code, design, testing, or documentation—are truly appreciated! 🚀
 
-[![Contributors](https://contrib.rocks/image?repo=Khushi-Nigam/jobportal)](https://github.com/Khushi-Nigam/jobportal/graphs/contributors)
+#### Thanks to all the wonderful contributors 💖
 
----
-
+<a href="https://github.com/Khushi-Nigam/jobportal/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Khushi-Nigam/jobportal" />
+</a>
 
 
 <p align="center"> <a href="#top" style="font-size: 16px; padding: 10px 20px; display: inline-block; border: 1px solid #ccc; border-radius: 6px; text-decoration: none; color: #333;"> ⬆️ Back to Top </a> </p> ```
