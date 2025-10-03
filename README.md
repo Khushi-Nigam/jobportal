@@ -115,19 +115,6 @@ Admin Panel: http://127.0.0.1:8000/admin (if you created a superuser)
 # Here are the snapshots of this project
 ![Screenshot 2025-02-08 235944](https://github.com/user-attachments/assets/6e3bbeb0-6db3-4cfc-ac6f-260a3bf36bbc)
 ![Screenshot 2025-02-08 235955](https://github.com/user-attachments/assets/e4d478cd-4c92-4003-9412-ec258bf7bb36)
-## Jobseeker's Screen
-![Screenshot 2025-02-09 000109](https://github.com/user-attachments/assets/aca3aab2-ee42-4cf3-b945-013d92ced91d)
-![Screenshot 2025-02-09 000118](https://github.com/user-attachments/assets/083cd176-3a9b-48b1-a787-d7b38c2c24df)
-
-## Employer's Screen
-
-
-![Screenshot 2025-02-09 000219](https://github.com/user-attachments/assets/d86423d6-86e5-4402-a3e1-abea028ac6ae)
-
-![Screenshot 2025-02-09 000239](https://github.com/user-attachments/assets/c814efe3-3cac-4bb3-aa73-de22d2f7a3f2)
-
-
-![Screenshot 2025-02-09 000251](https://github.com/user-attachments/assets/837a1424-7924-4059-9e29-01fe81e62608)
 
 ##  🗂️ File Structure
 
@@ -218,10 +205,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 A heartfelt thank you to all the contributors who have dedicated their time and effort to make this project a success.  
 Your contributions—whether it’s code, design, testing, or documentation—are truly appreciated! 🚀
-
-## 🙌 Contributors
-
-Thanks to everyone who has contributed to this project! Your help—big or small—makes a huge difference. 💖
 
 [![Contributors](https://contrib.rocks/image?repo=Khushi-Nigam/jobportal)](https://github.com/Khushi-Nigam/jobportal/graphs/contributors)
 
