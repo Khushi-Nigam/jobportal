@@ -111,10 +111,8 @@ Main Application: http://127.0.0.1:8000
 
 Admin Panel: http://127.0.0.1:8000/admin (if you created a superuser)
 ```
+<img width="1919" height="1075" alt="image" src="https://github.com/user-attachments/assets/6e7b976f-625a-4264-abd9-9888f29c0cca" />
 
-# Here are the snapshots of this project
-![Screenshot 2025-02-08 235944](https://github.com/user-attachments/assets/6e3bbeb0-6db3-4cfc-ac6f-260a3bf36bbc)
-![Screenshot 2025-02-08 235955](https://github.com/user-attachments/assets/e4d478cd-4c92-4003-9412-ec258bf7bb36)
 
 ##  🗂️ File Structure
 
