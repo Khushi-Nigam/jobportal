@@ -214,9 +214,19 @@ Layer	Technologies
 # 📄 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-# 🙏 Acknowledgments
-- Icons provided by Font Awesome.
+## 🙏 Acknowledgements
 
-- UI components built with Bootstrap.
+A heartfelt thank you to all the contributors who have dedicated their time and effort to make this project a success.  
+Your contributions—whether it’s code, design, testing, or documentation—are truly appreciated! 🚀
+
+## 🙌 Contributors
+
+Thanks to everyone who has contributed to this project! Your help—big or small—makes a huge difference. 💖
+
+[![Contributors](https://contrib.rocks/image?repo=Khushi-Nigam/jobportal)](https://github.com/Khushi-Nigam/jobportal/graphs/contributors)
+
+---
+
+
 
 <p align="center"> <a href="#top" style="font-size: 16px; padding: 10px 20px; display: inline-block; border: 1px solid #ccc; border-radius: 6px; text-decoration: none; color: #333;"> ⬆️ Back to Top </a> </p> ```
