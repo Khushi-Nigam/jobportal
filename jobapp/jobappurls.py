@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views  # ✅ This must be included once
-
+app_name = "jobapp"
 urlpatterns = [
     path('test/', views.test_template, name='test_template'),  # ✅ Test template path
     path('', views.index, name="index"),
@@ -16,7 +16,7 @@ urlpatterns = [
     path('employerreg/', views.employerreg, name="employerreg"),
     path('adminreg/', views.adminreg, name="adminreg"),
     path('resumeats/', views.resumeats, name="resumeats"),
-    
+    path("upload-resume/", views.upload_resume, name="upload_resume"), 
     # ✅ Password reset URLs
     path('forgot-password/', auth_views.PasswordResetView.as_view(), name='forgot_password'),
     path('forgot-password/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),

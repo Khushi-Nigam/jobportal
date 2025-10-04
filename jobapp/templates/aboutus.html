@@ -4,43 +4,416 @@
 <style>
   .aboutus-page { overflow-x: hidden; }
   .aboutus-page .container { max-width: 100%; }
-  .about-heading { text-align: center; color: #313030; font-weight: 700; font-size: 2.8rem; margin-bottom: 1.5rem; }
-  .section-title { font-family: 'Trebuchet MS','Lucida Sans Unicode','Lucida Grande','Lucida Sans',Arial,sans-serif; color:#093f75; font-weight:800; font-size:2.8rem; line-height:1.2; margin-bottom:1.5rem; }
-  .marquee-container { background-color:#093f75; color:white; font-style:italic; height:40px; padding:10px 0; overflow:hidden; position:relative; }
-  .marquee-content { position:absolute; width:100%; height:100%; margin:0; line-height:20px; text-align:center; transform:translateX(100%); animation:scroll-left 15s linear infinite; }
-  @keyframes scroll-left { 0% { transform:translateX(100%);} 100% { transform:translateX(-100%);} }
-  .feature-item { margin-bottom:1.5rem; }
+  .about-heading { 
+    text-align: center; 
+    color: #313030; 
+    font-weight: 700; 
+    font-size: 2.8rem; 
+    margin-bottom: 1.5rem;
+    animation: fadeInDown 1s ease-out;
+  }
+  .section-title { 
+    font-family: 'Trebuchet MS','Lucida Sans Unicode','Lucida Grande','Lucida Sans',Arial,sans-serif; 
+    color:#093f75; 
+    font-weight:800; 
+    font-size:2.8rem; 
+    line-height:1.2; 
+    margin-bottom:1.5rem; 
+  }
+  .marquee-container { 
+    background: linear-gradient(135deg, #093f75 0%, #0a5a9e 100%);
+    color:white; 
+    font-style:italic; 
+    height:40px; 
+    padding:10px 0; 
+    overflow:hidden; 
+    position:relative;
+    box-shadow: 0 4px 15px rgba(9, 63, 117, 0.3);
+    animation: slideInUp 0.8s ease-out;
+  }
+  .marquee-content { 
+    position:absolute; 
+    width:100%; 
+    height:100%; 
+    margin:0; 
+    line-height:20px; 
+    text-align:center; 
+    transform:translateX(100%); 
+    animation:scroll-left 20s linear infinite; 
+  }
+  @keyframes scroll-left { 
+    0% { transform:translateX(100%);} 
+    100% { transform:translateX(-100%);} 
+  }
+  @keyframes fadeInDown {
+    0% { opacity: 0; transform: translateY(-30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  .feature-item { 
+    margin-bottom:1.5rem;
+    animation: fadeInScale 0.6s ease-out backwards;
+  }
+  .feature-item:nth-child(1) { animation-delay: 0.2s; }
+  .feature-item:nth-child(2) { animation-delay: 0.4s; }
+  .feature-item:nth-child(3) { animation-delay: 0.6s; }
+  
+  @keyframes fadeInScale {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  .icon-box {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .feature-item:hover .icon-box {
+    transform: translateY(-5px) rotate(5deg);
+    box-shadow: 0 8px 20px rgba(9, 63, 117, 0.3) !important;
+  }
   .feature-icon { color:#093f75; margin-bottom:.5rem; }
-  .about-description { color:#333; margin:1rem 0; line-height:1.6; }
-  .read-more-btn { background-color:#093f75; color:white; padding:10px 25px; border-radius:4px; transition:.3s; }
-  .read-more-btn:hover { background-color:rgb(5,5,90); transform:scale(1.05); }
-  .stats-section { background-color:#f8f9fa; border-radius:8px; padding:2rem 0; margin:3rem 0; }
-  .stat-item { padding:1rem; }
-  .counter { font-weight:800; color:#093f75; font-size:2.5rem; }
-  .companies-section { background-color:white; margin:3rem 0; }
-  .section-heading { font-size:2.2rem; color:#093f75; font-weight:700; }
-  .company-logos { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:2rem; padding:1rem; }
-  .company-logo { flex:0 0 calc(14% - 2rem); text-align:center; }
-  .company-logo img { max-height:80px; width:auto; object-fit:contain; filter:none; opacity:.7; transition:.3s; }
-  .company-logo img:hover { filter:none; opacity:1; transform:scale(1.1); }
-  .testimonials-section { background-color:rgba(142,200,248,0.3); }
-  .testimonials-heading { font-size:2rem; color:#093f75; }
-  .highlight-text { color:#093f75; font-style:italic; font-weight:800; }
-  .testimonial-card { background-color:white; padding:25px 20px; margin:15px 10px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.1); transition:.3s; height:100%; }
-  .testimonial-card:hover { transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.2); }
-  .testimonial-img { width:100px; height:100px; border-radius:50%; object-fit:cover; margin:0 auto 1rem; display:block; }
-  .testimonial-text { font-style:italic; color:#333; padding:10px 5px; line-height:1.6; }
-  .rating { margin-top:1rem; }
-  .fade-in-left { opacity:0; transform:translateX(-50px); transition:1s; }
-  .fade-in-right { opacity:0; transform:translateX(50px); transition:1s; }
-  .in-view { opacity:1; transform:translateX(0); }
-  .teacher-image { border-radius:7%; transition:.3s; box-shadow:0 5px 15px rgba(0,0,0,0.1); }
-  .teacher-image:hover { transform:scale(1.05); box-shadow:0 10px 25px rgba(0,0,0,0.2); }
-  @media (max-width:992px){ .section-title, .about-heading { font-size:2.2rem; } }
-  section { background: linear-gradient(120deg,#f5faff,#ffffff); }
+  .about-description { 
+    color:#333; 
+    margin:1rem 0; 
+    line-height:1.8;
+    animation: fadeIn 1s ease-out 0.5s backwards;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    padding: 25px;
+    border-radius: 15px;
+    border-left: 4px solid #093f75;
+    box-shadow: 0 5px 20px rgba(9, 63, 117, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  .about-description::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(9, 63, 117, 0.05), transparent);
+    animation: shimmer 3s infinite;
+  }
+  @keyframes shimmer {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+  }
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  .brand-name {
+    background: linear-gradient(135deg, #093f75 0%, #0a5a9e 50%, #17a2b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 3s ease-in-out infinite;
+    font-size: 1.1em;
+    text-shadow: 0 0 20px rgba(9, 63, 117, 0.3);
+  }
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  .read-more-btn { 
+    background: linear-gradient(135deg, #093f75 0%, #0a5a9e 100%);
+    color:white; 
+    padding:12px 30px; 
+    border-radius:25px; 
+    transition: all 0.3s ease;
+    border: none;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(9, 63, 117, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  .read-more-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+  .read-more-btn:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+  .read-more-btn:hover { 
+    background: linear-gradient(135deg, #0a5a9e 0%, #093f75 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(9, 63, 117, 0.4);
+  }
+  .stats-section { 
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius:20px; 
+    padding:2rem 0; 
+    margin:3rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .stats-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(9, 63, 117, 0.05) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+  }
+  @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .stat-item { 
+    padding:1rem;
+    animation: fadeInUp 0.8s ease-out backwards;
+  }
+  .stat-item:nth-child(1) { animation-delay: 0.1s; }
+  .stat-item:nth-child(2) { animation-delay: 0.2s; }
+  .stat-item:nth-child(3) { animation-delay: 0.3s; }
+  .stat-item:nth-child(4) { animation-delay: 0.4s; }
+  
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .stat-card {
+    transition: all 0.4s ease;
+    position: relative;
+    border: 2px solid transparent;
+  }
+  .stat-card:hover {
+    transform: translateY(-10px);
+    border-color: #093f75;
+    box-shadow: 0 10px 30px rgba(9, 63, 117, 0.2) !important;
+  }
+  .counter { 
+    font-weight:800; 
+    color:#093f75; 
+    font-size:2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .companies-section { 
+    background: linear-gradient(180deg, white 0%, #f8f9fa 100%);
+    margin:3rem 0;
+    padding: 3rem 0;
+  }
+  .section-heading { 
+    font-size:2.2rem; 
+    color:#093f75; 
+    font-weight:700;
+    animation: fadeInDown 0.8s ease-out;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 15px;
+  }
+  .section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #093f75, transparent);
+    border-radius: 2px;
+  }
+  .company-logos { 
+    display:flex; 
+    flex-wrap:wrap; 
+    justify-content:center; 
+    align-items:center; 
+    gap:2rem; 
+    padding:1rem; 
+  }
+  .company-logo { 
+    flex:0 0 calc(14% - 2rem); 
+    text-align:center;
+    animation: fadeInScale 0.6s ease-out backwards;
+  }
+  .company-logo:nth-child(1) { animation-delay: 0.1s; }
+  .company-logo:nth-child(2) { animation-delay: 0.2s; }
+  .company-logo:nth-child(3) { animation-delay: 0.3s; }
+  .company-logo:nth-child(4) { animation-delay: 0.4s; }
+  .company-logo:nth-child(5) { animation-delay: 0.5s; }
+  .company-logo:nth-child(6) { animation-delay: 0.6s; }
+  .company-logo:nth-child(7) { animation-delay: 0.7s; }
+  
+  .company-logo img { 
+    max-height:80px; 
+    width:auto; 
+    object-fit:contain; 
+    filter:grayscale(100%); 
+    opacity:.6; 
+    transition: all 0.4s ease; 
+  }
+  .company-logo:hover img { 
+    filter:grayscale(0%); 
+    opacity:1; 
+    transform:scale(1.15) rotate(2deg); 
+  }
+  .testimonials-section { 
+    background: linear-gradient(135deg, rgba(142,200,248,0.2) 0%, rgba(142,200,248,0.4) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .testimonials-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(9,63,117,0.1)"/></svg>');
+    opacity: 0.3;
+  }
+  .testimonials-heading { 
+    font-size:2rem; 
+    color:#093f75;
+    animation: fadeInDown 0.8s ease-out;
+  }
+  .highlight-text { 
+    color:#093f75; 
+    font-style:italic; 
+    font-weight:800;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .testimonial-card { 
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    padding:25px 20px; 
+    margin:15px 10px; 
+    border-radius:15px; 
+    box-shadow:0 5px 20px rgba(0,0,0,0.1); 
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    height:100%;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+  }
+  .testimonial-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #093f75, #0a5a9e, #17a2b8);
+    border-radius: 15px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .testimonial-card:hover::before {
+    opacity: 1;
+  }
+  .testimonial-card:hover { 
+    transform:translateY(-10px) scale(1.02); 
+    box-shadow:0 15px 40px rgba(9, 63, 117, 0.3);
+    border-color: transparent;
+  }
+  .testimonial-img { 
+    width:100px; 
+    height:100px; 
+    border-radius:50%; 
+    object-fit:cover; 
+    margin:0 auto 1rem; 
+    display:block;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  .testimonial-card:hover .testimonial-img {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 25px rgba(9, 63, 117, 0.4);
+  }
+  .testimonial-text { 
+    font-style:italic; 
+    color:#333; 
+    padding:10px 5px; 
+    line-height:1.6; 
+  }
+  .rating { 
+    margin-top:1rem;
+  }
+  .rating i {
+    transition: all 0.3s ease;
+  }
+  .testimonial-card:hover .rating i {
+    animation: starPulse 0.6s ease-in-out;
+  }
+  @keyframes starPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+  }
+  .fade-in-left { 
+    opacity:0; 
+    transform:translateX(-50px); 
+    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .fade-in-right { 
+    opacity:0; 
+    transform:translateX(50px); 
+    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .in-view { 
+    opacity:1; 
+    transform:translateX(0); 
+  }
+  .teacher-image { 
+    border-radius:20px; 
+    transition: all 0.5s ease;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    position: relative;
+  }
+  .teacher-image:hover { 
+    transform:scale(1.05) rotate(-2deg); 
+    box-shadow:0 20px 50px rgba(9, 63, 117, 0.3);
+  }
+  @media (max-width:992px){ 
+    .section-title, .about-heading { font-size:2.2rem; } 
+  }
+  section { 
+    background: linear-gradient(120deg,#f5faff,#ffffff); 
+  }
   .company-logo { flex:0 0 calc(25% - 2rem); }
-  @media (max-width:768px){ .section-title, .about-heading { font-size:1.8rem; } #textabout { padding-top:20px; } .company-logo { flex:0 0 calc(33% - 2rem); } .testimonial-card { margin-bottom:2rem; } }
-  @media (max-width:576px){ .section-title, .about-heading { font-size:1.5rem; } .company-logo { flex:0 0 calc(50% - 2rem); } .company-logo img { max-height:60px; } .feature-item { margin-bottom:1.5rem; } }
+  @media (max-width:768px){ 
+    .section-title, .about-heading { font-size:1.8rem; } 
+    #textabout { padding-top:20px; } 
+    .company-logo { flex:0 0 calc(33% - 2rem); } 
+    .testimonial-card { margin-bottom:2rem; } 
+  }
+  @media (max-width:576px){ 
+    .section-title, .about-heading { font-size:1.5rem; } 
+    .company-logo { flex:0 0 calc(50% - 2rem); } 
+    .company-logo img { max-height:60px; } 
+    .feature-item { margin-bottom:1.5rem; } 
+  }
+  
+  /* Scroll-triggered animations */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+  }
+  .animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
+  }
 </style>
 <div class="aboutus-page">
   <div class="container pt-5">
@@ -64,17 +437,17 @@
         <div class="feature-item px-2"><div class="icon-box bg-light rounded-circle d-flex align-items-center justify-content-center mx-auto mb-2" style="width:60px; height:60px; box-shadow:0 2px 6px rgba(0,0,0,0.1);"><i class="fa fa-users fs-4 text-success"></i></div><h6 class="fw-semibold">Employer Connect</h6></div>
         <div class="feature-item px-2"><div class="icon-box bg-light rounded-circle d-flex align-items-center justify-content-center mx-auto mb-2" style="width:60px; height:60px; box-shadow:0 2px 6px rgba(0,0,0,0.1);"><i class="fa fa-graduation-cap fs-4 text-warning"></i></div><h6 class="fw-semibold">Internships & Trainings</h6></div>
       </div>
-      <p class="about-description text-secondary mt-4 fs-6" id="aboutText">At <span class="brand-name fw-bold text-dark">DreamJobs</span>, we believe in empowering job seekers with the tools and opportunities they need to succeed in today's competitive job market. Our platform offers a comprehensive suite of services designed to cater to every stage of your career journey, from internships and training programs to full-time job placements.<br>We offer a wide range of services to support you at every stage of your professional journey.</p>
+      <p class="about-description text-secondary mt-4 fs-6" id="aboutText">At <span class="brand-name fw-bold">DreamJobs</span>, we believe in empowering job seekers with the tools and opportunities they need to succeed in today's competitive job market. Our platform offers a comprehensive suite of services designed to cater to every stage of your career journey, from internships and training programs to full-time job placements.<br><br>We offer a wide range of services to support you at every stage of your professional journey.</p>
       <button id="readMoreBtn" class="btn btn-primary mt-3">Read More</button>
     </div>
   </div>
-  <div class="row stats-section pt-5  align-items-center justify-content-center">
+  <div class="row stats-section pt-5 align-items-center justify-content-center">
     <div class="col-lg-3 col-md-10 text-center stat-item mb-4"><div class="stat-card bg-light rounded-4 shadow-sm py-4 px-3 h-100 d-flex flex-column justify-content-center align-items-center"><h1 class="counter text-primary fw-bold display-6 mb-2" data-target="25000">0</h1><h5 class="fw-semibold mb-2">Completed Cases</h5><p class="text-muted fs-6">We always provide people a complete solution upon focusing on any business.</p></div></div>
     <div class="col-lg-3 col-md-10 text-center stat-item mb-4"><div class="stat-card bg-light rounded-4 shadow-sm py-4 px-3 h-100 d-flex flex-column justify-content-center align-items-center"><h1 class="counter text-success fw-bold display-6 mb-2" data-target="17">0</h1><h5 class="fw-semibold mb-2">Our Office</h5><p class="text-muted fs-6">We always provide people a complete solution upon focusing on any business.</p></div></div>
     <div class="col-lg-3 col-md-10 text-center stat-item mb-4"><div class="stat-card bg-light rounded-4 shadow-sm py-4 px-3 h-100 d-flex flex-column justify-content-center align-items-center"><h1 class="counter text-warning fw-bold display-6 mb-2" data-target="286">0</h1><h5 class="fw-semibold mb-2">Skilled People</h5><p class="text-muted fs-6">We always provide people a complete solution upon focusing on any business.</p></div></div>
     <div class="col-lg-3 col-md-10 text-center stat-item mb-4"><div class="stat-card bg-light rounded-4 shadow-sm py-4 px-3 h-100 d-flex flex-column justify-content-center align-items-center"><h1 class="counter text-danger fw-bold display-6 mb-2" data-target="1000">0</h1><h5 class="fw-semibold mb-2">Job Opportunities</h5><p class="text-muted fs-6">We always provide people a complete solution upon focusing on any business.</p></div></div>
   </div>
-  <section class="companies-section py-5">
+  <section class="companies-section py-5 animate-on-scroll">
     <h2 class="section-heading text-center fw-bold mb-5">Top Companies where Our Clients were Placed</h2>
     <div class="company-logos-wrapper d-flex justify-content-center flex-wrap gap-4">
       {% with 'goo.png tech.webp ibm.jpg micro.jpg cp.png lk.png fb.jpg' as logos %}
@@ -86,7 +459,7 @@
       {% endwith %}
     </div>
   </section>
-  <section class="testimonials-section py-5">
+  <section class="testimonials-section py-5 animate-on-scroll">
     <div class="text-center mb-5">
       <h3 class="testimonials-heading">Our Clients Say <span class="highlight-text">!!</span></h3>
       <p class="testimonials-subheading">The experiences of our clients with us are truly commendable. <span class="brand-name">DreamJobs</span> helped them to get their <br><span class="highlight-text">Dream job.</span></p>
@@ -102,9 +475,41 @@
 <script>
   const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting) entry.target.classList.add('in-view');});},{threshold:0.2});
   document.querySelectorAll('.fade-in-left, .fade-in-right').forEach(el=>observer.observe(el));
+  
   const animateCounters=()=>{const counters=document.querySelectorAll('.counter');const speed=200;counters.forEach(counter=>{const target=+counter.getAttribute('data-target');const count=+counter.innerText;const increment=target/speed;if(count<target){counter.innerText=Math.ceil(count+increment);setTimeout(animateCounters,20);}else{counter.innerText=target>=1000? target.toLocaleString()+ "+" : target+"+";}});};
+  
   const counterObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){animateCounters();counterObserver.unobserve(entry.target);}})},{threshold:0.5});
   document.querySelectorAll('.counter').forEach(counter=>counterObserver.observe(counter));
-  document.addEventListener('DOMContentLoaded',function(){const aboutText=document.getElementById('aboutText');const readMoreBtn=document.getElementById('readMoreBtn');const fullText=aboutText.innerHTML;const shortText=fullText.substring(0,150)+'...';let isExpanded=false;aboutText.innerHTML=shortText;readMoreBtn.addEventListener('click',()=>{if(isExpanded){aboutText.innerHTML=shortText;readMoreBtn.textContent='Read More';}else{aboutText.innerHTML=fullText;readMoreBtn.textContent='Read Less';}isExpanded=!isExpanded;});});
+  
+  // Scroll-triggered animations
+  const scrollObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animated');
+        scrollObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  document.querySelectorAll('.animate-on-scroll').forEach(el => scrollObserver.observe(el));
+  
+  document.addEventListener('DOMContentLoaded',function(){
+    const aboutText=document.getElementById('aboutText');
+    const readMoreBtn=document.getElementById('readMoreBtn');
+    const fullText=aboutText.innerHTML;
+    const shortText=fullText.substring(0,150)+'...';
+    let isExpanded=false;
+    aboutText.innerHTML=shortText;
+    readMoreBtn.addEventListener('click',()=>{
+      if(isExpanded){
+        aboutText.innerHTML=shortText;
+        readMoreBtn.textContent='Read More';
+      }else{
+        aboutText.innerHTML=fullText;
+        readMoreBtn.textContent='Read Less';
+      }
+      isExpanded=!isExpanded;
+    });
+  });
 </script>
 {% endblock %}
