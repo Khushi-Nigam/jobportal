@@ -1,389 +1,956 @@
-{% extends "index.html" %} {% block body %} {% load static %}
-<style>
-    ul li {
-        list-style: none;
-    }
-    
-    .trending-section {
-        background: linear-gradient(135deg, #033261 0%, #0a4d8c 100%);
-        border-radius: 20px;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .trending-section::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-        pointer-events: none;
-    }
-    
-    .trending-item {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 12px;
-        transition: all 0.3s ease;
-        backdrop-filter: blur(10px);
-    }
-    
-    .trending-item:hover {
-        background: rgba(255, 255, 255, 0.12);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-    }
-    
-    .animate-flicker {
-        animation: flicker 2s infinite alternate;
-    }
-    
-    @keyframes flicker {
-        0% { opacity: 0.8; }
-        100% { opacity: 1; }
-    }
-    
-.blog-card {
-    border-radius: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-    background: #fff;
-
-    /* subtle shadow + transition */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-    /* start hidden for entrance animation */
-    opacity: 0;
-    transform: translateY(40px);
-    animation: fadeInUp 0.8s ease forwards;
-}
-
-/* delay each card’s animation slightly */
-.blog-card:nth-child(1) { animation-delay: 0.1s; }
-.blog-card:nth-child(2) { animation-delay: 0.2s; }
-.blog-card:nth-child(3) { animation-delay: 0.3s; }
-
-/* hover effect on the whole card */
-.blog-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-/* make image follow card instead of exaggerating */
-.blog-card .card-img-top {
-    transition: transform 0.4s ease;
-}
-
-
-
-/* reuse fade-in animation from comment section */
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-    .author-avatar {
-        width: 40px;
-        height: 40px;
-        border: 2px solid #fff;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    }
-    
-    .section-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: #033261;
-        margin-bottom: 3rem;
-        position: relative;
-        text-align: center;
-    }
-    
-    .section-title::after {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 4px;
-        background: linear-gradient(90deg, #033261, #0a4d8c);
-        border-radius: 2px;
-    }
-    
-   .comment-section {
-  max-width: 800px;          /* limit the width */
-  margin: 0 auto;            /* force center alignment */
-  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-  border-radius: 20px;
-  margin-top: 2rem;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  margin-top: 3rem;
-  clear: both;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 0.8s ease-out forwards;
-  
-}
-
-/* Keyframes for entrance animation */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Hover effect for interactive feel */
-.comment-section:hover {
-    box-shadow: 0 15px 40px rgba(3, 50, 97, 0.15);
-    transform: scale(1.01);
-    transition: all 0.3s ease;
-  }
-
-    
-    .comment-textarea {
-  border: 2px solid #e9ecef;
-  border-radius: 15px;
-  transition: all 0.3s ease;
-  min-height: 160px;   /* was 120px, now taller */
-  resize: vertical;    /* user can still drag to resize */
-  }
-
-.comment-textarea:focus {
-  border-color: #0a4d8c;
-  box-shadow: 0 0 8px rgba(10, 77, 140, 0.3);
-  transform: scale(1.01);
-  transition: all 0.3s ease;
-}
-
-    
-    .comment-textarea:focus {
-        border-color: #033261;
-        box-shadow: 0 0 0 0.2rem rgba(3, 50, 97, 0.25);
-    }
-    
-    .btn-primary {
-        background: linear-gradient(135deg, #033261 0%, #093f75 100%);
-        border: none;
-        padding: 12px 30px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(3, 50, 97, 0.3);
-    }
-    
-    .btn-primary:hover {
-        background: linear-gradient(135deg, #093f75 0%, #0a4d8c 100%);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(3, 50, 97, 0.4);
-    }
-    
-    .trending-badge {
-        background: linear-gradient(135deg, #ff6b6b, #ff8e53);
-        color: white;
-        padding: 4px 12px;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        display: inline-block;
-        margin-bottom: 15px;
-        animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-        0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7); }
-        70% { box-shadow: 0 0 0 10px rgba(255, 107, 107, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
-    }
-    
-    .main-container {
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-    
-    @media only screen and (max-width: 768px) {
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Blog Section</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.light-mode {
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+
+        body.dark-mode {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .light-mode .theme-toggle {
+            background: #1e293b;
+            color: white;
+        }
+
+        .dark-mode .theme-toggle {
+            background: #fbbf24;
+            color: #1e293b;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .light-mode .section-title {
+            color: #033261;
+        }
+
+        .dark-mode .section-title {
+            color: #fff;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #033261, #0a4d8c);
+            border-radius: 2px;
+        }
+
+        /* Trending Section */
         .trending-section {
-            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #033261 0%, #0a4d8c 100%);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
         }
-        
+
+        .trending-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            pointer-events: none;
+        }
+
+        .trending-badge {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .trending-item {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .trending-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Blog Cards */
         .blog-card {
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .blog-card:nth-child(1) { animation-delay: 0.1s; }
+        .blog-card:nth-child(2) { animation-delay: 0.2s; }
+        .blog-card:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .light-mode .blog-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+        }
+
+        .dark-mode .blog-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+        }
+
+        .blog-card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .blog-card:hover .blog-card-img {
+            transform: scale(1.1);
+        }
+
+        .blog-card-body {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .light-mode .blog-card-title {
+            color: #1e293b;
+        }
+
+        .dark-mode .blog-card-title {
+            color: #f1f5f9;
+        }
+
+        .blog-card-text {
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            flex: 1;
+        }
+
+        .light-mode .blog-card-text {
+            color: #64748b;
+        }
+
+        .dark-mode .blog-card-text {
+            color: #94a3b8;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid;
+        }
+
+        .light-mode .action-buttons {
+            border-color: #e2e8f0;
+        }
+
+        .dark-mode .action-buttons {
+            border-color: #334155;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-like {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-like:hover {
+            background: #2563eb;
+            transform: scale(1.05);
+        }
+
+        .btn-comment {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-comment:hover {
+            background: #059669;
+            transform: scale(1.05);
+        }
+
+        .btn-edit {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background: #d97706;
+        }
+
+        .btn-delete {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #dc2626;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, #033261 0%, #0a4d8c 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(3, 50, 97, 0.3);
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(3, 50, 97, 0.4);
+        }
+
+        /* Forms */
+        .form-container {
+            border-radius: 24px;
+            padding: 2rem;
             margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.5s ease;
         }
-        
-        .comment-section {
-            margin: 2rem 1rem;
-            padding: 2rem !important;
-        }
-    }
-    
-    @media only screen and (max-width: 576px) {
-        .container {
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-        
-        .section-title {
-            font-size: 1.75rem;
-        }
-      }
-    .btn-dreamjobs {
-      background-color: #093f75;
-      color: white;
-      font-weight: 600;
-      transition: all 0.3s;
-      border-radius: 50rem;
-      padding: 0.5rem 1.5rem;
-      }
 
-    .btn-dreamjobs:hover {
-      background-color: #072f5e;
-      color: #fff;
-    }
-    .text-dreamblue {
-      color: #093f75 !important;
-    }
-</style>
+        .light-mode .form-container {
+            background: white;
+            border: 1px solid #e2e8f0;
+        }
 
-<div class="main-container">
-    <!-- Trending News Section -->
-    <div class="container pt-5 pb-3">
-        <h2 class="section-title">Latest Insights & Trends</h2>
-        
-        <div class="trending-section p-4 mb-5">
-            <div class="row align-items-center">
-                <div class="col-12">
-                    <div class="text-center mb-4">
-                        <div class="trending-badge">🔥 TRENDING NOW</div>
-                        <h3 class="text-white fw-bold mb-0 animate-flicker">Hot Topics in Career Development</h3>
-                    </div>
-                    
-                    <div class="row g-3">
-                        {% for n in new %}
-                        <div class="col-md-6 col-lg-4">
-                            <div class="trending-item p-3">
-                                <a href="#" class="text-white text-decoration-none d-block">
-                                    <div class="d-flex align-items-center">
-                                        <div class="me-3">
-                                            <div class="bg-light bg-opacity-20 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                                                <i class="fas fa-newspaper text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div class="flex-grow-1">
-                                            <p class="mb-0 fw-semibold">{{n.newstext}}</p>
-                                            <small class="text-light opacity-75">Just now</small>
-                                        </div>
-                                    </div>
-                                </a>
+        .dark-mode .form-container {
+            background: #1e293b;
+            border: 1px solid #334155;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            border: 2px solid;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .light-mode .form-input,
+        .light-mode .form-textarea {
+            background: white;
+            border-color: #e2e8f0;
+            color: #1e293b;
+        }
+
+        .dark-mode .form-input,
+        .dark-mode .form-textarea {
+            background: #0f172a;
+            border-color: #334155;
+            color: #f1f5f9;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #0a4d8c;
+            box-shadow: 0 0 0 3px rgba(10, 77, 140, 0.1);
+            transform: scale(1.01);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Comments Section */
+        .comments-container {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid;
+        }
+
+        .light-mode .comments-container {
+            border-color: #e2e8f0;
+        }
+
+        .dark-mode .comments-container {
+            border-color: #334155;
+        }
+
+        .comment-item {
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+        }
+
+        .light-mode .comment-item {
+            background: #f8f9fa;
+        }
+
+        .dark-mode .comment-item {
+            background: #0f172a;
+        }
+
+        .comment-text {
+            flex: 1;
+            font-size: 0.875rem;
+        }
+
+        .comment-delete {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+        }
+
+        .comment-delete:hover {
+            color: #dc2626;
+        }
+
+        .comment-input-container {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .comment-input {
+            flex: 1;
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: 1px solid;
+            font-size: 0.875rem;
+        }
+
+        .light-mode .comment-input {
+            background: white;
+            border-color: #e2e8f0;
+            color: #1e293b;
+        }
+
+        .dark-mode .comment-input {
+            background: #0f172a;
+            border-color: #334155;
+            color: #f1f5f9;
+        }
+
+        .comment-input:focus {
+            outline: none;
+            border-color: #0a4d8c;
+        }
+
+        .comment-submit {
+            padding: 0.5rem 1rem;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .comment-submit:hover {
+            background: #2563eb;
+        }
+
+        /* Stats */
+        .stats-container {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .light-mode .stat-item {
+            background: #f8f9fa;
+        }
+
+        .dark-mode .stat-item {
+            background: #0f172a;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Edit Mode */
+        .edit-mode {
+            padding: 1rem;
+        }
+
+        .edit-mode input,
+        .edit-mode textarea {
+            margin-bottom: 0.75rem;
+        }
+
+        .edit-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-save {
+            flex: 1;
+            padding: 0.5rem;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .btn-save:hover {
+            background: #059669;
+        }
+
+        .btn-cancel {
+            flex: 1;
+            padding: 0.5rem;
+            background: #6b7280;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .btn-cancel:hover {
+            background: #4b5563;
+        }
+
+        /* General Comment Section */
+        .general-comment-section {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 2rem;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .light-mode .general-comment-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border: 1px solid #e2e8f0;
+        }
+
+        .dark-mode .general-comment-section {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid #334155;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .theme-toggle {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            .blog-card-body {
+                padding: 1rem;
+            }
+
+            .action-buttons {
+                flex-wrap: wrap;
+            }
+
+            .action-btn {
+                flex: 1 1 45%;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+
+    <div class="container py-5">
+        <!-- Header -->
+        <h1 class="section-title">Latest Insights & Trends</h1>
+
+        <!-- Trending Section -->
+        <div class="trending-section">
+            <div class="text-center mb-4">
+                <span class="trending-badge">🔥 TRENDING NOW</span>
+                <h2 class="text-white fw-bold mb-0">Hot Topics in Career Development</h2>
+            </div>
+            <div class="row g-3" id="trendingContainer"></div>
+        </div>
+
+        <!-- Add New Post Button -->
+        <div class="text-center mb-4">
+            <button class="btn-primary-custom" onclick="togglePostForm()">
+                <i class="fas fa-plus me-2"></i>Create New Post
+            </button>
+        </div>
+
+        <!-- New Post Form -->
+        <div id="newPostForm" class="form-container hidden">
+            <h3 class="mb-4 fw-bold">Create New Post</h3>
+            <input type="text" class="form-input" id="newTitle" placeholder="Post Title">
+            <textarea class="form-textarea" id="newExcerpt" placeholder="Post Description"></textarea>
+            <input type="text" class="form-input" id="newImage" placeholder="Image URL (optional)">
+            <button class="btn-primary-custom w-100" onclick="addPost()">
+                <i class="fas fa-paper-plane me-2"></i>Publish Post
+            </button>
+        </div>
+
+        <!-- Blog Posts Grid -->
+        <div class="row g-4 mb-5" id="blogPostsContainer"></div>
+
+        <!-- General Comment Section -->
+        <div class="general-comment-section">
+            <h3 class="text-center fw-bold mb-4" style="color: #0a4d8c;">Share Your Thoughts</h3>
+            <textarea class="form-textarea" placeholder="Share your insights, ask questions, or start a discussion..."></textarea>
+            <button class="btn-primary-custom w-100">
+                <i class="fas fa-paper-plane me-2"></i>Submit Comment
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Initial Data
+        let blogPosts = [
+            {
+                id: 1,
+                title: "21 Job Interview Tips: How To Make a Great Impression",
+                excerpt: "Making a great impression and demonstrating your best qualities during an interview increases your chances of getting a job offer.",
+                image: "https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img1.png",
+                author: "Aman Gupta",
+                role: "HR, Infosys",
+                avatar: "https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png",
+                likes: 24,
+                comments: []
+            },
+            {
+                id: 2,
+                title: "Email Examples: How To Respond to Employer Interview Requests",
+                excerpt: "Respond to interview requests quickly and with enthusiasm to increase your chances.",
+                image: "https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img2.png",
+                author: "Aman Gupta",
+                role: "HR, Infosys",
+                avatar: "https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png",
+                likes: 18,
+                comments: []
+            },
+            {
+                id: 3,
+                title: "17 Jobs Hired at 15 (and even 14) You Should Know",
+                excerpt: "Teenagers face struggles of job hunting. Here's a list of early career opportunities for them.",
+                image: "https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img3.png",
+                author: "Aman Gupta",
+                role: "HR, Infosys",
+                avatar: "https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png",
+                likes: 32,
+                comments: []
+            }
+        ];
+
+        const trendingNews = [
+            "AI is transforming the job market - Are you ready?",
+            "Remote work trends continue to reshape careers",
+            "Top 10 in-demand skills for 2025",
+            "How to negotiate your salary effectively",
+            "The rise of freelance opportunities",
+            "Career pivoting: Making successful transitions"
+        ];
+
+        let editingPostId = null;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTrending();
+            renderPosts();
+        });
+
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('themeIcon');
+            
+            if (body.classList.contains('light-mode')) {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+
+        // Render Trending News
+        function renderTrending() {
+            const container = document.getElementById('trendingContainer');
+            container.innerHTML = trendingNews.map(news => `
+                <div class="col-md-6 col-lg-4">
+                    <div class="trending-item">
+                        <div class="d-flex align-items-center">
+                            <div class="me-3">
+                                <div class="bg-light bg-opacity-20 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                    <i class="fas fa-newspaper text-white"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="mb-0 fw-semibold text-white">${news}</p>
+                                <small class="text-light opacity-75">Just now</small>
                             </div>
                         </div>
-                        {% endfor %}
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+            `).join('');
+        }
 
-    <!-- BLOG CARDS (centered, responsive, equal height) -->
-<div class="container">
-  <div class="row g-4 justify-content-center mb-4">
+        // Toggle Post Form
+        function togglePostForm() {
+            const form = document.getElementById('newPostForm');
+            form.classList.toggle('hidden');
+        }
 
-    <!-- Card 1 -->
-    <div class="col-12 col-md-10 col-lg-4 d-flex">
-      <div class="blog-card card shadow-sm border-0 rounded-4 h-100 w-100 overflow-hidden">
-        <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img1.png" class="card-img-top" alt="Interview Tips">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title fw-semibold mb-2 fs-6">21 Job Interview Tips: How To Make a Great Impression</h5>
-          <p class="card-text text-secondary mb-3 small" style="-webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;">Making a great impression and demonstrating your best qualities during an interview increases your chances of getting a job offer.</p>
-          <div class="d-flex align-items-center justify-content-between mt-auto">
-            <div class="d-flex align-items-center">
-              <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png" class="rounded-circle me-2" style="width: 35px; height: 35px;">
-              <div>
-                <span class="fw-semibold text-primary small text-dreamblue">Aman Gupta</span><br>
-                <small class="text-muted">HR, Infosys</small>
-              </div>
-            </div>
-            <a href="#" class="btn btn-dreamjobs">Read</a>
-          </div>
-        </div>
-      </div>
-    </div>
+        // Add New Post
+        function addPost() {
+            const title = document.getElementById('newTitle').value;
+            const excerpt = document.getElementById('newExcerpt').value;
+            const image = document.getElementById('newImage').value;
 
-    <!-- Card 2 -->
-    <div class="col-12 col-md-10 col-lg-4 d-flex">
-      <div class="blog-card card shadow-sm border-0 rounded-4 h-100 w-100 overflow-hidden">
-        <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img2.png" class="card-img-top" alt="Email Tips">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title fw-semibold mb-2 fs-6">Email Examples: How To Respond to Employer Interview Requests</h5>
-          <p class="card-text text-secondary mb-3 small" style="-webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;">Respond to interview requests quickly and with enthusiasm to increase your chances.</p>
-          <div class="d-flex align-items-center justify-content-between mt-auto">
-            <div class="d-flex align-items-center">
-              <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png" class="rounded-circle me-2" style="width: 35px; height: 35px;">
-              <div>
-                <span class="fw-semibold text-primary small text-dreamblue">Aman Gupta</span><br>
-                <small class="text-muted">HR, Infosys</small>
-              </div>
-            </div>
-            <a href="#" class="btn btn-dreamjobs">Read</a>
-          </div>
-        </div>
-      </div>
-    </div>
+            if (!title || !excerpt) {
+                alert('Please fill in title and description');
+                return;
+            }
 
-    <!-- Card 3 -->
-    <div class="col-12 col-md-10 col-lg-4 d-flex">
-      <div class="blog-card card shadow-sm border-0 rounded-4 h-100 w-100 overflow-hidden">
-        <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img3.png" class="card-img-top" alt="Teen Jobs">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title fw-semibold mb-2 fs-6">17 Jobs Hired at 15 (and even 14) You Should Know</h5>
-          <p class="card-text text-secondary mb-3 small" style="-webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;">Teenagers face struggles of job hunting. Here's a list of early career opportunities for them.</p>
-          <div class="d-flex align-items-center justify-content-between mt-auto">
-            <div class="d-flex align-items-center">
-              <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png" class="rounded-circle me-2" style="width: 35px; height: 35px;">
-              <div>
-                <span class="fw-semibold text-primary small text-dreamblue">Aman Gupta</span><br>
-                <small class="text-muted">HR, Infosys</small>
-              </div>
-            </div>
-            <a href="#" class="btn btn-dreamjobs">Read</a>
-          </div>
-        </div>
-      </div>
-    </div>    
-</div>
+            const newPost = {
+                id: Date.now(),
+                title,
+                excerpt,
+                image: image || 'https://via.placeholder.com/400x200?text=Blog+Post',
+                author: "You",
+                role: "Blog Contributor",
+                avatar: "https://ui-avatars.com/api/?name=You&background=093f75&color=fff",
+                likes: 0,
+                comments: []
+            };
 
-    <!-- Comment Section -->
-    <div class="container pb-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="comment-section p-5">
-                    <h3 class="fw-bold mb-4 text-center text-primary">Share Your Thoughts</h3>
-                    <form class="comment">
-                        <div class="mb-4">
-                            <label for="commentText" class="form-label fw-semibold">Your Comment</label>
-                            <textarea class="form-control comment-textarea" id="commentText" rows="7" placeholder="Share your insights, ask questions, or start a discussion..."></textarea>
+            blogPosts.unshift(newPost);
+            renderPosts();
+
+            // Reset form
+            document.getElementById('newTitle').value = '';
+            document.getElementById('newExcerpt').value = '';
+            document.getElementById('newImage').value = '';
+            togglePostForm();
+        }
+
+        // Render Posts
+        function renderPosts() {
+            const container = document.getElementById('blogPostsContainer');
+            container.innerHTML = blogPosts.map((post, index) => {
+                if (editingPostId === post.id) {
+                    return `
+                        <div class="col-md-6 col-lg-4">
+                            <div class="blog-card">
+                                <div class="edit-mode">
+                                    <input type="text" class="form-input" id="editTitle${post.id}" value="${post.title}">
+                                    <textarea class="form-textarea" id="editExcerpt${post.id}">${post.excerpt}</textarea>
+                                    <input type="text" class="form-input" id="editImage${post.id}" value="${post.image}">
+                                    <div class="edit-actions">
+                                        <button class="btn-save" onclick="saveEdit(${post.id})">
+                                            <i class="fas fa-save me-1"></i>Save
+                                        </button>
+                                        <button class="btn-cancel" onclick="cancelEdit()">
+                                            <i class="fas fa-times me-1"></i>Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary rounded-pill px-5 py-3 fw-semibold">
-                                <i class="fas fa-paper-plane me-2"></i>Submit Comment
-                            </button>
+                    `;
+                }
+
+                return `
+                    <div class="col-md-6 col-lg-4">
+                        <div class="blog-card">
+                            <div style="overflow: hidden;">
+                                <img src="${post.image}" alt="${post.title}" class="blog-card-img">
+                            </div>
+                            <div class="blog-card-body">
+                                <h3 class="blog-card-title">${post.title}</h3>
+                                <p class="blog-card-text">${post.excerpt}</p>
+                                
+                                <div class="d-flex align-items-center mb-3 pb-3" style="border-bottom: 1px solid currentColor; opacity: 0.2;">
+                                    <img src="${post.avatar}" alt="${post.author}" class="rounded-circle me-2" style="width: 40px; height: 40px; border: 2px solid #0a4d8c;">
+                                    <div>
+                                        <p class="mb-0 fw-semibold" style="color: #0a4d8c; font-size: 0.875rem;">${post.author}</p>
+                                        <small class="text-muted">${post.role}</small>
+                                    </div>
+                                </div>
+
+                                <div class="stats-container">
+                                    <div class="stat-item" onclick="likePost(${post.id})">
+                                        <i class="fas fa-thumbs-up" style="color: #3b82f6;"></i>
+                                        <span>${post.likes}</span>
+                                    </div>
+                                    <div class="stat-item" onclick="toggleComments(${post.id})">
+                                        <i class="fas fa-comment" style="color: #10b981;"></i>
+                                        <span>${post.comments.length}</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <i class="fas fa-share" style="color: #8b5cf6;"></i>
+                                    </div>
+                                </div>
+
+                                <div class="action-buttons">
+                                    <button class="action-btn btn-edit" onclick="editPost(${post.id})">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button class="action-btn btn-delete" onclick="deletePost(${post.id})">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </div>
+
+                                <div id="comments${post.id}" class="comments-container hidden">
+                                    ${post.comments.map(comment => `
+                                        <div class="comment-item">
+                                            <div class="comment-text">
+                                                <strong>${comment.author}</strong><br>
+                                                <span>${comment.text}</span><br>
+                                                <small class="text-muted">${comment.timestamp}</small>
+                                            </div>
+                                            <button class="comment-delete" onclick="deleteComment(${post.id}, ${comment.id})">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    `).join('')}
+                                    <div class="comment-input-container">
+                                        <input type="text" class="comment-input" id="commentInput${post.id}" placeholder="Add a comment..." onkeypress="if(event.key==='Enter') addComment(${post.id})">
+                                        <button class="comment-submit" onclick="addComment(${post.id})">Send</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+                    </div>
+                `;
+            }).join('');
+        }
 
+        // Like Post
+        function likePost(id) {
+            const post = blogPosts.find(p => p.id === id);
+            if (post) {
+                post.likes++;
+                renderPosts();
+            }
+        }
 
-{% endblock body %}
+        // Toggle Comments
+        function toggleComments(id) {
+            const commentsDiv = document.getElementById(`comments${id}`);
+            commentsDiv.classList.toggle('hidden');
+        }
+
+        // Add Comment
+        function addComment(postId) {
+            const input = document.getElementById(`commentInput${postId}`);
+            const text = input.value.trim();
+            
+            if (!text) return;
+
+            const post = blogPosts.find(p => p.id === postId);
+            if (post) {
+                post.comments.push({
+                    id: Date.now(),
+                    text: text,
+                    author: "You",
+                    timestamp: new Date().toLocaleString()
+                });
+                input.value = '';
+                renderPosts();
+                toggleComments(postId);
+            }
+        }
+
+        // Delete Comment
+        function deleteComment(postId, commentId) {
+            const post = blogPosts.find(p => p.id === postId);
+            if (post) {
+                post.comments = post.comments.filter(c => c.id !== commentId);
+                renderPosts();
+                toggleComments(postId);
+            }
+        }
+
+        // Edit Post
+        function editPost(id) {
+            editingPostId = id;
+            renderPosts();
+        }
+
+        // Save Edit
+        function saveEdit(id) {
+            const title = document.getElementById(`editTitle${id}`).value;
+            const excerpt = document.getElementById(`editExcerpt${id}`).value;
+            const image = document.getElementById(`editImage${id}`).value;
+
+            const post = blogPosts.find(p => p.id === id);
+            if (post && title && excerpt) {
+                post.title = title;
+                post.excerpt = excerpt;
+                post.image = image;
+                editingPostId = null;
+                renderPosts();
+            }
+        }
+
+        // Cancel Edit
+        function cancelEdit() {
+            editingPostId = null;
+            renderPosts();
+        }
+
+        // Delete Post
+        function deletePost(id) {
+            if (confirm('Are you sure you want to delete this post?')) {
+                blogPosts = blogPosts.filter(p => p.id !== id);
+                renderPosts();
+            }
+        }
+    </script>
+</body>
+</html>
