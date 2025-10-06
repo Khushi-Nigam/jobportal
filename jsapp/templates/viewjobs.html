@@ -30,6 +30,46 @@
             </div>
         </div>
 
+        <!-- Filter/Search Section -->
+        <div class="container mb-4">
+            <form method="get" class="row g-2 align-items-end">
+                <div class="col-md-3">
+                    <label for="job_type" class="form-label">Job Type</label>
+                    <select name="job_type" id="job_type" class="form-select">
+                        <option value="">All</option>
+                        {% for jt in job_types %}
+                        <option value="{{ jt }}" {% if jt == selected_job_type %}selected{% endif %}>{{ jt }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="location" class="form-label">Location</label>
+                    <select name="location" id="location" class="form-select">
+                        <option value="">All</option>
+                        {% for loc in locations %}
+                        <option value="{{ loc }}" {% if loc == selected_location %}selected{% endif %}>{{ loc }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="industry" class="form-label">Industry</label>
+                    <select name="industry" id="industry" class="form-select">
+                        <option value="">All</option>
+                        {% for ind in industries %}
+                        <option value="{{ ind }}" {% if ind == selected_industry %}selected{% endif %}>{{ ind }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="search" class="form-label">Keyword</label>
+                    <input type="text" name="search" id="search" class="form-control" value="{{ search|default:'' }}" placeholder="Search jobs...">
+                </div>
+                <div class="col-md-12 mt-2">
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+            </form>
+        </div>
+
         <!-- Jobs Grid -->
         <div class="jobs-grid-section">
             <div class="container">
@@ -149,6 +189,35 @@
                     {% endfor %}
                 </div>
             </div>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="container mb-4">
+            <nav aria-label="Job pagination">
+                <ul class="pagination justify-content-center">
+                    {% if pjobs.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{% if selected_job_type %}job_type={{ selected_job_type }}&{% endif %}{% if selected_location %}location={{ selected_location }}&{% endif %}{% if selected_industry %}industry={{ selected_industry }}&{% endif %}{% if search %}search={{ search }}&{% endif %}page={{ pjobs.previous_page_number }}">Previous</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                    {% endif %}
+                    {% for num in pjobs.paginator.page_range %}
+                        {% if pjobs.number == num %}
+                            <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?{% if selected_job_type %}job_type={{ selected_job_type }}&{% endif %}{% if selected_location %}location={{ selected_location }}&{% endif %}{% if selected_industry %}industry={{ selected_industry }}&{% endif %}{% if search %}search={{ search }}&{% endif %}page={{ num }}">{{ num }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if pjobs.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{% if selected_job_type %}job_type={{ selected_job_type }}&{% endif %}{% if selected_location %}location={{ selected_location }}&{% endif %}{% if selected_industry %}industry={{ selected_industry }}&{% endif %}{% if search %}search={{ search }}&{% endif %}page={{ pjobs.next_page_number }}">Next</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled"><span class="page-link">Next</span></li>
+                    {% endif %}
+                </ul>
+            </nav>
         </div>
     </div>
 
