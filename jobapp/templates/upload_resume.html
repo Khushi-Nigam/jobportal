@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+
+{% block body %}
+<h2>Upload Resume</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="resume" accept=".pdf,.docx,.txt" required>
+    <button type="submit">Upload</button>
+</form>
+
+{% if error %}
+    <p style="color:red">{{ error }}</p>
+{% endif %}
+
+{% if success %}
+    <p style="color:green">{{ success }}</p>
+{% endif %}
+{% endblock %}

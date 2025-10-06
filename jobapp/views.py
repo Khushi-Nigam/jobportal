@@ -155,7 +155,7 @@ def jobseekerreg(request):
         log.save()
 
         messages.success(request, "Registration successful! You can now log in.")
-        return render(request, "jobseeker.html", {"show_modal": True})
+        return redirect("jobapp:login")
 
     return render(request, "jobseeker.html")
 
@@ -635,3 +635,26 @@ def save_uploaded_file(uploaded_file, subfolder="resumes"):
     except Exception as e:
         print(f"Error saving file: {e}")
         return None
+
+# ====== NEW upload_resume view ======
+@require_http_methods(["GET", "POST"])
+def upload_resume(request):
+    if request.method == "GET":
+        return render(request, "upload_resume.html")
+
+    if request.method == "POST":
+        uploaded_file = request.FILES.get("resume")
+        if not uploaded_file:
+            return render(request, "upload_resume.html", {"error": "No file selected"})
+
+        file_ext = os.path.splitext(uploaded_file.name)[1].lower()
+        if file_ext not in ['.pdf', '.docx', '.txt']:
+            return render(request, "upload_resume.html", {"error": "Unsupported file type"})
+
+        # Optionally save file (adjust path if needed)
+        file_path = f"uploads/{uploaded_file.name}"
+        with open(file_path, "wb+") as f:
+            for chunk in uploaded_file.chunks():
+                f.write(chunk)
+
+        return render(request, "upload_resume.html", {"success": f"File '{uploaded_file.name}' uploaded successfully!"})
