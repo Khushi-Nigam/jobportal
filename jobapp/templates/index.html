@@ -1356,6 +1356,42 @@ body::before {
         </div>
       </div>
 
+
+      <div class="job-card">
+        <h5>Cloud Solutions Architect</h5>
+        <div class="job-meta">
+          <p><i class="fa-solid fa-location-dot"></i>Seattle, WA, US</p>
+          <p><i class="fa-regular fa-clock"></i>45 Minutes ago</p>
+          <p><i class="fa-solid fa-briefcase"></i>Full-Time</p>
+        </div>
+        <ul class="job-skills">
+          <li><strong>Platform:</strong> AWS/Azure/GCP</li>
+          <li><strong>Experience:</strong> 8+ Years in Cloud Architecture</li>
+          <li><strong>Certifications:</strong> AWS Certified Solutions Architect - Professional (Preferred)</li>
+          <li><strong>Type:</strong> Hybrid (3 days/week in office)</li>
+        </ul>
+        <div class="text-center">
+          <a href="{% url 'jobapp:apply' %}" onclick="login()" class="apply-btn">Apply Now</a>
+        </div>
+      </div>
+
+      <div class="job-card">
+        <h5>Senior Backend Engineer</h5>
+        <div class="job-meta">
+          <p><i class="fa-solid fa-location-dot"></i>Remote (Global)</p>
+          <p><i class="fa-regular fa-clock"></i>3 Hours ago</p>
+        </div>
+        <ul class="job-skills">
+          <li><strong>Language:</strong> Python, Go, or Java</li>
+          <li><strong>Skills:</strong> Microservices, REST APIs, PostgreSQL/MongoDB</li>
+          <li><strong>Experience:</strong> 7+ Years</li>
+          <li><strong>Salary:</strong> Competitive (Equity Options Available)</li>
+        </ul>
+        <div class="text-center">
+          <a href="{% url 'jobapp:apply' %}" onclick="login()" class="apply-btn">Apply Now</a>
+        </div>
+      </div>
+
       <!-- Dynamic Job Cards Loop -->
       {% for j in job %}
       <div class="job-card">
