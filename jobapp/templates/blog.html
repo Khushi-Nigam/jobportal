@@ -1,390 +1,567 @@
-{% extends "index.html" %} {% block body %} {% load static %}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-    ul li {
-        list-style: none;
-    }
-    
-    .trending-section {
-        background: linear-gradient(135deg, #033261 0%, #0a4d8c 100%);
-        border-radius: 20px;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .trending-section::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-        pointer-events: none;
-    }
-    
-    .trending-item {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 12px;
-        transition: all 0.3s ease;
-        backdrop-filter: blur(10px);
-    }
-    
-    .trending-item:hover {
-        background: rgba(255, 255, 255, 0.12);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-    }
-    
-    .animate-flicker {
-        animation: flicker 2s infinite alternate;
-    }
-    
-    @keyframes flicker {
-        0% { opacity: 0.8; }
-        100% { opacity: 1; }
-    }
-    
-.blog-card {
-    border-radius: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-    background: #fff;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Interactive Blog Section</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* subtle shadow + transition */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-    /* start hidden for entrance animation */
-    opacity: 0;
-    transform: translateY(40px);
-    animation: fadeInUp 0.8s ease forwards;
-}
-
-/* delay each card’s animation slightly */
-.blog-card:nth-child(1) { animation-delay: 0.1s; }
-.blog-card:nth-child(2) { animation-delay: 0.2s; }
-.blog-card:nth-child(3) { animation-delay: 0.3s; }
-
-/* hover effect on the whole card */
-.blog-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-/* make image follow card instead of exaggerating */
-.blog-card .card-img-top {
-    transition: transform 0.4s ease;
-}
-
-
-
-/* reuse fade-in animation from comment section */
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-    .author-avatar {
-        width: 40px;
-        height: 40px;
-        border: 2px solid #fff;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    }
-    
-    .section-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: #033261;
-        margin-bottom: 3rem;
-        position: relative;
-        text-align: center;
-    }
-    
-    .section-title::after {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 4px;
-        background: linear-gradient(90deg, #033261, #0a4d8c);
-        border-radius: 2px;
-    }
-    
-   .comment-section {
-  max-width: 800px;          /* limit the width */
-  margin: 0 auto;            /* force center alignment */
-  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-  border-radius: 20px;
-  margin-top: 2rem;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  margin-top: 3rem;
-  clear: both;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 0.8s ease-out forwards;
-  
-}
-
-/* Keyframes for entrance animation */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Hover effect for interactive feel */
-.comment-section:hover {
-    box-shadow: 0 15px 40px rgba(3, 50, 97, 0.15);
-    transform: scale(1.01);
-    transition: all 0.3s ease;
-  }
-
-    
-    .comment-textarea {
-  border: 2px solid #e9ecef;
-  border-radius: 15px;
-  transition: all 0.3s ease;
-  min-height: 160px;   /* was 120px, now taller */
-  resize: vertical;    /* user can still drag to resize */
-  }
-
-.comment-textarea:focus {
-  border-color: #0a4d8c;
-  box-shadow: 0 0 8px rgba(10, 77, 140, 0.3);
-  transform: scale(1.01);
-  transition: all 0.3s ease;
-}
-
-    
-    .comment-textarea:focus {
-        border-color: #033261;
-        box-shadow: 0 0 0 0.2rem rgba(3, 50, 97, 0.25);
-    }
-    
-    .btn-primary {
-        background: linear-gradient(135deg, #033261 0%, #093f75 100%);
-        border: none;
-        padding: 12px 30px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(3, 50, 97, 0.3);
-    }
-    
-    .btn-primary:hover {
-        background: linear-gradient(135deg, #093f75 0%, #0a4d8c 100%);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(3, 50, 97, 0.4);
-    }
-    
-    .trending-badge {
-        background: linear-gradient(135deg, #ff6b6b, #ff8e53);
-        color: white;
-        padding: 4px 12px;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        display: inline-block;
-        margin-bottom: 15px;
-        animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-        0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7); }
-        70% { box-shadow: 0 0 0 10px rgba(255, 107, 107, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
-    }
-    
-    .main-container {
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-    
-    @media only screen and (max-width: 768px) {
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
+        /* Body / Theme */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-        
+        body.light-mode { background-color: #f8f9fa; color: #212529; }
+        body.dark-mode  { background-color: #0f172a; color: #e2e8f0; }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            background: #1e293b;
+            color: white;
+        }
+        .theme-toggle:hover { transform: scale(1.1); }
+        body.dark-mode .theme-toggle { background: #fbbf24; color: #1e293b; }
+
+        /* Section Title */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            color: #033261;
+        }
+        body.dark-mode .section-title { color: #fff; }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #033261, #0a4d8c);
+            border-radius: 2px;
+        }
+
+        /* Trending */
         .trending-section {
+            background: linear-gradient(135deg, #033261 0%, #0a4d8c 100%);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            padding: 1.5rem;
             margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
         }
-        
+        .trending-section::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+            pointer-events: none;
+        }
+        .trending-badge {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 12px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255,107,107,0.7); }
+            70% { box-shadow: 0 0 0 12px rgba(255,107,107,0); }
+            100% { box-shadow: 0 0 0 0 rgba(255,107,107,0); }
+        }
+        .trending-item {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 12px;
+            padding: 0.9rem;
+            margin-bottom: 1rem;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(6px);
+        }
+        .trending-item:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.18); }
+
+        /* Blog Cards */
         .blog-card {
-            margin-bottom: 2rem;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+            height: 100%;
+            display: flex; flex-direction: column;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
         }
-        
-        .comment-section {
-            margin: 2rem 1rem;
-            padding: 2rem !important;
-        }
-    }
-    
-    @media only screen and (max-width: 576px) {
-        .container {
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-        
-        .section-title {
-            font-size: 1.75rem;
-        }
-      }
-    .btn-dreamjobs {
-      background-color: #093f75;
-      color: white;
-      font-weight: 600;
-      transition: all 0.3s;
-      border-radius: 50rem;
-      padding: 0.5rem 1.5rem;
-      }
+        .blog-card:nth-child(1) { animation-delay: 0.08s; }
+        .blog-card:nth-child(2) { animation-delay: 0.16s; }
+        .blog-card:nth-child(3) { animation-delay: 0.24s; }
+        .blog-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
 
-    .btn-dreamjobs:hover {
-      background-color: #072f5e;
-      color: #fff;
-    }
-    .text-dreamblue {
-      color: #093f75 !important;
-    }
-</style>
+        .blog-card-img { width: 100%; height: 200px; object-fit: cover; transition: transform 0.45s ease; }
+        .blog-card:hover .blog-card-img { transform: scale(1.08); }
 
-<div class="main-container">
-    <!-- Trending News Section -->
-    <div class="container pt-5 pb-3">
-        <h2 class="section-title">Latest Insights & Trends</h2>
-        
-        <div class="trending-section p-4 mb-5">
-            <div class="row align-items-center">
-                <div class="col-12">
-                    <div class="text-center mb-4">
-                        <div class="trending-badge">🔥 TRENDING NOW</div>
-                        <h3 class="text-white fw-bold mb-0 animate-flicker">Hot Topics in Career Development</h3>
-                    </div>
-                    
-                    <div class="row g-3">
-                        {% for n in new %}
-                        <div class="col-md-6 col-lg-4">
-                            <div class="trending-item p-3">
-                                <a href="#" class="text-white text-decoration-none d-block">
-                                    <div class="d-flex align-items-center">
-                                        <div class="me-3">
-                                            <div class="bg-light bg-opacity-20 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                                                <i class="fas fa-newspaper text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div class="flex-grow-1">
-                                            <p class="mb-0 fw-semibold">{{n.newstext}}</p>
-                                            <small class="text-light opacity-75">Just now</small>
-                                        </div>
-                                    </div>
-                                </a>
+        .blog-card-body {
+            padding: 1.25rem;
+            flex: 1;
+            display: flex; flex-direction: column;
+        }
+        .blog-card-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.6rem; line-height: 1.3; color: #1e293b; }
+        body.dark-mode .blog-card-title { color: #f1f5f9; }
+        .blog-card-text { font-size: 0.9rem; margin-bottom: 1rem; color: #64748b; flex: 1; }
+        body.dark-mode .blog-card-text { color: #94a3b8; }
+
+        /* Action Buttons / Stats */
+        .action-buttons { display: flex; gap: 0.5rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.06); }
+        body.dark-mode .action-buttons { border-top-color: rgba(255,255,255,0.03); }
+        .action-btn {
+            flex: 1; padding: 0.55rem; border: none; border-radius: 8px;
+            font-size: 0.9rem; font-weight: 500; cursor: pointer;
+            display:flex; align-items:center; justify-content:center; gap:0.5rem;
+            transition: all 0.22s ease;
+        }
+        .btn-like { background: #3b82f6; color: white; }
+        .btn-comment { background: #10b981; color: white; }
+        .btn-edit { background: #f59e0b; color: white; }
+        .btn-delete { background: #ef4444; color: white; }
+
+        .stats-container { display:flex; gap:0.75rem; margin-top:0.75rem; }
+        .stat-item { display:flex; align-items:center; gap:0.5rem; padding:0.45rem 0.8rem; border-radius:8px; font-size:0.875rem; cursor:pointer; transition:all 0.2s ease; background: rgba(255,255,255,0.03); }
+        body.light-mode .stat-item { background: #f8f9fa; color: #1e293b; }
+        body.dark-mode .stat-item  { background: #0f172a; color: #f1f5f9; }
+
+        /* Forms & Inputs */
+        .form-container {
+            border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06); background: white;
+        }
+        body.dark-mode .form-container { background: #1e293b; border: 1px solid #334155; }
+        .form-input, .form-textarea {
+            width:100%; padding:0.75rem 1rem; border-radius:12px; border:2px solid #e2e8f0; font-size:1rem; margin-bottom:1rem; transition: all 0.2s ease;
+        }
+        body.dark-mode .form-input, body.dark-mode .form-textarea { background: #0f172a; border-color:#334155; color:#f1f5f9; }
+        .form-input:focus, .form-textarea:focus { outline:none; border-color:#0a4d8c; box-shadow:0 0 0 3px rgba(10,77,140,0.08); transform:scale(1.01); }
+        .form-textarea { resize: vertical; min-height:120px; }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg,#033261 0%,#0a4d8c 100%);
+            color:white; border:none; padding:0.75rem 1.6rem; border-radius:50px; font-weight:600; cursor:pointer; box-shadow:0 4px 15px rgba(3,50,97,0.25);
+        }
+        .btn-primary-custom:hover { transform: translateY(-2px); box-shadow:0 6px 20px rgba(3,50,97,0.35); }
+
+        /* Comments */
+        .comments-container { margin-top:1rem; padding-top:1rem; border-top:1px solid rgba(0,0,0,0.06); }
+        body.dark-mode .comments-container { border-top-color: rgba(255,255,255,0.03); }
+        .comment-item { padding:0.75rem; border-radius:8px; margin-bottom:0.6rem; display:flex; justify-content:space-between; align-items:flex-start; background: transparent; }
+        body.light-mode .comment-item { background: #f8f9fa; }
+        body.dark-mode .comment-item { background: #0f172a; }
+        .comment-text { flex:1; font-size:0.9rem; }
+        .comment-delete { background:none; border:none; color:#ef4444; cursor:pointer; padding:0.2rem 0.4rem; }
+        .comment-delete:hover { color:#dc2626; }
+        .comment-input-container { display:flex; gap:0.5rem; margin-top:0.5rem; }
+        .comment-input { flex:1; padding:0.5rem; border-radius:8px; border:1px solid #e2e8f0; font-size:0.9rem; }
+        body.dark-mode .comment-input { background:#0f172a; border-color:#334155; color:#f1f5f9; }
+        .comment-submit { padding:0.45rem 0.8rem; background:#3b82f6; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:500; }
+
+        /* General Comment Section */
+        .general-comment-section { max-width:900px; margin:2.5rem auto; padding:1.5rem; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.06); background: linear-gradient(135deg,#f8f9fa 0%,#ffffff 100%); }
+        body.dark-mode .general-comment-section { background: linear-gradient(135deg,#1e293b 0%,#0f172a 100%); border: 1px solid #334155; color:#f1f5f9; }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section-title { font-size: 2rem; }
+            .theme-toggle { width:50px; height:50px; font-size:20px; }
+            .action-buttons { flex-wrap: wrap; }
+            .action-btn { flex: 1 1 48%; }
+            .blog-card-img { height: 160px; }
+        }
+
+        .hidden { display: none !important; }
+        ul li { list-style: none; }
+    </style>
+</head>
+<body class="light-mode">
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+
+    <div class="container py-5 main-container">
+        <h1 class="section-title">Latest Insights & Trends</h1>
+
+        <!-- Trending -->
+        <div class="trending-section mb-4">
+            <div class="text-center mb-3">
+                <span class="trending-badge">🔥 TRENDING NOW</span>
+                <h2 class="text-white fw-bold mb-0">Hot Topics in Career Development</h2>
+            </div>
+            <div class="row g-3" id="trendingContainer"></div>
+        </div>
+
+        <!-- Create Post CTA -->
+        <div class="text-center mb-4">
+            <button class="btn-primary-custom" onclick="togglePostForm()">
+                <i class="fas fa-plus me-2"></i>Create New Post
+            </button>
+        </div>
+
+        <!-- New Post Form -->
+        <div id="newPostForm" class="form-container hidden">
+            <h3 class="mb-3 fw-bold">Create New Post</h3>
+            <input type="text" class="form-input" id="newTitle" placeholder="Post Title" />
+            <textarea class="form-textarea" id="newExcerpt" placeholder="Post Description"></textarea>
+            <input type="text" class="form-input" id="newImage" placeholder="Image URL (optional)" />
+            <button class="btn-primary-custom w-100" onclick="addPost()">
+                <i class="fas fa-paper-plane me-2"></i>Publish Post
+            </button>
+        </div>
+
+        <!-- Blog Grid -->
+        <div class="row g-4 mb-5" id="blogPostsContainer"></div>
+
+        <!-- General Comment Section -->
+        <div class="general-comment-section">
+            <h3 class="text-center fw-bold mb-3" style="color:#0a4d8c;">Share Your Thoughts</h3>
+            <textarea class="form-textarea" id="generalComment" placeholder="Share your insights, ask questions, or start a discussion..."></textarea>
+            <button class="btn-primary-custom w-100 mt-3" onclick="submitGeneralComment()">
+                <i class="fas fa-paper-plane me-2"></i>Submit Comment
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Data
+        let blogPosts = [
+            {
+                id: 1,
+                title: "21 Job Interview Tips: How To Make a Great Impression",
+                excerpt: "Making a great impression and demonstrating your best qualities during an interview increases your chances of getting a job offer.",
+                image: "https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img1.png",
+                author: "Aman Gupta",
+                role: "HR, Infosys",
+                avatar: "https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png",
+                likes: 24,
+                comments: []
+            },
+            {
+                id: 2,
+                title: "Email Examples: How To Respond to Employer Interview Requests",
+                excerpt: "Respond to interview requests quickly and with enthusiasm to increase your chances.",
+                image: "https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img2.png",
+                author: "Aman Gupta",
+                role: "HR, Infosys",
+                avatar: "https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png",
+                likes: 18,
+                comments: []
+            },
+            {
+                id: 3,
+                title: "17 Jobs Hired at 15 (and even 14) You Should Know",
+                excerpt: "Teenagers face struggles of job hunting. Here's a list of early career opportunities for them.",
+                image: "https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img3.png",
+                author: "Aman Gupta",
+                role: "HR, Infosys",
+                avatar: "https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png",
+                likes: 32,
+                comments: []
+            }
+        ];
+
+        const trendingNews = [
+            "AI is transforming the job market - Are you ready?",
+            "Remote work trends continue to reshape careers",
+            "Top 10 in-demand skills for 2025",
+            "How to negotiate your salary effectively",
+            "The rise of freelance opportunities",
+            "Career pivoting: Making successful transitions"
+        ];
+
+        let editingPostId = null;
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTrending();
+            renderPosts();
+        });
+
+        // Theme toggle
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('themeIcon');
+            if (body.classList.contains('light-mode')) {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                icon.classList.remove('fa-moon'); icon.classList.add('fa-sun');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                icon.classList.remove('fa-sun'); icon.classList.add('fa-moon');
+            }
+        }
+
+        // Trending render
+        function renderTrending() {
+            const container = document.getElementById('trendingContainer');
+            container.innerHTML = trendingNews.map(news => `
+                <div class="col-md-6 col-lg-4">
+                    <div class="trending-item">
+                        <div class="d-flex align-items-center">
+                            <div class="me-3">
+                                <div class="bg-light bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width:40px;height:40px;">
+                                    <i class="fas fa-newspaper text-white"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="mb-0 fw-semibold text-white small">${news}</p>
+                                <small class="text-light opacity-75">Just now</small>
                             </div>
                         </div>
-                        {% endfor %}
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+            `).join('');
+        }
 
-    <!-- BLOG CARDS (centered, responsive, equal height) -->
-<div class="container">
-  <div class="row g-4 justify-content-center mb-4">
+        // Toggle post form
+        function togglePostForm() {
+            const form = document.getElementById('newPostForm');
+            form.classList.toggle('hidden');
+        }
 
-    <!-- Card 1 -->
-    <div class="col-12 col-md-10 col-lg-4 d-flex">
-      <div class="blog-card card shadow-sm border-0 rounded-4 h-100 w-100 overflow-hidden">
-        <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img1.png" class="card-img-top" alt="Interview Tips">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title fw-semibold mb-2 fs-6">21 Job Interview Tips: How To Make a Great Impression</h5>
-          <p class="card-text text-secondary mb-3 small" style="-webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;">Making a great impression and demonstrating your best qualities during an interview increases your chances of getting a job offer.</p>
-          <div class="d-flex align-items-center justify-content-between mt-auto">
-            <div class="d-flex align-items-center">
-              <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png" class="rounded-circle me-2" style="width: 35px; height: 35px;">
-              <div>
-                <span class="fw-semibold text-primary small text-dreamblue">Aman Gupta</span><br>
-                <small class="text-muted">HR, Infosys</small>
-              </div>
-            </div>
-            <a href="#" class="btn btn-dreamjobs">Read</a>
-          </div>
-        </div>
-      </div>
-    </div>
+        // Add post
+        function addPost() {
+            const title = document.getElementById('newTitle').value.trim();
+            const excerpt = document.getElementById('newExcerpt').value.trim();
+            const image = document.getElementById('newImage').value.trim();
 
-    <!-- Card 2 -->
-    <div class="col-12 col-md-10 col-lg-4 d-flex">
-      <div class="blog-card card shadow-sm border-0 rounded-4 h-100 w-100 overflow-hidden">
-        <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img2.png" class="card-img-top" alt="Email Tips">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title fw-semibold mb-2 fs-6">Email Examples: How To Respond to Employer Interview Requests</h5>
-          <p class="card-text text-secondary mb-3 small" style="-webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;">Respond to interview requests quickly and with enthusiasm to increase your chances.</p>
-          <div class="d-flex align-items-center justify-content-between mt-auto">
-            <div class="d-flex align-items-center">
-              <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png" class="rounded-circle me-2" style="width: 35px; height: 35px;">
-              <div>
-                <span class="fw-semibold text-primary small text-dreamblue">Aman Gupta</span><br>
-                <small class="text-muted">HR, Infosys</small>
-              </div>
-            </div>
-            <a href="#" class="btn btn-dreamjobs">Read</a>
-          </div>
-        </div>
-      </div>
-    </div>
+            if (!title || !excerpt) { alert('Please fill in title and description'); return; }
 
-    <!-- Card 3 -->
-    <div class="col-12 col-md-10 col-lg-4 d-flex">
-      <div class="blog-card card shadow-sm border-0 rounded-4 h-100 w-100 overflow-hidden">
-        <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/blog/img3.png" class="card-img-top" alt="Teen Jobs">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title fw-semibold mb-2 fs-6">17 Jobs Hired at 15 (and even 14) You Should Know</h5>
-          <p class="card-text text-secondary mb-3 small" style="-webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;">Teenagers face struggles of job hunting. Here's a list of early career opportunities for them.</p>
-          <div class="d-flex align-items-center justify-content-between mt-auto">
-            <div class="d-flex align-items-center">
-              <img src="https://jobbox-nextjs-v3.vercel.app/assets/imgs/page/homepage1/user3.png" class="rounded-circle me-2" style="width: 35px; height: 35px;">
-              <div>
-                <span class="fw-semibold text-primary small text-dreamblue">Aman Gupta</span><br>
-                <small class="text-muted">HR, Infosys</small>
-              </div>
-            </div>
-            <a href="#" class="btn btn-dreamjobs">Read</a>
-          </div>
-        </div>
-      </div>
-    </div>    
-</div>
+            const newPost = {
+                id: Date.now(),
+                title,
+                excerpt,
+                image: image || 'https://via.placeholder.com/400x200?text=Blog+Post',
+                author: "You",
+                role: "Blog Contributor",
+                avatar: "https://ui-avatars.com/api/?name=You&background=093f75&color=fff",
+                likes: 0,
+                comments: []
+            };
 
-    <!-- Comment Section -->
-    <div class="container pb-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="comment-section p-5">
-                    <h3 class="fw-bold mb-4 text-center text-primary">Share Your Thoughts</h3>
-                    <form class="comment">
-                        <div class="mb-4">
-                            <label for="commentText" class="form-label fw-semibold">Your Comment</label>
-                            <textarea class="form-control comment-textarea" id="commentText" rows="7" placeholder="Share your insights, ask questions, or start a discussion..."></textarea>
+            blogPosts.unshift(newPost);
+            renderPosts();
+            // reset
+            document.getElementById('newTitle').value = '';
+            document.getElementById('newExcerpt').value = '';
+            document.getElementById('newImage').value = '';
+            togglePostForm();
+        }
+
+        // Render posts
+        function renderPosts() {
+            const container = document.getElementById('blogPostsContainer');
+            container.innerHTML = blogPosts.map(post => {
+                if (editingPostId === post.id) {
+                    return `
+                        <div class="col-md-6 col-lg-4">
+                            <div class="blog-card">
+                                <div class="edit-mode p-3">
+                                    <input type="text" class="form-input" id="editTitle${post.id}" value="${escapeHtml(post.title)}">
+                                    <textarea class="form-textarea" id="editExcerpt${post.id}">${escapeHtml(post.excerpt)}</textarea>
+                                    <input type="text" class="form-input" id="editImage${post.id}" value="${escapeHtml(post.image)}">
+                                    <div class="d-flex gap-2 mt-2">
+                                        <button class="btn-save btn btn-success w-50" onclick="saveEdit(${post.id})">
+                                            <i class="fas fa-save me-1"></i>Save
+                                        </button>
+                                        <button class="btn-cancel btn btn-secondary w-50" onclick="cancelEdit()">
+                                            <i class="fas fa-times me-1"></i>Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary rounded-pill px-5 py-3 fw-semibold">
-                                <i class="fas fa-paper-plane me-2"></i>Submit Comment
-                            </button>
+                    `;
+                }
+
+                return `
+                    <div class="col-md-6 col-lg-4">
+                        <div class="blog-card">
+                            <div style="overflow:hidden;">
+                                <img src="${escapeAttr(post.image)}" alt="${escapeAttr(post.title)}" class="blog-card-img">
+                            </div>
+                            <div class="blog-card-body">
+                                <h3 class="blog-card-title">${escapeHtml(post.title)}</h3>
+                                <p class="blog-card-text">${escapeHtml(post.excerpt)}</p>
+
+                                <div class="d-flex align-items-center mb-3 pb-3" style="border-bottom:1px solid currentColor; opacity:0.12;">
+                                    <img src="${escapeAttr(post.avatar)}" alt="${escapeAttr(post.author)}" class="rounded-circle me-2" style="width:40px;height:40px;border:2px solid #0a4d8c;">
+                                    <div>
+                                        <p class="mb-0 fw-semibold" style="color:#0a4d8c;font-size:0.875rem;">${escapeHtml(post.author)}</p>
+                                        <small class="text-muted">${escapeHtml(post.role)}</small>
+                                    </div>
+                                </div>
+
+                                <div class="stats-container">
+                                    <div class="stat-item" onclick="likePost(${post.id})">
+                                        <i class="fas fa-thumbs-up"></i>
+                                        <span>${post.likes}</span>
+                                    </div>
+                                    <div class="stat-item" onclick="toggleComments(${post.id})">
+                                        <i class="fas fa-comment"></i>
+                                        <span>${post.comments.length}</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <i class="fas fa-share"></i>
+                                    </div>
+                                </div>
+
+                                <div class="action-buttons">
+                                    <button class="action-btn btn-edit" onclick="editPost(${post.id})">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button class="action-btn btn-delete" onclick="deletePost(${post.id})">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </div>
+
+                                <div id="comments${post.id}" class="comments-container hidden">
+                                    ${post.comments.map(comment => `
+                                        <div class="comment-item">
+                                            <div class="comment-text">
+                                                <strong>${escapeHtml(comment.author)}</strong><br>
+                                                <span>${escapeHtml(comment.text)}</span><br>
+                                                <small class="text-muted">${escapeHtml(comment.timestamp)}</small>
+                                            </div>
+                                            <button class="comment-delete" onclick="deleteComment(${post.id}, ${comment.id})" title="Delete comment">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    `).join('')}
+                                    <div class="comment-input-container">
+                                        <input type="text" class="comment-input" id="commentInput${post.id}" placeholder="Add a comment..." onkeypress="if(event.key==='Enter') addComment(${post.id})">
+                                        <button class="comment-submit" onclick="addComment(${post.id})">Send</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+                    </div>
+                `;
+            }).join('');
+        }
 
+        // Helpers for safe insertion
+        function escapeHtml(str) {
+            if (str === undefined || str === null) return '';
+            return String(str)
+                .replaceAll('&', '&amp;')
+                .replaceAll('<', '&lt;')
+                .replaceAll('>', '&gt;')
+                .replaceAll('"', '&quot;')
+                .replaceAll("'", '&#39;');
+        }
+        function escapeAttr(str) { return escapeHtml(str); }
 
-{% endblock body %}
+        // Like
+        function likePost(id) {
+            const p = blogPosts.find(x => x.id === id);
+            if (p) { p.likes++; renderPosts(); }
+        }
+
+        // Comments toggle
+        function toggleComments(id) {
+            const el = document.getElementById(`comments${id}`);
+            if (!el) return;
+            el.classList.toggle('hidden');
+        }
+
+        // Add comment
+        function addComment(postId) {
+            const input = document.getElementById(`commentInput${postId}`);
+            if (!input) return;
+            const text = input.value.trim();
+            if (!text) return;
+            const post = blogPosts.find(p => p.id === postId);
+            if (post) {
+                post.comments.push({ id: Date.now(), text, author: "You", timestamp: new Date().toLocaleString() });
+                input.value = '';
+                renderPosts();
+                // ensure comments open
+                setTimeout(() => { const el = document.getElementById(`comments${postId}`); if (el) el.classList.remove('hidden'); }, 0);
+            }
+        }
+
+        // Delete comment
+        function deleteComment(postId, commentId) {
+            const post = blogPosts.find(p => p.id === postId);
+            if (!post) return;
+            post.comments = post.comments.filter(c => c.id !== commentId);
+            renderPosts();
+            setTimeout(() => { const el = document.getElementById(`comments${postId}`); if (el) el.classList.remove('hidden'); }, 0);
+        }
+
+        // Edit
+        function editPost(id) { editingPostId = id; renderPosts(); }
+        function saveEdit(id) {
+            const title = document.getElementById(`editTitle${id}`).value.trim();
+            const excerpt = document.getElementById(`editExcerpt${id}`).value.trim();
+            const image = document.getElementById(`editImage${id}`).value.trim();
+            const post = blogPosts.find(p => p.id === id);
+            if (post && title && excerpt) {
+                post.title = title; post.excerpt = excerpt; post.image = image || post.image;
+                editingPostId = null; renderPosts();
+            } else { alert('Title and description required'); }
+        }
+        function cancelEdit() { editingPostId = null; renderPosts(); }
+
+        // Delete post
+        function deletePost(id) {
+            if (!confirm('Are you sure you want to delete this post?')) return;
+            blogPosts = blogPosts.filter(p => p.id !== id);
+            renderPosts();
+        }
+
+        // General comment submit (example: currently client-side only)
+        function submitGeneralComment() {
+            const text = document.getElementById('generalComment').value.trim();
+            if (!text) { alert('Comment cannot be empty'); return; }
+            alert('Comment submitted: ' + text);
+            document.getElementById('generalComment').value = '';
+        }
+
+        // Small safeguard: close any open comment containers when posts rerender to avoid duplicate IDs
+        // (renderPosts already restores states; this is just defensive.)
+    </script>
+</body>
+</html>
