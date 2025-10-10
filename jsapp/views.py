@@ -243,9 +243,55 @@ def jshome(request):
 
 
 
+from django.core.paginator import Paginator
+from employer.models import Jobs
+from django.db.models import Q
+
 def viewjobs(request):
-    # Just rendering a template for now
-    return render(request, 'viewjobs.html')
+    jobs = Jobs.objects.all()
+    # Filters
+    job_type = request.GET.get('job_type')
+    location = request.GET.get('location')
+    industry = request.GET.get('industry')
+    search = request.GET.get('search')
+
+    if job_type:
+        jobs = jobs.filter(post__icontains=job_type)
+    if location:
+        jobs = jobs.filter(location__icontains=location)
+    if industry:
+        jobs = jobs.filter(jobtitle__icontains=industry)
+    if search:
+        jobs = jobs.filter(
+            Q(post__icontains=search) |
+            Q(location__icontains=search) |
+            Q(jobdesc__icontains=search) |
+            Q(firmname__icontains=search) |
+            Q(qualification__icontains=search) |
+            Q(jobtitle__icontains=search)
+        )
+
+    # Pagination
+    paginator = Paginator(jobs, 10)  # 10 jobs per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    # For filter dropdowns, get unique values
+    job_types = Jobs.objects.values_list('post', flat=True).distinct()
+    locations = Jobs.objects.values_list('location', flat=True).distinct()
+    industries = Jobs.objects.values_list('jobtitle', flat=True).distinct()
+
+    context = {
+        'pjobs': page_obj,
+        'job_types': job_types,
+        'locations': locations,
+        'industries': industries,
+        'search': search,
+        'selected_job_type': job_type,
+        'selected_location': location,
+        'selected_industry': industry,
+    }
+    return render(request, 'viewjobs.html', context)
 def logout(request):
     try:
         del request.session["username"]
