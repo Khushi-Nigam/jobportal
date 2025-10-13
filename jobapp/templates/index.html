@@ -229,6 +229,7 @@ body::before {
   font-size: clamp(3rem, 6vw, 4.5rem);
   line-height: 1.1;
   background: linear-gradient(60deg, var(--primary-blue), var(--accent-blue));
+  background-clip: text; /* add standard property for compatibility */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   position: relative;
@@ -295,6 +296,7 @@ body::before {
     inset 0 0 8px rgba(255, 255, 255, 0.02);
 }
 
+/* Make hero image static on hover (remove tilt/scale) */
 .hero-image img:hover {
   transform: scale(1.05);
   box-shadow:
@@ -479,6 +481,7 @@ body::before {
   position: relative;
   display: inline-block;
   background: linear-gradient(60deg, var(--primary-blue), #00d0ff);
+  background-clip: text; /* add standard property for compatibility */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -1148,6 +1151,9 @@ body::before {
 </script>
 
 {% block body %}
+<!-- Auth flag for JS (avoids injecting template logic into JS) -->
+<div id="authFlag" data-auth="{% if user.is_authenticated %}true{% else %}false{% endif %}" hidden></div>
+
 <!-- Dark/Light Theme Toggle Button -->
 <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
   <i class="fas fa-sun" id="themeIcon"></i>
@@ -1696,4 +1702,45 @@ body::before {
     }
   });
 
-  // Show
+  // Show popup message for login requirement
+  document.addEventListener('DOMContentLoaded', function () {
+    const searchForm = document.querySelector('.search-container');
+    const popupMessage = document.getElementById('popupMessage');
+    const authFlag = document.getElementById('authFlag');
+    const isLoggedInFlag = authFlag && authFlag.dataset.auth === 'true';
+
+    if (searchForm) {
+      searchForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const isLoggedIn = isLoggedInFlag;
+        if (!isLoggedIn) {
+          popupMessage.style.top = '20px';
+          popupMessage.style.opacity = '1';
+          setTimeout(() => {
+            popupMessage.style.top = '-80px';
+            popupMessage.style.opacity = '0';
+          }, 3000);
+        } else {
+          this.submit();
+        }
+      });
+    }
+
+    const uploadBtn = document.getElementById('uploadBtn');
+    if (uploadBtn) {
+      uploadBtn.addEventListener('click', function () {
+        const isLoggedIn = isLoggedInFlag;
+        if (!isLoggedIn) {
+          popupMessage.style.top = '20px';
+          popupMessage.style.opacity = '1';
+          setTimeout(() => {
+            popupMessage.style.top = '-80px';
+            popupMessage.style.opacity = '0';
+          }, 3000);
+        } else {
+          window.location.href = "{% url 'jobapp:upload_resume' %}";
+        }
+      });
+    }
+  });
+</script>
