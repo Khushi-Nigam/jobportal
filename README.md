@@ -136,49 +136,31 @@ Admin Panel: http://127.0.0.1:8000/admin (if you created a superuser)
 
 ```
 jobportal/
-|
-├── adminapp/
-│   ├── migrations/
-│   ├── static/assets/
-│   ├── templates/
-│   └── __init__.py, admin.py, adminappurrls.py, apps.py, models.py, tests.py, views.py
-|
-├── employer/
-│   ├── migrations/
-│   ├── static/
-│   ├── templates/
-│   └── Procfile, __init__.py, admin.py,apps.py, employerurls.py,  models.py, tests.py, views.py
-|
-├── jobapp/
-│   ├── migrations/
-│   ├── static/
-│   ├── templates/
-│   └── __init__.py, admin.py, apps.py, jobappurls.py, models.py, tests.py, views.py
-|
-├── jsapp/
-│   ├── migrations/
-│   ├── static/
-│   ├── templates/
-│   └── __init__.py, admin.py, apps.py,jsappurls.py, models.py, tests.py, views.py
-|
-├── jobportal/  # root config
-│   └── settings.py, urls.py, ...
-|
-├── media/
-│   └── *avif / *.jpg / *.png / *.webp
-|
-├── staticfiles/
-|   ├── admin/
-│   ├── assets/
-│   ├── css/
-|   ├── images/
-│   ├── js/
-│   └── *.jpg / *mp4 / *.png / *.svg / *.webp
-|
-├── README.md
-├── db.sqlite3
-├── manage.py
-└── requirements.txt
+├── .github/
+│   ├── ISSUE_TEMPLATE/             # Templates for issues and pull requests
+│   └── pull_request_template.md    # Pull request template
+│
+├── adminapp/                       # Admin panel application for managing data
+├── employer/                       # Employer-side app (job posting, profile, etc.)
+├── jobapp/                         # Core job application logic and user features
+├── jobportal-khushi/               # Additional module or experimental app
+├── jobportal/                      # Main Django project settings and configuration
+├── jsapp/                          # JavaScript app or frontend scripts
+│
+├── main/                           # Main app for handling common pages (home, about, etc.)
+├── media/                          # Uploaded media files (user resumes, images, etc.)
+├── staticfiles/                    # Static assets (CSS, JS, images)
+├── test/                           # Unit and integration tests
+│
+├── .gitignore                      # Files and folders to ignore in Git
+├── CODE_OF_CONDUCT.md              # Contributor behavior guidelines
+├── CONTRIBUTE.md                   # Contribution instructions
+├── GSSoC.png                       # GSSoC banner or logo
+├── README.md                       # Project documentation
+├── manage.py                       # Django project management script
+├── package-lock.json               # Dependency lock file (for JS or Node modules)
+└── requirements.txt                # Python dependencies for the project
+
 ```
 # ✨ Key Features
 # For Job Seekers
