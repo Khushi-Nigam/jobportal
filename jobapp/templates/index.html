@@ -1698,44 +1698,159 @@ body::before {
   });
 
   // Show popup message for login requirement
+//   <!-- HTML: Place this inside your body where you want the search form -->
+// <!-- ...existing code... -->
+//
+//<!-- Place this inside your body where you want the search form -->
+//   function showPopup(message) {
+//     const popup = document.getElementById('popupMessage');
+//     popup.textContent = message;
+//     popup.style.top = '20px';
+//     popup.style.opacity = '1';
+//     setTimeout(() => {
+//       popup.style.top = '-80px';
+//       popup.style.opacity = '0';
+//     }, 3000);
+//   }
+
+//   document.getElementById('uploadBtn').addEventListener('click', function() {
+//     const isAuthenticated = document.getElementById('authFlag').getAttribute('data-auth') === 'true';
+//     if (!isAuthenticated) {
+//       showPopup('Please log in to upload your resume.');
+//     } else {
+//       window.location.href = "{% url 'jobapp:upload_resume' %}";
+//     }
+//   });
+
+//   function handleSearch(event) {
+//     event.preventDefault();
+//     const isAuthenticated = document.getElementById('authFlag').getAttribute('data-auth') === 'true';
+//     if (!isAuthenticated) {
+//       showPopup('Please log in to search jobs.');
+//       return false;
+//     }
+//     // Proceed with search logic if authenticated
+//     const query = document.getElementById('search-input').value;
+//     window.location.href = `/search-jobs/?q=${encodeURIComponent(query)}`;
+//     return false;
+//   }
+// 
+//<!-- ...existing code... -->
+
+// <script>
+//   function showPopup(message) {
+//     const popup = document.getElementById('popupMessage');
+//     popup.textContent = message;
+//     popup.style.top = '20px';
+//     popup.style.opacity = '1';
+//     setTimeout(() => {
+//       popup.style.top = '-80px';
+//       popup.style.opacity = '0';
+//     }, 3000);
+//   }
+
+//   document.addEventListener('DOMContentLoaded', function () {
+//     // Upload Resume button logic
+//     const uploadBtn = document.getElementById('uploadBtn');
+//     if (uploadBtn) {
+//       uploadBtn.addEventListener('click', function() {
+//         const isAuthenticated = document.getElementById('authFlag').getAttribute('data-auth') === 'true';
+//         if (!isAuthenticated) {
+//           showPopup('Please log in to upload your resume.');
+//         } else {
+//           window.location.href = "{% url 'jobapp:upload_resume' %}";
+//         }
+//       });
+//     }
+
+//     // Search form logic
+//     const searchForm = document.querySelector('.search-container');
+//     if (searchForm) {
+//       searchForm.addEventListener('submit', function(event) {
+//         event.preventDefault();
+//         const isAuthenticated = document.getElementById('authFlag').getAttribute('data-auth') === 'true';
+//         if (!isAuthenticated) {
+//           showPopup('Please log in to search jobs.');
+//           return false;
+//         }
+//         // Proceed with search logic if authenticated
+//         const query = document.getElementById('search-input').value;
+//         window.location.href = `/search-jobs/?q=${encodeURIComponent(query)}`;
+//         return false;
+//       });
+//     }
+//   });
+// </script>
+ <!-- ...existing code... -->
+<!-- ...existing code... -->
+
+<!-- Auth flag for JS -->
+<!-- <div id="authFlag" data-auth="{% if user.is_authenticated %}true{% else %}false{% endif %}" hidden></div>
+
+< ...existing code... -->
+
+<!-- Keep only ONE of each below, in the correct place (usually inside your hero/search section) -->
+
+<div id="authFlag" data-auth="{% if user.is_authenticated %}true{% else %}false{% endif %}" hidden></div>
+
+<form class="d-flex w-100 flex-wrap gap-2 search-container" role="search">
+  <input class="form-control flex-grow-1 rounded-pill px-4 py-2" 
+         type="search" 
+         id="search-input" 
+         placeholder="Search jobs here..." 
+         aria-label="Search" />
+  <button type="submit" class="btn search-btn rounded-pill fw-semibold px-4" id="search-button">
+    Search
+  </button>
+</form>
+
+<div id="popupMessage" style="position: fixed; top: -80px; left: 50%; transform: translateX(-50%);
+            background: #ff4d4d; color: #fff; padding: 1rem 2rem; border-radius: 8px;
+            font-weight: 600; font-size: 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: top 0.5s ease, opacity 0.5s ease; opacity: 0; z-index: 9999;">
+  Please log in to view job listings.
+</div>
+
+<script>
+  function showPopup(message) {
+    const popup = document.getElementById('popupMessage');
+    popup.textContent = message;
+    popup.style.top = '20px';
+    popup.style.opacity = '1';
+    setTimeout(() => {
+      popup.style.top = '-80px';
+      popup.style.opacity = '0';
+    }, 3000);
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
-    const searchForm = document.querySelector('.search-container');
-    const popupMessage = document.getElementById('popupMessage');
-    const authFlag = document.getElementById('authFlag');
-    const isLoggedInFlag = authFlag && authFlag.dataset.auth === 'true';
-
-    if (searchForm) {
-      searchForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const isLoggedIn = isLoggedInFlag;
-        if (!isLoggedIn) {
-          popupMessage.style.top = '20px';
-          popupMessage.style.opacity = '1';
-          setTimeout(() => {
-            popupMessage.style.top = '-80px';
-            popupMessage.style.opacity = '0';
-          }, 3000);
-        } else {
-          this.submit();
-        }
-      });
-    }
-
     const uploadBtn = document.getElementById('uploadBtn');
+    const authFlag = document.getElementById('authFlag');
+    const isAuthenticated = authFlag && authFlag.dataset.auth === 'true';
+
     if (uploadBtn) {
-      uploadBtn.addEventListener('click', function () {
-        const isLoggedIn = isLoggedInFlag;
-        if (!isLoggedIn) {
-          popupMessage.style.top = '20px';
-          popupMessage.style.opacity = '1';
-          setTimeout(() => {
-            popupMessage.style.top = '-80px';
-            popupMessage.style.opacity = '0';
-          }, 3000);
+      uploadBtn.addEventListener('click', function() {
+        if (!isAuthenticated) {
+          showPopup('Please log in to upload your resume.');
         } else {
           window.location.href = "{% url 'jobapp:upload_resume' %}";
         }
       });
     }
+
+    const searchForm = document.querySelector('.search-container');
+    if (searchForm) {
+      searchForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        if (!isAuthenticated) {
+          showPopup('Please log in to view job listings.');
+          return false;
+        }
+        const query = document.getElementById('search-input').value;
+        window.location.href = `/search-jobs/?q=${encodeURIComponent(query)}`;
+        return false;
+      });
+    }
   });
 </script>
+<!-- ...existing code... -->
