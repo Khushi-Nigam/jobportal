@@ -50,7 +50,8 @@
         {% if msg %}<p style="color:red; font-weight:bold; text-align:center;">{{ msg }}</p>{% endif %}
         <form id="login-form" method="POST" action="{% url 'jobapp:login' %}" autocomplete="off">{% csrf_token %}
           <div class="form-group"><label class="form-label" for="usertype">Login as</label><select class="form-select" name="usertype" id="usertype" required><option value="" disabled selected>Select your role</option><option value="jobseeker">Job Seeker</option><option value="employer">Employer</option><option value="administrator">Administrator</option></select></div>
-          <div class="form-group"><label class="form-label" for="username">Email</label><div class="input-wrapper"><i class="fas fa-envelope input-icon"></i><input type="email" class="form-input" name="username" id="username" placeholder="Enter your email" required></div></div>
+          {% comment %} <div class="form-group"><label class="form-label" for="username">Email</label><div class="input-wrapper"><i class="fas fa-envelope input-icon"></i><input type="email" class="form-input" name="username" id="username" placeholder="Enter your email" required></div></div> {% endcomment %}
+          <div class="form-group"><label class="form-label" for="username">Username</label><div class="input-wrapper"><i class="fas fa-envelope input-icon"></i><input type="text" class="form-input" name="username" id="username" placeholder="Enter your email or username" required></div></div>
           <div class="form-group"><label class="form-label" for="password">Password</label><div class="input-wrapper"><i class="fas fa-lock input-icon"></i><input type="password" class="form-input" name="password" id="password" placeholder="Enter your password" minlength="6" required><button type="button" class="password-toggle" onclick="togglePassword()"><i class="fas fa-eye" id="eyeIcon"></i></button></div></div>
           <div class="form-links"><a href="#">Forgot password?</a><a href="{% url 'jobapp:jobseekerreg' %}">Register Here</a></div>
           <div class="checkbox-wrapper"><input type="checkbox" id="terms" name="terms" required><label for="terms">I agree to the <a href="#" id="show-terms-link">Terms of Service</a></label></div>
@@ -71,7 +72,7 @@
   function togglePassword(){const p=document.getElementById('password');const eye=document.getElementById('eyeIcon');if(p.type==='password'){p.type='text';eye.classList.replace('fa-eye','fa-eye-slash');}else{p.type='password';eye.classList.replace('fa-eye-slash','fa-eye');}}
   function handleGoogleLogin(){console.log('Google login initiated');}
   function handleLinkedInLogin(){console.log('LinkedIn login initiated');}
-  const loginForm=document.getElementById('login-form');if(loginForm){loginForm.addEventListener('submit',function(e){const usertype=document.getElementById('usertype').value;const username=document.getElementById('username').value.trim();const password=document.getElementById('password').value;const terms=document.getElementById('terms').checked;const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;if(!usertype||!username||!password||!terms){e.preventDefault();alert('Please fill in all required fields and accept the terms.');return;}if(!emailPattern.test(username)){e.preventDefault();alert('Please enter a valid email address.');return;}if(password.length<6){e.preventDefault();alert('Password must be at least 6 characters long.');return;}});} 
+  const loginForm=document.getElementById('login-form');if(loginForm){loginForm.addEventListener('submit',function(e){const usertype=document.getElementById('usertype').value;const username=document.getElementById('username').value.trim();const password=document.getElementById('password').value;const terms=document.getElementById('terms').checked;if(!usertype||!username||!password||!terms){e.preventDefault();alert('Please fill in all required fields and accept the terms.');return;}if(password.length<6){e.preventDefault();alert('Password must be at least 6 characters long.');return;}});} 
 </script>
 {% endblock %}
 
@@ -120,15 +121,7 @@
         });
       });
 
-      // Store selected role instead of redirecting instantly
-      let selectedRole = "";
-      document
-        .getElementById("usertype")
-        .addEventListener("change", function () {
-          selectedRole = this.value;
-        });
-
-      // Form submit validation + role-based redirect
+      // Form submit validation (client-side only). The form posts to the server login view
       document.querySelector("form").addEventListener("submit", function (e) {
         const usertype = document.getElementById("usertype").value;
         const username = document.getElementById("username").value.trim();
@@ -166,15 +159,6 @@
         submitBtn.innerHTML =
           '<i class="fas fa-spinner fa-spin"></i> Signing In...';
         submitBtn.disabled = true;
-
-        // Redirect based on selected role
-        if (selectedRole === "jobseeker") {
-          this.action = "{% url 'jsapp:jshome' %}";
-        } else if (selectedRole === "employer") {
-          this.action = "{% url 'employer:employerhome' %}";
-        } else if (selectedRole === "administrator") {
-          this.action = "{% url 'adminapp:adminhome' %}";
-        }
       });
 
       // Show field error helper
