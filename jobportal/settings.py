@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,12 +45,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+     'django.contrib.sites',
     
     # Your custom apps
     'jobapp',
     'adminapp',
     'jsapp',
     'employer',
+
+     'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     'allauth.account.middleware.AccountMiddleware', 
     
     # Custom middleware for user type checking (optional - uncomment to enable)
     # 'jobapp.views.check_user_type_middleware',
@@ -153,10 +163,13 @@ SESSION_COOKIE_AGE = 86400  # 24 hours
 SESSION_SAVE_EVERY_REQUEST = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
+SITE_ID=1
+
 # Login/Logout URLs
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'
+SOCIALACCOUNT_LOGIN_ON_GET = True
 
 # Message tags for Bootstrap alerts
 from django.contrib.messages import constants as messages
@@ -175,6 +188,22 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10MB
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # For development
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # Uncomment for production
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP':{
+            
+            'client_id': os.environ.get("GOOGLE_CLIENT_ID"),
+            'secret': os.environ.get("GOOGLE_CLIENT_SECRET"),
+            'key': ''
+        },
+        'AUTH_PARAMS': {
+            'access_type': 'offline',
+            'prompt': 'consent'  # This forces Google to always ask for consent
+        }
+    }
+}
+
 
 # Gmail SMTP settings (for production)
 EMAIL_HOST = 'smtp.gmail.com'
@@ -272,6 +301,7 @@ if not DEBUG:
 # AUTHENTICATION_BACKENDS = [
 #     'django.contrib.auth.backends.ModelBackend',
 #     'jobapp.backends.CustomAuthBackend',  # Custom backend if you create one
+      'allauth.account.auth_backends.AuthenticationBackend',  # For django-allauth
 # ]
 
 # Internationalization options
