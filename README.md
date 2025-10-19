@@ -22,12 +22,53 @@
   <br>
   <a href="https://dreamjobs-9pmg.onrender.com/"><strong>Explore the Live Site »</strong></a>
   <br>
-  <a href="#getting-started">View Setup</a>
+  <a href="https://github.com/Khushi-Nigam/jobportal/blob/master/README.md#getting-started">View Setup</a>
   ·
-  <a href="#key-features">View Features</a>
+  <a href="https://github.com/Khushi-Nigam/jobportal/blob/master/README.md#key-features">View Features</a>
   ·
-  <a href="#contributing">Contribute</a>
+  <a href="https://github.com/Khushi-Nigam/jobportal/blob/master/README.md#contributing">Contribute</a>
 </p>
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+
+## 🌍 Vision
+
+Empower job seekers and employers with a simple, transparent, and effective platform where the right talent meets the right opportunity.
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+
+## 🎯 Mission
+
+- 🔎 Make discovery easy: powerful search and filters for jobs and talent
+- ⚡ Speed up hiring: streamlined posting, applications, and tracking
+- 🤝 Build trust: clear flows for both seekers and employers
+- 📱 Keep it accessible: responsive UI and straightforward onboarding
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+
+## 🧭 Project Flowchart
+
+```mermaid
+flowchart TD
+  %% Job Seeker Flow
+  A[Visitor / Job Seeker] --> B[Sign up / Login]
+  B --> C[Browse / Search Jobs]
+  C --> D[View Job Details]
+  D --> E[Apply Upload Resume]
+  E --> F[Track Application Status]
+
+  %% Employer Flow
+  A2[Employer] --> B2[Sign up / Login]
+  B2 --> C2[Post New Job]
+  C2 --> D2[Manage Applicants - Review / Shortlist / Reject]
+  D2 --> E2[Contact Candidate / Schedule Interview]
+
+  %% Interaction
+  E --> G[Employer Receives Application]
+  G --> D2
+```
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
 ---
 ## 🌟GSSoc 
@@ -58,6 +99,8 @@
 
 *GIFs showing a user searching for jobs, filtering results, and submitting an application, then managing their applications from their dashboard.*
 
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+
 ### 👔 Employer Experience
 | Post a New Job | Manage Applicants |
 |:---:|:---:|
@@ -67,9 +110,13 @@
 
 ---
 
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+
 ## 🚀 Getting Started
 
 Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
 ### ✅ Prerequisites
 
@@ -77,6 +124,8 @@ Before you begin, ensure you have the following installed:
 - **Python** (3.8 or higher) - [Download here](https://www.python.org/downloads/)
 - **Git** - [Download here](https://git-scm.com/)
 - **Pip** (Python package manager, usually comes with Python)
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
 ### ⚙️ Local Development Setup
 
@@ -131,6 +180,8 @@ Admin Panel: http://127.0.0.1:8000/admin (if you created a superuser)
 ```
 <img width="1919" height="1075" alt="image" src="https://github.com/user-attachments/assets/6e7b976f-625a-4264-abd9-9888f29c0cca" />
 
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+
 
 ##  🗂️ File Structure
 
@@ -180,26 +231,26 @@ jobportal/
 ├── manage.py
 └── requirements.txt
 ```
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+
 # ✨ Key Features
 # For Job Seekers
 - 🔍 Smart Job Search: Filter by location, industry, and experience level.
 - 📄 One-Click Applications: Save your resume and apply to jobs effortlessly.
-
 - 📊 Application Tracker: Monitor the status of every application you submit.
-
 - 👤 Personalized Dashboard: Manage your profile and view recommended jobs.
 
 # For Employers
 - 📢 Easy Job Posting: Create and publish new job vacancies in minutes.
-
 - 👥 Applicant Management System: View, shortlist, and manage all applicants from a central dashboard.
-
 - 🔎 Talent Discovery: Search for candidates based on skills and experience.
 
 # For Everyone
 - 🔐 Secure Authentication: Separate login systems for job seekers and employers.
-
 - 📱 Fully Responsive: Seamless experience on desktop, tablet, and mobile devices.
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
 # 🛠️ Technologies Used
 Layer	Technologies
@@ -207,15 +258,20 @@ Layer	Technologies
 - Backend	: Python, Django
 - Database :	SQLite (Development)
 - Deployment	Render
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+
 # 🤝 Contributing
 - We love your input! We want to make contributing to DreamJobs as easy and transparent as possible.
-
 - If you have a suggestion, bug report, or want to add a new feature, please check out our Contributing Guide for details on our code of conduct and the process for submitting pull requests.
-
 - First time contributing? No problem! Look for issues labeled good first issue to get started.
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
 # 📄 License
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
 ## 🙏 Acknowledgements
 
