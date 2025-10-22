@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from .models import Login, Employer, JobSeeker, Enquiry
+from .models import Login, Employer, JobSeeker, Enquiry, Administrator
 from adminapp.models import News
 from employer.models import Jobs
 from django.core.exceptions import ObjectDoesNotExist
@@ -190,17 +190,49 @@ def login(request):
 def employerreg(request):
     if request.method == "POST":
         empprofilepic = request.FILES.get("empprofilepic")
-        firmname = request.POST["firmname"]
-        firmwork = request.POST["firmwork"]
-        firmaddress = request.POST["firmaddress"]
-        cpname = request.POST["cpname"]
-        cpcontactno = request.POST["cpcontactno"]
-        cpemailaddress = request.POST["cpemailaddress"]
-        password = request.POST["password"]
-        aadharno = request.POST["aadharno"]
-        panno = request.POST["panno"]
-        gstno = request.POST["gstno"]
+        # Map template field names to view variables
+        firmname = request.POST.get("companyName", "").strip()
+        # template doesn't include firmwork field; keep empty or use a placeholder
+        firmwork = request.POST.get("firmwork", "").strip()
+        firmaddress = request.POST.get("address", "").strip()
+        cpname = request.POST.get("username", "").strip()
+        cpcontactno = request.POST.get("phone", "").strip()
+        cpemailaddress = request.POST.get("email", "").strip()
+        password = request.POST.get("password", "")
+        # template uses panNo and gstno; aadhar not provided in template
+        aadharno = request.POST.get("aadharno", "").strip()
+        panno = request.POST.get("panNo", "").strip()
+        gstno = request.POST.get("gstno", "").strip()
         regdate = datetime.datetime.today()
+
+        # Validate required fields
+        missing = []
+        if not firmname:
+            missing.append('Firm name')
+        if not cpemailaddress:
+            missing.append('Contact email')
+        if not password:
+            missing.append('Password')
+
+        if missing:
+            msg = "Please provide required fields: " + ", ".join(missing)
+            messages.error(request, msg)
+            # Re-render the form and preserve entered values using template field names
+            context = {
+                'msg': msg,
+                'form': {
+                    'companyName': firmname,
+                    'firmwork': firmwork,
+                    'address': firmaddress,
+                    'username': cpname,
+                    'phone': cpcontactno,
+                    'email': cpemailaddress,
+                    'aadharno': aadharno,
+                    'panNo': panno,
+                    'gstno': gstno,
+                }
+            }
+            return render(request, "employer.html", context)
 
         empreg = Employer(
             empprofilepic=empprofilepic,
@@ -220,9 +252,14 @@ def employerreg(request):
         log = Login(username=cpemailaddress, password=password, usertype="employer")
         log.save()
 
+        # Set session so the newly-registered employer is treated as logged-in
+        request.session["username"] = cpemailaddress
+        request.session["usertype"] = "employer"
+
         messages.success(request, "Employer registration successful! You are now logged in.")
         return redirect("employer:employerhome")  # ✅ Go straight to employer home
 
+    # For GET requests, just render the registration page
     return render(request, "employer.html")
 
 

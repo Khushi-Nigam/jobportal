@@ -324,6 +324,7 @@
         name="companyName"
         autocomplete="organization"
         placeholder="Enter your company's official name"
+        value="{{ form.companyName|default:'' }}"
         required
       />
       <div class="error-message">Company name is required.</div>
@@ -341,6 +342,7 @@
         name="username"
         autocomplete="username"
         placeholder="Choose a unique username"
+        value="{{ form.username|default:'' }}"
         required
       />
       <div class="error-message">Username is required.</div>
@@ -396,6 +398,7 @@
         name="email"
         autocomplete="email"
         placeholder="Enter your company email"
+        value="{{ form.email|default:'' }}"
         required
       />
       <div class="error-message">A valid email address is required.</div>
@@ -413,6 +416,7 @@
         name="phone"
         autocomplete="tel"
         placeholder="Enter your contact number (e.g., +1234567890)"
+        value="{{ form.phone|default:'' }}"
         required
         pattern="^\+?\d{10,15}$"
         title="Please enter a valid phone number (e.g., +1234567890)"
@@ -434,6 +438,7 @@
         name="address"
         autocomplete="street-address"
         placeholder="Enter your company's full address"
+        value="{{ form.address|default:'' }}"
         required
       />
       <div class="error-message">Company address is required.</div>
@@ -452,6 +457,7 @@
           name="city"
           autocomplete="address-level2"
           placeholder="Enter city"
+          value="{{ form.city|default:'' }}"
           required
         />
         <div class="error-message">City is required.</div>
@@ -468,13 +474,14 @@
           name="state"
           autocomplete="address-level1"
           placeholder="Enter state"
+          value="{{ form.state|default:'' }}"
           required
         />
         <div class="error-message">State is required.</div>
       </div>
       <div class="mb-3">
         <label for="gstno" class="form-label">GST No.<span class="required-asterisk">*</span></label>
-        <input type="text" class="form-control" name="gstno" placeholder="Enter GST No." required>
+  <input type="text" class="form-control" name="gstno" placeholder="Enter GST No." value="{{ form.gstno|default:'' }}" required>
         <span class="error-message">GST number is required.</span>
       </div>
       
@@ -484,7 +491,7 @@
         <i class="fas fa-id-badge me-2"></i>PAN Number
         <span class="required-asterisk">*</span>
       </label>
-      <input
+        <input
         type="text"
         class="form-control"
         id="panNo"
@@ -492,6 +499,7 @@
         placeholder="ABCDE1234F"
         pattern="[A-Z]{5}\d{4}[A-Z]"
         style="text-transform: uppercase"
+        value="{{ form.panNo|default:'' }}"
         required
       />
       <div class="error-message">Please enter a valid PAN number.</div>

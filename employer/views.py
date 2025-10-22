@@ -13,6 +13,22 @@ from jobapp.models import Employer, JobSeeker
 from .models import Jobs, Post
 from jsapp.models import AppliedJobs
 
+# Try to dynamically import a helper for sending notification emails; if it's not
+# present, provide a lightweight fallback that logs to console so views can call
+# it during local testing without crashing.
+import importlib
+
+def _import_send_notification():
+    try:
+        mod = importlib.import_module('jobapp.utils')
+        return getattr(mod, 'send_notification_email')
+    except Exception:
+        def _fallback(subject, message, recipients):
+            print(f"[send_notification_email fallback] To: {recipients} Subject: {subject}\n{message}")
+        return _fallback
+
+send_notification_email = _import_send_notification()
+
 
 def test_template(request):
     return render(request, "viewmyprofile.html")
@@ -51,7 +67,9 @@ def employer_login_required(view_func):
 def employerhome(request):
     if 'username' not in request.session or request.session.get('usertype') != 'employer':
         return redirect('jobapp:login')
-    return render(request, 'employer/employerhome.html')
+    # The template is located at employer/templates/employerhome.html
+    # Use the direct template name (not nested 'employer/employerhome.html')
+    return render(request, 'employerhome.html')
     
 """    employer_email = request.session.get("username")
     employer = Employer.objects.get(cpemailaddress=employer_email)
