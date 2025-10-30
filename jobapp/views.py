@@ -263,33 +263,6 @@ def employerreg(request):
     return render(request, "employer.html")
 
 
-def login(request):
-
-    if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
-
-        try:
-            obj = Login.objects.get(username=username, password=password)
-            request.session["username"] = username
-            request.session["usertype"] = obj.usertype 
-            print("SESSION:", request.session.items())
- 
-
-            if obj.usertype == 'jobseeker':
-                return redirect("jsapp:jshome")
-            elif obj.usertype == 'administrator':
-                return redirect("adminapp:adminhome")
-            elif obj.usertype == 'employer':
-                return redirect("employer:employerhome")
-            else:
-                return render(request, 'login.html', {"msg": "Invalid user type"})
-
-        except Login.DoesNotExist:
-            return render(request, 'login.html', {"msg": "Invalid username or password"})
-
-    return render(request, "login.html")
-
 
 
 def contactus(request):
